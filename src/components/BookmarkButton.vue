@@ -61,7 +61,7 @@ const bookmarked = inject(Bookmarked)
     display: flex;
     justify-content: start;
     align-items: center;
-    gap: 1rem;
+    gap: 0.9rem;
     color: var(--clr-gray-400);
     background-color: var(--clr-gray-50);
     font-size: 1rem;
@@ -70,7 +70,7 @@ const bookmarked = inject(Bookmarked)
     min-width: 3.5rem;
     border-radius: 2rem;
     cursor: pointer;
-    transition: all .2s;
+    transition: all .5s;
 
     &[data-bookmarked='true'] {
       color: var(--clr-green-700);
@@ -81,14 +81,16 @@ const bookmarked = inject(Bookmarked)
       }
     }
 
-    &:hover {
-      .icon-container {
-        transition: all 0.3s;
-        opacity: 0.5;
+    @media (hover: hover) {
+      &:hover {
+        .icon-container {
+          transition: all 0.3s;
+          opacity: 0.5;
 
-        svg {
-          circle {
-            color: var(--clr-gray-400);
+          svg {
+            circle {
+              color: var(--clr-gray-400);
+            }
           }
         }
       }

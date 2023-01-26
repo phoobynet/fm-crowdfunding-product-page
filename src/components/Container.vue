@@ -40,6 +40,7 @@ import TopBar from '@/components/TopBar.vue'
         display: grid;
         grid-auto-rows: auto;
         width: var(--mob-content-width);
+        gap: 1.5rem;
       }
     }
 

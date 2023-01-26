@@ -4,6 +4,7 @@
 >
 import Container from '@/components/Container.vue'
 import ProjectCta from '@/components/ProjectCta.vue'
+import ProjectStats from '@/components/ProjectStats.vue'
 import { provide, ref } from 'vue'
 import { Bookmarked, MenuOpen } from '@/lib/injectionKeys'
 
@@ -16,6 +17,7 @@ provide(MenuOpen, menuOpen)
 <template>
   <Container>
     <ProjectCta />
+    <ProjectStats />
   </Container>
 </template>
 
