@@ -36,6 +36,7 @@ import BookmarkButton from '@/components/BookmarkButton.vue'
     display: grid;
     text-align: center;
     grid-template-rows: 6.3rem 4.4rem 5rem;
+    min-width: var(--mob-content-width);
 
     img {
       position: absolute;

@@ -8,8 +8,10 @@ import Logo from '@/components/Logo.vue'
 
 <template>
   <div class="top-bar">
-    <Logo/>
-    <TopBarMenu />
+    <div>
+      <Logo />
+      <TopBarMenu />
+    </div>
   </div>
 </template>
 
@@ -19,13 +21,20 @@ import Logo from '@/components/Logo.vue'
 >
   .top-bar {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    min-height: 3rem;
-    padding: 2rem 1.5rem;
+    justify-content: center;
+    & > div {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      min-height: 3rem;
+      padding: 2rem 1.5rem;
+      width: var(--mob-width);
+      min-width: var(--mob-width);
 
-    @media screen and (min-width: 1440px){
-      padding: 3rem 10.4rem;
+      @media screen and (min-width: 1440px) {
+        padding: 3rem 10.4rem;
+        width: var(--desk-width);
+      }
     }
   }
 </style>

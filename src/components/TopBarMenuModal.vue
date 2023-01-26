@@ -65,8 +65,7 @@ const motions = useMotions()
     justify-content: center;
     align-items: start;
     padding-top: 5.5rem;
-    //background-image: linear-gradient(to bottom, rgba(0, 0, 0, .5), transparent);
-    background-size: var(--mob-width) 667px;
+    background-size: 100% 667px;
     background-repeat: no-repeat;
 
     .modal {

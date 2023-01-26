@@ -39,7 +39,16 @@ const bookmarked = inject(Bookmarked)
       </svg>
     </div>
     <div class="text-container">
-      Bookmark<span v-if="bookmarked">ed</span>
+      <transition name="switch" mode="out-in">
+      <span
+        v-if="bookmarked"
+      >
+        Bookmarked
+      </span>
+        <span
+          v-else
+        >Bookmark</span>
+      </transition>
     </div>
   </div>
 </template>
@@ -58,13 +67,18 @@ const bookmarked = inject(Bookmarked)
     font-size: 1rem;
     font-weight: 700;
     height: 3.5rem;
-    width: 3.5rem;
+    min-width: 3.5rem;
     border-radius: 2rem;
     cursor: pointer;
+    transition: all .2s;
 
     &[data-bookmarked='true'] {
       color: var(--clr-green-700);
       background-color: var(--clr-green-100);
+
+      @media screen and (min-width: 1440px) {
+        min-width: 11.7rem;
+      }
     }
 
     &:hover {
@@ -83,6 +97,7 @@ const bookmarked = inject(Bookmarked)
     &[data-bookmarked='true'] {
       .icon-container {
         transition: all 0.3s;
+
         svg {
           circle {
             fill: var(--clr-green-700);
@@ -108,6 +123,19 @@ const bookmarked = inject(Bookmarked)
         display: block;
       }
     }
+  }
+
+  .switch-enter-from, .switch-leave-to {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  .switch-enter-active, .switch-leave-active {
+    transition: all 0.2s ease;
+  }
+
+  .switch-leave {
+    transition: all 0.2s ease;
   }
 </style>
 
