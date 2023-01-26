@@ -1,0 +1,108 @@
+<script
+  lang="ts"
+  setup
+>
+import { inject } from 'vue'
+import { Bookmarked } from '@/lib/injectionKeys'
+
+const bookmarked = inject(Bookmarked)
+</script>
+
+<template>
+  <div
+    class="bookmark-button"
+    role="button"
+    :data-bookmarked="bookmarked"
+    @click="() => bookmarked = !bookmarked"
+  >
+    <div class="icon-container">
+      <svg
+        width="56"
+        height="56"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <g
+          fill="none"
+          fill-rule="evenodd"
+        >
+          <circle
+            fill="#2F2F2F"
+            cx="28"
+            cy="28"
+            r="28"
+          />
+          <path
+            fill="#B1B1B1"
+            d="M23 19v18l5-5.058L33 37V19z"
+          />
+        </g>
+      </svg>
+    </div>
+    <div class="text-container">
+      Bookmark
+    </div>
+  </div>
+</template>
+
+<style
+  lang="scss"
+  scoped
+>
+  .bookmark-button {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 1rem;
+    color: var(--clr-gray-400);
+    background-color: var(--clr-gray-50);
+    font-size: 1rem;
+    font-weight: 700;
+    height: 3.5rem;
+    width: 3.5rem;
+    border-radius: 2rem;
+    cursor: pointer;
+
+    &:hover {
+      .icon-container {
+        transition: all 0.3s;
+        opacity: 0.5;
+
+        svg {
+          circle {
+            color: var(--clr-gray-400);
+          }
+        }
+      }
+    }
+
+    &[data-bookmarked='true'] {
+      .icon-container {
+        transition: all 0.3s;
+        svg {
+          circle {
+            fill: var(--clr-dark-green);
+          }
+
+          path {
+            fill: var(--clr-white);
+          }
+        }
+      }
+    }
+
+    .icon-container {
+    }
+
+    .text-container {
+      display: none;
+    }
+
+    @media screen and (min-width: 1440px) {
+      width: 10.875rem;
+      .text-container {
+        display: block;
+      }
+    }
+  }
+</style>
+

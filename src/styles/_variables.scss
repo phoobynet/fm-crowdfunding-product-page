@@ -1,0 +1,25 @@
+:root {
+  --mob-width: 23.438rem;
+  --mob-content-width: 20.438rem;
+  --desk-width: 90rem;
+  --desk-content-width: 45.625rem;
+
+  --ff: 'Commissioner', 'sans-serif';
+
+  --clr-light-green: #3CB3AB;
+  --clr-dark-green: #147A73;
+
+  --clr-dark-800: #2F2F2F;
+  --clr-gray-400: #707070;
+  --clr-gray-300: #7A7A7A;
+  --clr-gray-200: #979797;
+  --clr-gray-100: #B1B1B1;
+  --clr-gray-75: #F5F5F5;
+  --clr-gray-50: #F4F4F4;
+  --clr-gray-25:#F2F2F2F2;
+  --clr-white: #FFFFFF;
+}
+
+body {
+  font-family: var(--ff);
+}
