@@ -39,7 +39,7 @@ const bookmarked = inject(Bookmarked)
       </svg>
     </div>
     <div class="text-container">
-      Bookmark
+      Bookmark<span v-if="bookmarked">ed</span>
     </div>
   </div>
 </template>
@@ -62,6 +62,11 @@ const bookmarked = inject(Bookmarked)
     border-radius: 2rem;
     cursor: pointer;
 
+    &[data-bookmarked='true'] {
+      color: var(--clr-green-700);
+      background-color: var(--clr-green-100);
+    }
+
     &:hover {
       .icon-container {
         transition: all 0.3s;
@@ -80,7 +85,7 @@ const bookmarked = inject(Bookmarked)
         transition: all 0.3s;
         svg {
           circle {
-            fill: var(--clr-dark-green);
+            fill: var(--clr-green-700);
           }
 
           path {

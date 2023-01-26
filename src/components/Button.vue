@@ -17,8 +17,8 @@ const emit = defineEmits(['click'])
 >
   button {
     color: white;
-    background-color: var(--clr-light-green);
-    fonts-size: 1rem;
+    background-color: var(--clr-green-500);
+    font-size: 1rem;
     font-weight: 700;
     height: 3.5rem;
     border-radius: 2rem;
@@ -27,7 +27,11 @@ const emit = defineEmits(['click'])
     transition: all 0.3s;
 
     &:hover {
-      background-color: var(--clr-dark-green);
+      background-color: var(--clr-green-700);
+    }
+
+    @media (min-width: 1440px){
+      padding: 0 2.5rem;
     }
   }
 </style>

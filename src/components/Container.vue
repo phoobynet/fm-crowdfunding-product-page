@@ -25,10 +25,10 @@ import TopBar from '@/components/TopBar.vue'
     display: flex;
     flex-direction: column;
     align-content: center;
-    background-image: url('@/assets/images/image-hero-mobile.jpg');
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, .4), transparent), url('@/assets/images/image-hero-mobile.jpg');
     background-repeat: no-repeat;
     background-position: top center;
-    background-size: var(--mob-width);
+    background-size: var(--mob-width) 18.75rem;
 
 
     main {
@@ -44,11 +44,12 @@ import TopBar from '@/components/TopBar.vue'
     }
 
     @media screen and (min-width: 1440px) {
-      background-image: url('@/assets/images/image-hero-desktop.jpg');
-      background-size: unset;
+      background-image: linear-gradient(to bottom, rgba(0, 0, 0, .4), transparent), url('@/assets/images/image-hero-desktop.jpg');
+      background-size: var(--desk-width) 25.0rem;
 
       main {
         padding-top: 12rem;
+
         .contents {
           width: var(--desk-content-width);
         }

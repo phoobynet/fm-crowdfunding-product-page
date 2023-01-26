@@ -35,7 +35,7 @@ import BookmarkButton from '@/components/BookmarkButton.vue'
     position: relative;
     display: grid;
     text-align: center;
-    grid-template-rows: 6.3rem 4.4rem auto;
+    grid-template-rows: 6.3rem 4.4rem 5rem;
 
     img {
       position: absolute;
@@ -65,13 +65,23 @@ import BookmarkButton from '@/components/BookmarkButton.vue'
     .buttons-container {
       display: flex;
       justify-content: space-between;
-      align-items: center;
       padding: 0 .5rem;
     }
 
     @media (min-width: 1440px) {
+      grid-template-rows: 5.4rem 3.9rem 5rem;
+      header {
+        padding-top: 2.8rem;
+        h1 {
+          font-size: 1.75rem;
+        }
+      }
       p {
         font-size: 1rem;
+      }
+
+      .buttons-container {
+        padding: 0 2rem;
       }
     }
   }
