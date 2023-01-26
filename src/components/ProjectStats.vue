@@ -43,6 +43,7 @@ import ProgressBar from '@/components/ProgressBar.vue'
   scoped
 >
   .project-stats {
+    padding-top: .6rem;
     ul {
       display: grid;
       list-style: none;
@@ -53,7 +54,7 @@ import ProgressBar from '@/components/ProgressBar.vue'
       li {
         display: grid;
         justify-content: center;
-        gap: .5rem;
+        grid-template-rows: 3rem auto;
         text-align: center;
 
         .amount {
@@ -90,7 +91,8 @@ import ProgressBar from '@/components/ProgressBar.vue'
     }
 
     .progress-bar {
-      margin: 1.8rem;
+      margin-top: 1rem;
+      margin-bottom: 1.8rem;
     }
   }
 </style>
