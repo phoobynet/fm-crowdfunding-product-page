@@ -24,7 +24,7 @@ const motions = useMotions()
 <template>
   <transition
     :css="false"
-    @leave="(el, done) => motions.modal.leave(done)"
+    @leave="(el: Element, done: () => void) => motions.modal.leave(done)"
   >
     <div
       class="top-bar-menu-modal"

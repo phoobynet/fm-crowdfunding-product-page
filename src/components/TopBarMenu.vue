@@ -22,7 +22,7 @@ const items = ['About', 'Discover', 'Get Started']
         <li
           v-for="item in items"
           :key="item"
-          @click="onMenuItemClicked"
+          @click="(_) => onMenuItemClicked(item)"
         >{{ item }}
         </li>
       </ul>
