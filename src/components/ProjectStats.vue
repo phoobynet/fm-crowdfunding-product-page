@@ -12,9 +12,9 @@ import ProgressBar from '@/components/ProgressBar.vue'
       <ul>
         <li>
           <div class="amount">$89,914</div>
-          <div class="description">of $100,0000 backed</div>
+          <div class="description">of $100,000 backed</div>
         </li>
-        <li>
+        <li class="separator">
           <div class="hl" />
           <div class="vl" />
         </li>
@@ -22,7 +22,7 @@ import ProgressBar from '@/components/ProgressBar.vue'
           <div class="amount">5,007</div>
           <div class="description">total backers</div>
         </li>
-        <li>
+        <li class="separator">
           <div class="hl" />
           <div class="vl" />
         </li>
@@ -32,7 +32,7 @@ import ProgressBar from '@/components/ProgressBar.vue'
         </li>
       </ul>
       <div class="progress-bar">
-        <ProgressBar />
+        <ProgressBar :goal="100_000" :actual="89_914" />
       </div>
     </div>
   </Card>
@@ -43,18 +43,18 @@ import ProgressBar from '@/components/ProgressBar.vue'
   scoped
 >
   .project-stats {
-    padding-top: .6rem;
+    padding-top: 0.6rem;
     ul {
       display: grid;
       list-style: none;
       padding: 0;
       justify-content: center;
-      grid-template-rows: 5.3rem 2rem 5.3rem 2rem 5rem;
+      grid-template-rows: 4.9rem 2.3rem 4.9rem 2.3rem 4.3rem;
 
       li {
         display: grid;
         justify-content: center;
-        grid-template-rows: 3rem auto;
+        grid-template-rows: 3.2rem auto;
         text-align: center;
 
         .amount {
@@ -69,6 +69,9 @@ import ProgressBar from '@/components/ProgressBar.vue'
 
         .vl {
           display: none;
+          height: 3.9375rem;
+          width: 1rem;
+          border-right: 1px solid var(--clr-gray-100);
         }
 
         .hl {
@@ -77,22 +80,49 @@ import ProgressBar from '@/components/ProgressBar.vue'
           border-bottom: 1px solid var(--clr-gray-100);
         }
       }
-
-      @media screen and (min-width: 1440px) {
-        grid-auto-columns: auto;
-        .vl {
-          display: block;
-        }
-        .hl {
-          display: none;
-          width: 4rem;
-        }
-      }
     }
 
     .progress-bar {
-      margin-top: 1rem;
-      margin-bottom: 1.8rem;
+      margin-top: 2rem;
+      margin-bottom: 1.5rem;
+      padding: 0 0.5rem;
+    }
+
+
+    @media screen and (min-width: 1440px) {
+      padding: 1.8rem .6rem 0;
+      ul {
+        grid-template-rows: 5rem;
+        grid-template-columns: 11.1rem 2.1rem 10.2rem 5.8rem 4.9rem;
+        justify-content: start;
+        align-items: start;
+
+        li {
+          text-align: left;
+          align-self: center;
+          justify-content: center;
+
+          .description {
+            font-size: 0.9375rem;
+          }
+
+          .vl {
+            display: block;
+          }
+
+          .hl {
+            display: none;
+            width: 4rem;
+          }
+
+          &.separator {
+            margin-top: -1rem;
+          }
+        }
+      }
+      .progress-bar {
+        padding: 0 1.4rem;
+      }
     }
   }
 </style>

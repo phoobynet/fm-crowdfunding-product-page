@@ -2,15 +2,30 @@
   lang="ts"
   setup
 >
+import { ref } from 'vue'
+import { useResizeObserver } from '@vueuse/core'
+
+const progressBar = ref<HTMLDivElement>()
+const bar = ref<HTMLDivElement>()
+const barWidth = ref<number>()
+
+useResizeObserver(progressBar, (entries) => {
+  barWidth.value = (props.actual / props.goal) * entries[0].contentRect.width
+})
+
+const props = defineProps<{ goal: number, actual: number }>()
 </script>
 
 <template>
   <div
     class="progress-bar"
-    ref="progressBarEl"
+    ref="progressBar"
   >
     <div
       class="bar"
+      ref="bar"
+      :style="{width: `${barWidth}px`}"
+      :data-width="barWidth"
     >
     </div>
   </div>
@@ -30,12 +45,12 @@
 
     .bar {
       position: absolute;
-      width: 100%;
+      width: 0;
       height: 0.8rem;
       background-color: var(--clr-green-500);
       border-radius: 0.5rem;
       top: 0;
-      left: -4rem;
+      left: 0;
     }
   }
 </style>
