@@ -108,7 +108,8 @@ const pledges: Pledge[] = [{
         line-height: 1.875rem;
       }
       ul {
-        padding: 3.4rem 0;
+        padding: 2.6rem 0;
+        grid-row-gap: 1.4rem;
       }
     }
   }

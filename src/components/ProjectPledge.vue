@@ -120,15 +120,16 @@ const outOfStock = computed(() => props.pledge.remaining === 0)
     }
 
     @media screen and (min-width: 1440px) {
-      grid-template-rows: 2.8rem 5rem 3.4rem;
+      grid-template-rows: 2.5rem 5.1rem 4.5rem;
       grid-template-columns: repeat(2, auto);
       grid-template-areas:
       "header amount"
       "description description"
       "remaining button-container";
-      padding: 1.3rem 1.7rem;
+      padding: 1.3rem 1.8rem 1.9rem;
 
       header {
+        align-self: end;
         h3 {
           font-size: 1.125rem;
         }
@@ -137,11 +138,13 @@ const outOfStock = computed(() => props.pledge.remaining === 0)
       .amount {
         font-size: 0.9375rem;
         justify-self: end;
+        align-self: end;
       }
 
       p {
         font-size: 1rem;
         line-height: 30px;
+        align-self: end;
       }
 
       .remaining {
@@ -151,6 +154,9 @@ const outOfStock = computed(() => props.pledge.remaining === 0)
       .button-container {
         align-self: end;
         justify-self: end;
+        .button {
+          min-width: 5.5rem;
+        }
       }
     }
   }

@@ -3,15 +3,11 @@
   setup
 >
 import { inject, Ref } from 'vue'
-import { MenuOpen } from '@/lib/injectionKeys'
-import TopBarMenuModal from '@/components/TopBarMenuModal.vue'
+import { MenuClickHandler, MenuOpen } from '@/lib/injectionKeys'
 
 const menuOpen = inject(MenuOpen) as Ref<boolean>
+const menuClickHandler = inject(MenuClickHandler) as (item: string) => void
 
-const onMenuItemClicked = (item: string) => {
-  console.log('You clicked ', item)
-  menuOpen.value = false
-}
 const items = ['About', 'Discover', 'Get Started']
 </script>
 
@@ -22,7 +18,7 @@ const items = ['About', 'Discover', 'Get Started']
         <li
           v-for="item in items"
           :key="item"
-          @click="(_) => onMenuItemClicked(item)"
+          @click="(_) => menuClickHandler(item)"
         >{{ item }}
         </li>
       </ul>
@@ -43,9 +39,6 @@ const items = ['About', 'Discover', 'Get Started']
           @click="() => menuOpen = true"
         >
       </template>
-      <Teleport to="body">
-        <TopBarMenuModal @click="onMenuItemClicked" />
-      </Teleport>
     </div>
   </nav>
 </template>

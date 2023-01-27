@@ -6,6 +6,9 @@ import Card from '@/components/Card.vue'
 import Button from '@/components/Button.vue'
 import BookmarkButton from '@/components/BookmarkButton.vue'
 
+const backThisProjectHandler = () => {
+  console.log('Back this project!')
+}
 </script>
 
 <template>
@@ -19,7 +22,7 @@ import BookmarkButton from '@/components/BookmarkButton.vue'
     </header>
     <p>A beautifully handcrafted monitor stand to reduce neck and eye strain.</p>
     <div class="buttons-container">
-      <Button>Back this project</Button>
+      <Button @click="backThisProjectHandler">Back this project</Button>
       <BookmarkButton />
     </div>
   </Card>
