@@ -3,23 +3,11 @@
   setup
 >
 import TopBar from '@/components/TopBar.vue'
-import { onMounted, ref } from 'vue'
-
-const container = ref<HTMLDivElement>()
-
-onMounted(() => {
-  if (import.meta.env.DEV) {
-    if (container.value) {
-      container.value.style.minHeight = '2179px'
-    }
-  }
-})
 </script>
 
 <template>
   <div
     class="container"
-    ref="container"
   >
     <TopBar />
     <main>
@@ -37,10 +25,6 @@ onMounted(() => {
   .container {
     height: 100vh;
     height: 100dvh;
-
-    // TODO: Remove before production
-    min-height: 2179px;
-
     display: flex;
     flex-direction: column;
     align-content: center;

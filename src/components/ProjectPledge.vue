@@ -55,6 +55,14 @@ const outOfStock = computed(() => props.pledge.remaining === 0)
   .pledge {
     display: grid;
     grid-template-rows: 1.6rem 2.6rem 8.9rem 4.2rem auto;
+    grid-template-columns: repeat(2, auto);
+    grid-template-areas:
+      "header header"
+      "amount amount"
+      "description description"
+      "remaining remaining"
+      "button-container button-container"
+    ;
     border-radius: 0.5rem;
     border: 2px solid var(--clr-gray-50);
     padding: 1.3rem 1.4rem;
@@ -65,23 +73,28 @@ const outOfStock = computed(() => props.pledge.remaining === 0)
 
 
     header {
+      grid-area: header;
       h3 {
         font-size: 0.875rem;
       }
     }
 
     .amount {
+      grid-area: amount;
       font-size: 0.875rem;
+      font-weight: 500;
       color: var(--clr-green-500);
     }
 
     p {
+      grid-area: description;
       font-size: 0.875rem;
       line-height: 1.5rem;
       color: var(--clr-gray-300);
     }
 
     .remaining {
+      grid-area: remaining;
       align-self: start;
       display: flex;
       font-size: 0.9375rem;
@@ -97,15 +110,47 @@ const outOfStock = computed(() => props.pledge.remaining === 0)
     }
 
     .button-container {
+      grid-area: button-container;
       .button {
         height: 3rem;
         font-size: 0.875rem;
         padding-left: 2.1rem;
         padding-right: 2.1rem;
+      }
+    }
 
-        &[disabled] {
-          background-color: #979797;
+    @media screen and (min-width: 1440px) {
+      grid-template-rows: 2.8rem 5rem 3.4rem;
+      grid-template-columns: repeat(2, auto);
+      grid-template-areas:
+      "header amount"
+      "description description"
+      "remaining button-container";
+      padding: 1.3rem 1.7rem;
+
+      header {
+        h3 {
+          font-size: 1.125rem;
         }
+      }
+
+      .amount {
+        font-size: 0.9375rem;
+        justify-self: end;
+      }
+
+      p {
+        font-size: 1rem;
+        line-height: 30px;
+      }
+
+      .remaining {
+        align-self: end;
+      }
+
+      .button-container {
+        align-self: end;
+        justify-self: end;
       }
     }
   }

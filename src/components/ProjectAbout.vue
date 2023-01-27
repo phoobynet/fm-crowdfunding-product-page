@@ -50,8 +50,8 @@ const pledges: Pledge[] = [{
       </p>
       <ul>
         <li
-          v-for="p in pledges"
-          :key="name"
+          v-for="(p, index) in pledges"
+          :key="index"
         >
           <ProjectPledge :pledge="p" />
         </li>
@@ -89,6 +89,26 @@ const pledges: Pledge[] = [{
       grid-row-gap: 1.5rem;
 
       li {
+      }
+    }
+
+    @media screen and (min-width: 1440px) {
+      padding: 0 2rem;
+      grid-template-rows: 4.1rem 9.6rem 5.5rem 1fr;
+
+      header {
+        h2 {
+          font-size: 1.25rem;
+          font-weight: 700;
+        }
+      }
+
+      p {
+        font-size: 1rem;
+        line-height: 1.875rem;
+      }
+      ul {
+        padding: 3.4rem 0;
       }
     }
   }

@@ -33,6 +33,11 @@ const emit = defineEmits(['click'])
       background-color: var(--clr-green-700);
     }
 
+    &[disabled] {
+      cursor: default;
+      background-color: var(--clr-gray-200);
+    }
+
     @media (min-width: 1440px) {
       padding: 0 2.5rem;
     }
