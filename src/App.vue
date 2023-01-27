@@ -7,6 +7,7 @@ import ProjectCta from '@/components/ProjectCta.vue'
 import ProjectStats from '@/components/ProjectStats.vue'
 import { provide, ref } from 'vue'
 import { Bookmarked, MenuOpen } from '@/lib/injectionKeys'
+import ProjectAbout from '@/components/ProjectAbout.vue'
 
 const bookmarked = ref(false)
 const menuOpen = ref(false)
@@ -18,6 +19,7 @@ provide(MenuOpen, menuOpen)
   <Container>
     <ProjectCta />
     <ProjectStats />
+    <ProjectAbout />
   </Container>
 </template>
 

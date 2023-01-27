@@ -70,7 +70,7 @@ import BookmarkButton from '@/components/BookmarkButton.vue'
     }
 
     @media (min-width: 1440px) {
-      grid-template-rows: 5.4rem 3.9rem 5rem;
+      grid-template-rows: 5.4rem 3.9rem 5.3rem;
       header {
         padding-top: 2.8rem;
         h1 {

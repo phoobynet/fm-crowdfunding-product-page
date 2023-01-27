@@ -2,18 +2,33 @@
   lang="ts"
   setup
 >
-import { ref } from 'vue'
+import { ref, toRefs, watch } from 'vue'
 import { useResizeObserver } from '@vueuse/core'
 
 const progressBar = ref<HTMLDivElement>()
+const progressBarWidth = ref<number>()
+
 const bar = ref<HTMLDivElement>()
 const barWidth = ref<number>()
 
 useResizeObserver(progressBar, (entries) => {
-  barWidth.value = (props.actual / props.goal) * entries[0].contentRect.width
+  progressBarWidth.value = entries[0].contentRect.width
 })
 
 const props = defineProps<{ goal: number, actual: number }>()
+
+const {
+  goal,
+  actual,
+} = toRefs(props)
+
+watch([progressBarWidth, goal, actual], ([newProgressBarWidth, newGoal, newActual]) => {
+  if (newProgressBarWidth && newGoal && newActual) {
+    barWidth.value = (props.actual / props.goal) * newProgressBarWidth
+  }
+}, {
+  immediate: true
+})
 </script>
 
 <template>

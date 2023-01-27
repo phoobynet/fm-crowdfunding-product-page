@@ -92,7 +92,7 @@ import ProgressBar from '@/components/ProgressBar.vue'
     @media screen and (min-width: 1440px) {
       padding: 1.8rem .6rem 0;
       ul {
-        grid-template-rows: 5rem;
+        grid-template-rows: 4.6rem;
         grid-template-columns: 11.1rem 2.1rem 10.2rem 5.8rem 4.9rem;
         justify-content: start;
         align-items: start;

@@ -120,7 +120,7 @@ const bookmarked = inject(Bookmarked)
     }
 
     @media screen and (min-width: 1440px) {
-      width: 10.875rem;
+      width: 10.775rem;
       .text-container {
         display: block;
       }
