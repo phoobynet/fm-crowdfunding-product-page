@@ -7,6 +7,7 @@ const backThisProjectModalOpen = ref<boolean>(false)
 const bookmarked = ref<boolean>(false)
 const pledges = ref<Pledge[]>([])
 const fetchingPledges = ref<boolean>(false)
+const selectedPledgeId = ref<number | undefined>(undefined)
 
 export const useAppStore = () => {
   const init = async (): Promise<void> => {
@@ -20,12 +21,16 @@ export const useAppStore = () => {
     }
   }
 
+  const isPledgeSelected = (pledgeId: number): boolean => selectedPledgeId.value === pledgeId
+
   return {
     backThisProjectModalOpen,
     bookmarked,
     fetchingPledges,
     menuModalOpen,
     pledges,
+    selectedPledgeId,
+    isPledgeSelected,
     init,
   }
 }

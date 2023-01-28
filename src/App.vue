@@ -6,10 +6,11 @@ import Container from '@/components/Container.vue'
 import ProjectCta from '@/components/ProjectCta.vue'
 import ProjectStats from '@/components/ProjectStats.vue'
 import { onMounted, provide, ref } from 'vue'
-import { MenuClickHandler } from '@/lib/injectionKeys'
+import { MenuClickHandler, ScrollHeight } from '@/lib/injectionKeys'
 import ProjectAbout from '@/components/ProjectAbout.vue'
 import TopBarMenuModal from '@/components/TopBarMenuModal.vue'
 import { useAppStore } from '@/use/useAppStore'
+import BackThisProjectModal from '@/components/BackThisProjectModal.vue'
 
 const {
   menuModalOpen,
@@ -17,6 +18,10 @@ const {
   pledges,
   fetchingPledges,
 } = useAppStore()
+
+const scrollHeight = ref<number>()
+
+provide(ScrollHeight, scrollHeight)
 
 const menuClickHandler = (item: string) => {
   console.log('You clicked ', item)
@@ -40,7 +45,8 @@ onMounted(async () => {
     </template>
   </Container>
   <Teleport to="body">
-    <TopBarMenuModal @click="menuClickHandler" />
+    <TopBarMenuModal />
+    <BackThisProjectModal />
   </Teleport>
 </template>
 

@@ -11,6 +11,7 @@ This is a solution to the [Crowdfunding product page challenge on Frontend Mento
 - [My process](#my-process)
   - [Built with](#built-with)
   - [What I learned](#what-i-learned)
+  - [Useful resources](#useful-resources)
 - [Author](#author)
 
 ## Overview
@@ -36,14 +37,19 @@ Users should be able to:
 ### Built with
 
 - Vue 3
+- SCSS
 - CSS custom properties
 - Flexbox
 - CSS Grid
-- Mobile-first workflow
+- @vueuse/core and @vueuse/motion
 
 ### What I learned
 
 TODO: Life is pain.
+
+### Useful resources
+
+- [Pure CSS Custom Checkbox Style](https://moderncss.dev/pure-css-custom-checkbox-style/) - Custom checkbox.
 
 ## Author
 

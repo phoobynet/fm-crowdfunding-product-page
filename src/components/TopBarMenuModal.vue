@@ -7,8 +7,6 @@ import { useMotions } from '@vueuse/motion'
 import { onClickOutside, onKeyStroke } from '@vueuse/core'
 import { useAppStore } from '@/use/useAppStore'
 
-const emit = defineEmits(['click'])
-
 const items = ['About', 'Discover', 'Get Started']
 const modalElement = ref<HTMLDivElement>()
 const { menuModalOpen } = useAppStore()
@@ -42,7 +40,7 @@ const motions = useMotions()
           <li
             v-for="item in items"
             :key="item"
-            @click="() => emit('click', item)"
+            @click="() => menuModalOpen.value = false"
           ><span>{{ item }}</span>
           </li>
         </ul>

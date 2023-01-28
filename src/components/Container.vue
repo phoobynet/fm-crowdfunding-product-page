@@ -3,11 +3,23 @@
   setup
 >
 import TopBar from '@/components/TopBar.vue'
+import { inject, Ref, ref } from 'vue'
+import { useResizeObserver } from '@vueuse/core'
+import { ScrollHeight } from '@/lib/injectionKeys'
+
+const container = ref<HTMLDivElement>()
+
+const scrollHeight = inject(ScrollHeight) as Ref<number>
+
+useResizeObserver(container, (entries) => {
+  scrollHeight.value = entries[0].target.scrollHeight
+})
 </script>
 
 <template>
   <div
     class="container"
+    ref="container"
   >
     <TopBar />
     <main>

@@ -30,7 +30,9 @@ const { pledges } = useAppStore()
           v-for="p in pledges"
           :key="p.id"
         >
-          <ProjectPledge :pledge="p" />
+          <ProjectPledge
+            :pledge="p"
+          />
         </li>
       </ul>
     </div>

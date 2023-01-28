@@ -5,23 +5,44 @@
 import { Pledge } from '@/lib/types/Pledge'
 import Button from '@/components/Button.vue'
 import { computed } from 'vue'
+import { useAppStore } from '@/use/useAppStore'
+import Checkbox from '@/components/Checkbox.vue'
 
+const {
+  selectedPledgeId,
+} = useAppStore()
 const props = defineProps<{ pledge: Pledge, selectable?: boolean }>()
 const emit = defineEmits(['selected'])
 
 const outOfStock = computed(() => props.pledge.remaining === 0)
 
+const pledgeSelectedValue = computed({
+  get () {
+    return props.pledge.id === selectedPledgeId.value
+  },
+  set (checked) {
+    selectedPledgeId.value = checked
+      ? props.pledge.id
+      : undefined
+  },
+})
 </script>
 
 <template>
   <div
     class="pledge"
-    :class="{'out-of-stock': outOfStock}"
+    :class="{'out-of-stock': outOfStock, selectable, selected: pledge.id === selectedPledgeId}"
     v-if="pledge"
   >
-<!--    <div class="selected">-->
-<!--      <input type="checkbox" :checked="props.pledge.name === ''" />-->
-<!--    </div>-->
+    <div
+      class="select-pledge"
+      v-if="selectable"
+    >
+      <Checkbox
+        v-model="pledgeSelectedValue"
+        :disabled="outOfStock"
+      />
+    </div>
     <header>
       <h3>{{ pledge.name }}</h3>
     </header>
@@ -36,7 +57,7 @@ const outOfStock = computed(() => props.pledge.remaining === 0)
       <div>left</div>
     </div>
 
-    <div class="button-container">
+    <div class="button-container" v-if="!selectable">
       <Button
         @click="() => emit('selected', pledge)"
         class="button"
@@ -48,6 +69,9 @@ const outOfStock = computed(() => props.pledge.remaining === 0)
         </template>
       </Button>
     </div>
+    <div else class="enter-your-pledge">
+      todo
+    </div>
   </div>
 </template>
 
@@ -58,7 +82,7 @@ const outOfStock = computed(() => props.pledge.remaining === 0)
   .pledge {
     display: grid;
     grid-template-rows: 1.6rem 2.6rem 8.9rem 4.2rem auto;
-    grid-template-columns: repeat(3, auto);
+    grid-template-columns: 2.5rem repeat(2, auto);
     grid-template-areas:
       "header header header"
       "amount amount amount"
@@ -70,13 +94,28 @@ const outOfStock = computed(() => props.pledge.remaining === 0)
     padding: 1.3rem 1.4rem;
 
     &.selectable {
+      grid-template-areas:
+      "select-pledge header header"
+      "select-pledge amount amount"
+      "description description description"
+      "remaining remaining remaining"
+      "button-container button-container button-container";
+    }
 
+    &.selected {
+      border: 2px solid var(--clr-green-500);
     }
 
     &.out-of-stock {
       opacity: .5;
     }
 
+    .select-pledge {
+      grid-area: select-pledge;
+      align-self: center;
+      // TODO: This could be a problem
+      padding-bottom: 1rem;
+    }
 
     header {
       grid-area: header;
@@ -125,6 +164,10 @@ const outOfStock = computed(() => props.pledge.remaining === 0)
         padding-left: 2.1rem;
         padding-right: 2.1rem;
       }
+    }
+
+    .enter-your-pledge {
+      border-top: 1px solid var(--clr-gray-100);
     }
 
     @media screen and (min-width: 1440px) {
