@@ -57,7 +57,10 @@ const pledgeSelectedValue = computed({
       <div>left</div>
     </div>
 
-    <div class="button-container" v-if="!selectable">
+    <div v-if="selectable" class="enter-your-pledge">
+      todo
+    </div>
+    <div class="button-container" v-else>
       <Button
         @click="() => emit('selected', pledge)"
         class="button"
@@ -68,9 +71,6 @@ const pledgeSelectedValue = computed({
           Select Reward
         </template>
       </Button>
-    </div>
-    <div else class="enter-your-pledge">
-      todo
     </div>
   </div>
 </template>
