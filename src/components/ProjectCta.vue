@@ -5,9 +5,12 @@
 import Card from '@/components/Card.vue'
 import Button from '@/components/Button.vue'
 import BookmarkButton from '@/components/BookmarkButton.vue'
+import { useAppStore } from '@/use/useAppStore'
+
+const { backThisProjectModalOpen } = useAppStore()
 
 const backThisProjectHandler = () => {
-  console.log('Back this project!')
+  backThisProjectModalOpen.value = true
 }
 </script>
 
@@ -76,6 +79,7 @@ const backThisProjectHandler = () => {
       grid-template-rows: 5.4rem 3.9rem 5.3rem;
       header {
         padding-top: 2.8rem;
+
         h1 {
           font-size: 1.75rem;
         }

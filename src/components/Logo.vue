@@ -2,17 +2,16 @@
   lang="ts"
   setup
 >
-import { MenuOpen } from '@/lib/injectionKeys'
-import { inject, Ref } from 'vue'
+import { useAppStore } from '@/use/useAppStore'
 
-const menuOpen = inject(MenuOpen) as Ref<boolean>
+const { menuModalOpen } = useAppStore()
 
 </script>
 <template>
   <img
     src="@/assets/images/logo.svg"
     alt=""
-    :data-menu-open="menuOpen"
+    :data-menu-open="menuModalOpen"
   >
 </template>
 

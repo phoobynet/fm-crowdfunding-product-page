@@ -6,7 +6,7 @@ import { Pledge } from '@/lib/types/Pledge'
 import Button from '@/components/Button.vue'
 import { computed } from 'vue'
 
-const props = defineProps<{ pledge: Pledge }>()
+const props = defineProps<{ pledge: Pledge, selectable?: boolean }>()
 const emit = defineEmits(['selected'])
 
 const outOfStock = computed(() => props.pledge.remaining === 0)
@@ -19,6 +19,9 @@ const outOfStock = computed(() => props.pledge.remaining === 0)
     :class="{'out-of-stock': outOfStock}"
     v-if="pledge"
   >
+<!--    <div class="selected">-->
+<!--      <input type="checkbox" :checked="props.pledge.name === ''" />-->
+<!--    </div>-->
     <header>
       <h3>{{ pledge.name }}</h3>
     </header>
@@ -55,17 +58,20 @@ const outOfStock = computed(() => props.pledge.remaining === 0)
   .pledge {
     display: grid;
     grid-template-rows: 1.6rem 2.6rem 8.9rem 4.2rem auto;
-    grid-template-columns: repeat(2, auto);
+    grid-template-columns: repeat(3, auto);
     grid-template-areas:
-      "header header"
-      "amount amount"
-      "description description"
-      "remaining remaining"
-      "button-container button-container"
-    ;
+      "header header header"
+      "amount amount amount"
+      "description description description"
+      "remaining remaining remaining"
+      "button-container button-container button-container";
     border-radius: 0.5rem;
     border: 2px solid var(--clr-gray-50);
     padding: 1.3rem 1.4rem;
+
+    &.selectable {
+
+    }
 
     &.out-of-stock {
       opacity: .5;
@@ -74,6 +80,7 @@ const outOfStock = computed(() => props.pledge.remaining === 0)
 
     header {
       grid-area: header;
+
       h3 {
         font-size: 0.875rem;
       }
@@ -111,6 +118,7 @@ const outOfStock = computed(() => props.pledge.remaining === 0)
 
     .button-container {
       grid-area: button-container;
+
       .button {
         height: 3rem;
         font-size: 0.875rem;
@@ -130,6 +138,7 @@ const outOfStock = computed(() => props.pledge.remaining === 0)
 
       header {
         align-self: end;
+
         h3 {
           font-size: 1.125rem;
         }
@@ -154,6 +163,7 @@ const outOfStock = computed(() => props.pledge.remaining === 0)
       .button-container {
         align-self: end;
         justify-self: end;
+
         .button {
           min-width: 5.5rem;
         }

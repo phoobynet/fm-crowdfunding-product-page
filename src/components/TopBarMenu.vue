@@ -3,10 +3,12 @@
   setup
 >
 import { inject, Ref } from 'vue'
-import { MenuClickHandler, MenuOpen } from '@/lib/injectionKeys'
+import { MenuClickHandler } from '@/lib/injectionKeys'
+import { useAppStore } from '@/use/useAppStore'
 
-const menuOpen = inject(MenuOpen) as Ref<boolean>
 const menuClickHandler = inject(MenuClickHandler) as (item: string) => void
+
+const { menuModalOpen } = useAppStore()
 
 const items = ['About', 'Discover', 'Get Started']
 </script>
@@ -25,18 +27,18 @@ const items = ['About', 'Discover', 'Get Started']
     </div>
 
     <div class="mobile-menu">
-      <template v-if="menuOpen">
+      <template v-if="menuModalOpen">
         <img
           src="@/assets/images/icon-close-menu.svg"
           alt=""
-          :data-menu-open="menuOpen"
+          :data-menu-open="menuModalOpen"
         >
       </template>
       <template v-else>
         <img
           src="@/assets/images/icon-hamburger.svg"
           alt=""
-          @click="() => menuOpen = true"
+          @click="() => menuModalOpen = true"
         >
       </template>
     </div>
@@ -50,14 +52,17 @@ const items = ['About', 'Discover', 'Get Started']
   .top-bar-menu {
     .desktop-menu {
       display: none;
+
       ul {
         display: flex;
         list-style: none;
         color: var(--clr-white);
         gap: 2.1rem;
         font-size: 0.8125rem;
+
         li {
           cursor: pointer;
+
           &:hover {
             text-decoration: underline;
             text-decoration-color: var(--clr-gray-200);

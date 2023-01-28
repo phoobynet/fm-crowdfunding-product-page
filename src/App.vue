@@ -5,32 +5,39 @@
 import Container from '@/components/Container.vue'
 import ProjectCta from '@/components/ProjectCta.vue'
 import ProjectStats from '@/components/ProjectStats.vue'
-import { provide, ref } from 'vue'
-import { BackThisProjectModalOpen, Bookmarked, MenuClickHandler, MenuOpen } from '@/lib/injectionKeys'
+import { onMounted, provide, ref } from 'vue'
+import { MenuClickHandler } from '@/lib/injectionKeys'
 import ProjectAbout from '@/components/ProjectAbout.vue'
 import TopBarMenuModal from '@/components/TopBarMenuModal.vue'
+import { useAppStore } from '@/use/useAppStore'
 
-const bookmarked = ref(false)
-const menuOpen = ref(false)
-const backThisProjectModalOpen = ref(false)
+const {
+  menuModalOpen,
+  init,
+  pledges,
+  fetchingPledges,
+} = useAppStore()
 
 const menuClickHandler = (item: string) => {
   console.log('You clicked ', item)
-  menuOpen.value = false
+  menuModalOpen.value = false
 }
 
-provide(Bookmarked, bookmarked)
-provide(MenuOpen, menuOpen)
-provide(BackThisProjectModalOpen, backThisProjectModalOpen)
 provide(MenuClickHandler, menuClickHandler)
+
+onMounted(async () => {
+  await init()
+})
 
 </script>
 
 <template>
   <Container>
-    <ProjectCta />
-    <ProjectStats />
-    <ProjectAbout />
+    <template v-if="!fetchingPledges && pledges.length > 0">
+      <ProjectCta />
+      <ProjectStats />
+      <ProjectAbout />
+    </template>
   </Container>
   <Teleport to="body">
     <TopBarMenuModal @click="menuClickHandler" />

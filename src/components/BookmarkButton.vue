@@ -2,10 +2,9 @@
   lang="ts"
   setup
 >
-import { inject } from 'vue'
-import { Bookmarked } from '@/lib/injectionKeys'
+import { useAppStore } from '@/use/useAppStore'
 
-const bookmarked = inject(Bookmarked)
+const { bookmarked } = useAppStore()
 </script>
 
 <template>
@@ -39,7 +38,10 @@ const bookmarked = inject(Bookmarked)
       </svg>
     </div>
     <div class="text-container">
-      <transition name="switch" mode="out-in">
+      <transition
+        name="switch"
+        mode="out-in"
+      >
       <span
         v-if="bookmarked"
       >

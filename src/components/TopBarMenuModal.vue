@@ -2,20 +2,20 @@
   lang="ts"
   setup
 >
-import { inject, ref, Ref } from 'vue'
-import { MenuOpen } from '@/lib/injectionKeys'
+import { ref } from 'vue'
 import { useMotions } from '@vueuse/motion'
 import { onClickOutside, onKeyStroke } from '@vueuse/core'
+import { useAppStore } from '@/use/useAppStore'
 
 const emit = defineEmits(['click'])
-const menuOpen = inject(MenuOpen) as Ref<boolean>
 
 const items = ['About', 'Discover', 'Get Started']
 const modalElement = ref<HTMLDivElement>()
+const { menuModalOpen } = useAppStore()
 
-onClickOutside(modalElement, () => menuOpen.value = false)
+onClickOutside(modalElement, () => menuModalOpen.value = false)
 onKeyStroke('Escape', () => {
-  menuOpen.value = false
+  menuModalOpen.value = false
 })
 
 const motions = useMotions()
@@ -28,7 +28,7 @@ const motions = useMotions()
   >
     <div
       class="top-bar-menu-modal"
-      v-if="menuOpen"
+      v-if="menuModalOpen"
       v-motion="'modal'"
       :initial="{ opacity: 0, backgroundImage: 'linear-gradient(to bottom, rgba(0, 0, 0, 0), transparent)' }"
       :enter="{ opacity: 1, backgroundImage: 'linear-gradient(to bottom, rgba(0, 0, 0, .5), transparent)', transition: { duration: 300 } }"

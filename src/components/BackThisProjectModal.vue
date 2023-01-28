@@ -2,13 +2,14 @@
   lang="ts"
   setup
 >
-import { inject, ref, Ref } from 'vue'
-import { BackThisProjectModalOpen } from '@/lib/injectionKeys'
+import { ref } from 'vue'
 import { useMotions } from '@vueuse/motion'
 import { onClickOutside, onKeyStroke } from '@vueuse/core'
+import { useAppStore } from '@/use/useAppStore'
 
+// TODO: this may not be necessary
 const emit = defineEmits(['click'])
-const backThisProjectModalOpen = inject(BackThisProjectModalOpen) as Ref<boolean>
+const { backThisProjectModalOpen } = useAppStore()
 
 const modalElement = ref<HTMLDivElement>()
 
@@ -37,26 +38,26 @@ const motions = useMotions()
   lang="scss"
   scoped
 >
-.back-this-project-modal {
-  z-index: 9999;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  // TODO: Adjust height and gradient
-  height: 667px;
-  display: flex;
-  justify-content: center;
-  align-items: start;
-  padding-top: 5.5rem;
-  background-size: 100% 667px;
-  background-repeat: no-repeat;
+  .back-this-project-modal {
+    z-index: 9999;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    // TODO: Adjust height and gradient
+    height: 667px;
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    padding-top: 5.5rem;
+    background-size: 100% 667px;
+    background-repeat: no-repeat;
 
-  .modal {
-    background-color: var(--clr-white);
-    border-radius: 0.5rem;
-    width: var(--mob-content-width);
+    .modal {
+      background-color: var(--clr-white);
+      border-radius: 0.5rem;
+      width: var(--mob-content-width);
+    }
   }
-}
 </style>
 
