@@ -19,19 +19,19 @@ const selected = inject(pledgeKeys.selected)
     :class="{outOfStock, selectable, selected, isNoRewardPledge}"
     v-if="pledge"
   >
-    <header class="header">
+    <header class="header content">
       <slot name="header"></slot>
     </header>
-    <div class="description">
+    <div class="description content">
       <slot name="description"></slot>
     </div>
-    <div class="remaining">
+    <div class="remaining content">
       <slot name="remaining"></slot>
     </div>
-    <div class="select-reward">
+    <div class="select-reward content">
       <slot name="select-reward"></slot>
     </div>
-    <div class="amount">
+    <div class="amount content">
       <slot name="amount"></slot>
     </div>
   </div>
@@ -52,7 +52,7 @@ const selected = inject(pledgeKeys.selected)
       "amount amount amount"
       "description description description"
       "remaining remaining remaining"
-      "button-container button-container button-container";
+      "select-reward select-reward select-reward";
     border-radius: 0.5rem;
     border: 2px solid var(--clr-gray-50);
     transition: all 0.5s;
@@ -84,6 +84,32 @@ const selected = inject(pledgeKeys.selected)
 
     &.isNoRewardPledge {
       // TODO: isNoRewardPledge
+    }
+
+    .content {
+      padding: 0 1.4rem;
+    }
+
+    .header {
+      grid-area: header;
+      padding-top: 1rem;
+    }
+
+    .description {
+      grid-area: description;
+    }
+
+    .remaining {
+      grid-area: remaining;
+    }
+
+    .select-reward {
+      grid-area: select-reward;
+      padding-bottom: 1rem;
+    }
+
+    .amount {
+      grid-area: amount;
     }
 
     @media screen and (min-width: 1440px) {

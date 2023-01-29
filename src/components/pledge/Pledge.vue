@@ -46,11 +46,21 @@ provide(pledgeKeys.onSelectARewardClick, onSelectARewardClick)
 
 <template>
   <PledgeContainer>
-    <PledgeHeader #header />
-    <PledgeDescription #description />
-    <PledgeRemaining #remaining />
-    <PledgeSelectReward #select-reward />
-    <PledgeAmount #amount />
+    <template #header>
+      <PledgeHeader />
+    </template>
+    <template #description>
+      <PledgeDescription />
+    </template>
+    <template #remaining>
+      <PledgeRemaining />
+    </template>
+    <template #select-reward>
+      <PledgeSelectReward />
+    </template>
+    <template #amount>
+      <PledgeAmount />
+    </template>
   </PledgeContainer>
 </template>
 
