@@ -3,7 +3,7 @@
   setup
 >
 import Card from '@/components/Card.vue'
-import ProjectPledge from '@/components/ProjectPledge.vue'
+import Pledge from '@/components/pledge/Pledge.vue'
 import { useAppStore } from '@/use/useAppStore'
 
 const { pledges } = useAppStore()
@@ -30,7 +30,7 @@ const { pledges } = useAppStore()
           v-for="p in pledges"
           :key="p.id"
         >
-          <ProjectPledge
+          <Pledge
             :pledge="p"
           />
         </li>

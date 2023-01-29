@@ -3,7 +3,6 @@
   setup
 >
 import Card from '@/components/Card.vue'
-import Button from '@/components/Button.vue'
 import BookmarkButton from '@/components/BookmarkButton.vue'
 import { useAppStore } from '@/use/useAppStore'
 
@@ -25,7 +24,7 @@ const backThisProjectHandler = () => {
     </header>
     <p>A beautifully handcrafted monitor stand to reduce neck and eye strain.</p>
     <div class="buttons-container">
-      <Button @click="backThisProjectHandler">Back this project</Button>
+      <button class="button back-this-project-button" @click="backThisProjectHandler">Back this project</button>
       <BookmarkButton />
     </div>
   </Card>
@@ -73,6 +72,10 @@ const backThisProjectHandler = () => {
       display: flex;
       justify-content: space-between;
       padding: 0 .5rem;
+
+      .back-this-project-button {
+        padding: 0 2.8rem;
+      }
     }
 
     @media (min-width: 1440px) {

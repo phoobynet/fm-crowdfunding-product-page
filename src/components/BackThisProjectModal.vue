@@ -6,18 +6,26 @@ import { computed, inject, Ref, ref } from 'vue'
 import { useMotions } from '@vueuse/motion'
 import { onClickOutside, onKeyStroke } from '@vueuse/core'
 import { useAppStore } from '@/use/useAppStore'
-import ProjectPledge from '@/components/ProjectPledge.vue'
+import Pledge from '@/components/pledge/Pledge.vue'
 import { ScrollHeight } from '@/lib/injectionKeys'
 
 const {
   backThisProjectModalOpen,
-  pledges,
+  pledges: actualPledges,
   selectedPledgeId,
 } = useAppStore()
 
 const scrollHeight = inject(ScrollHeight) as Ref<number>
 
 const modalElement = ref<HTMLDivElement>()
+
+const pledges = computed(() => {
+  return [{
+    id: 0,
+    name: 'Pledge with no reward',
+    description: 'Choose to support us without a reward if you simply believe in our project. As a backer, you will be signed up to receive product updates via email.',
+  }, ...actualPledges.value]
+})
 
 onClickOutside(modalElement, () => backThisProjectModalOpen.value = false)
 onKeyStroke('Escape', () => {
@@ -75,7 +83,7 @@ const closeModalHandler = () => {
             v-for="p in pledges"
             :key="p.id"
           >
-            <ProjectPledge
+            <Pledge
               :pledge="p"
               :selectable="true"
             />
@@ -99,33 +107,34 @@ const closeModalHandler = () => {
     display: flex;
     justify-content: center;
     align-items: start;
-    padding-top: 5.5rem;
+    padding-top: 7.5rem;
 
     .modal {
       background-color: var(--clr-white);
       border-radius: 0.5rem;
       width: var(--mob-content-width);
-      padding: 2rem 1.5rem;
+      padding: 1.59rem 1.5rem;
 
       header {
         display: grid;
         grid-template-columns: repeat(2, auto);
-        grid-template-rows: 3rem 4rem;
+        grid-template-rows: 2.4rem 4rem;
         grid-template-areas:
           "heading close"
           "description description";
 
         h3 {
+          align-self: center;
           grid-area: heading;
           font-size: 1.175rem;
-          align-self: center;
+          letter-spacing: -.3px;
         }
 
         img {
+          align-self: center;
           grid-area: close;
           width: 0.875rem;
           height: 0.875rem;
-          align-self: center;
           justify-self: end;
           cursor: pointer;
           transition: all 0.2s;
@@ -144,10 +153,12 @@ const closeModalHandler = () => {
           font-size: 0.875rem;
           color: var(--clr-gray-300);
           line-height: 1.5rem;
+          align-self: end;
         }
       }
 
       ul {
+        padding-top: 1.4rem;
         display: grid;
         grid-row-gap: 1rem;
       }
