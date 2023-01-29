@@ -4,6 +4,7 @@
 >
 import { inject } from 'vue'
 import { pledgeKeys } from '@/components/pledge/pledgeKeys'
+import PledgeAmountInput from '@/components/pledge/PledgeAmountInput.vue'
 
 const pledgeAmount = inject(pledgeKeys.pledgeAmount)
 const canEnterPledge = inject(pledgeKeys.canEnterPledge)

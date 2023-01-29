@@ -15,7 +15,7 @@ const selected = inject(pledgeKeys.selected)
 
 <template>
   <div
-    class="pledge-container"
+    class="pledgeContainer"
     :class="{outOfStock, selectable, selected, isNoRewardPledge}"
     v-if="pledge"
   >
@@ -25,11 +25,11 @@ const selected = inject(pledgeKeys.selected)
     <div class="description content">
       <slot name="description"></slot>
     </div>
-    <div class="remaining content">
+    <div class="remaining content" v-if="!selectable">
       <slot name="remaining"></slot>
     </div>
-    <div class="select-reward content">
-      <slot name="select-reward"></slot>
+    <div class="selectReward content" v-if="!selectable">
+      <slot name="selectReward"></slot>
     </div>
     <div class="amount content">
       <slot name="amount"></slot>
@@ -43,7 +43,7 @@ const selected = inject(pledgeKeys.selected)
 >
   @import "pledge";
 
-  .pledge-container {
+  .pledgeContainer {
     display: grid;
     grid-template-rows: 1.6rem 2.6rem 8.9rem 4.2rem auto;
     grid-template-columns: 2.5rem repeat(2, auto);
@@ -52,7 +52,7 @@ const selected = inject(pledgeKeys.selected)
       "amount amount amount"
       "description description description"
       "remaining remaining remaining"
-      "select-reward select-reward select-reward";
+      "selectReward selectReward selectReward";
     border-radius: 0.5rem;
     border: 2px solid var(--clr-gray-50);
     transition: all 0.5s;
@@ -61,13 +61,21 @@ const selected = inject(pledgeKeys.selected)
     &.selectable {
       grid-template-rows: 1.6rem 2.6rem 8.9rem 4.2rem;
       grid-template-areas:
-      "select-pledge header header"
-      "select-pledge amount amount"
+      "header header header"
+      "amount amount amount"
       "description description description"
       "remaining remaining remaining"
     }
 
-    &.selected {
+    &.selectable.isNoRewardPledge, &.selectable.isNoRewardPledge.selected {
+      grid-template-rows: 1.6rem 2.6rem 8.9rem;
+      grid-template-areas:
+      "select-pledge header header"
+      "select-pledge amount amount"
+      "description description description"
+    }
+
+    &.selected:not(.isNoRewardPledge) {
       border: 2px solid var(--clr-green-500);
       grid-template-rows: 1.6rem 2.6rem 8.9rem 4.2rem auto;
       grid-template-areas:
@@ -103,8 +111,8 @@ const selected = inject(pledgeKeys.selected)
       grid-area: remaining;
     }
 
-    .select-reward {
-      grid-area: select-reward;
+    .selectReward {
+      grid-area: selectReward;
       padding-bottom: 1rem;
     }
 

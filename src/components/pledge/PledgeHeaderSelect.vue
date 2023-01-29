@@ -4,6 +4,7 @@
 >
 import { inject } from 'vue'
 import { pledgeKeys } from '@/components/pledge/pledgeKeys'
+import Checkbox from '@/components/Checkbox.vue'
 
 const pledgeSelectedValue = inject(pledgeKeys.pledgeSelectedValue)
 const outOfStock = inject(pledgeKeys.outOfStock)

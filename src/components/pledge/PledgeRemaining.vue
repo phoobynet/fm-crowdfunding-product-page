@@ -8,9 +8,7 @@ import { pledgeKeys } from '@/components/pledge/pledgeKeys'
 const pledge = inject(pledgeKeys.pledge)
 const isNoRewardPledge = inject(pledgeKeys.isNoRewardPledge)
 
-const show = computed(() => {
-  return isNoRewardPledge?.value === true && !!pledge
-})
+const show = computed(() => !isNoRewardPledge?.value && !!pledge)
 </script>
 
 <template>

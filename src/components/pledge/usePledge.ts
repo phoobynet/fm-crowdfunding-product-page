@@ -11,6 +11,8 @@ export const usePledge = (props: { pledge: Pledge, selectable: boolean }) => {
   const isNoRewardPledge = computed(() => props.pledge.id === 0)
   const pledge = readonly(props.pledge)
 
+  console.log('selectable: ', props.selectable)
+
   const pledgeSelectedValue = computed({
     get () {
       return props.pledge.id === selectedPledgeId.value

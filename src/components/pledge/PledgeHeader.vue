@@ -9,17 +9,24 @@ import { pledgeKeys } from '@/components/pledge/pledgeKeys'
 import PledgeHeaderMinimum from '@/components/pledge/PledgeHeaderMinimum.vue'
 
 const selectable = inject(pledgeKeys.selectable)
+const isNoRewardPledge = inject(pledgeKeys.isNoRewardPledge)
 
 </script>
 
 <template>
   <div
     class="pledge-header"
-    :class="{selectable}"
+    :class="{selectable, isNoRewardPledge}"
   >
-    <PledgeHeaderSelect />
-    <PledgeHeaderName />
-    <PledgeHeaderMinimum />
+    <div class="select">
+      <PledgeHeaderSelect />
+    </div>
+    <div class="name">
+      <PledgeHeaderName />
+    </div>
+    <div class="minimum">
+      <PledgeHeaderMinimum />
+    </div>
   </div>
 </template>
 
@@ -28,8 +35,42 @@ const selectable = inject(pledgeKeys.selectable)
   scoped
 >
   .pledge-header {
+    padding-top: 1rem;
+    display: grid;
+    grid-template-columns: 2.5rem 1fr;
+    grid-template-rows: repeat(2, 1fr);
+    grid-template-areas:
+      "name name"
+      "minimum minimum";
+
+    .select {
+      grid-area: select;
+      display: none;
+    }
+
+    .name {
+      grid-area: name;
+    }
+
+    .minimum {
+      grid-area: minimum;
+    }
+
     &.selectable {
-      // TODO: If selectable?
+      .select {
+        align-self: center;
+        display: block;
+      }
+
+      grid-template-areas:
+      "select name"
+      "select minimum";
+    }
+
+    &.selectable.isNoRewardPledge {
+      grid-template-rows: 1fr;
+      grid-template-areas:
+        "select name";
     }
   }
 </style>

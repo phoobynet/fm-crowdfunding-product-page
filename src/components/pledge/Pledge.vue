@@ -24,6 +24,7 @@ const {
   pledgeSelectedValue,
   selected,
   pledge,
+  selectable,
 } = usePledge({
   pledge: props.pledge,
   selectable: props.selectable ?? false,
@@ -39,6 +40,7 @@ provide(pledgeKeys.canEnterPledge, canEnterPledge)
 provide(pledgeKeys.isNoRewardPledge, isNoRewardPledge)
 provide(pledgeKeys.pledgeSelectedValue, pledgeSelectedValue)
 provide(pledgeKeys.selected, selected)
+provide(pledgeKeys.selectable, selectable)
 provide(pledgeKeys.pledge, pledge)
 provide(pledgeKeys.onSelectARewardClick, onSelectARewardClick)
 
@@ -55,7 +57,7 @@ provide(pledgeKeys.onSelectARewardClick, onSelectARewardClick)
     <template #remaining>
       <PledgeRemaining />
     </template>
-    <template #select-reward>
+    <template #selectReward>
       <PledgeSelectReward />
     </template>
     <template #amount>
