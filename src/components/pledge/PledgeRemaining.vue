@@ -7,6 +7,7 @@ import { pledgeKeys } from '@/components/pledge/pledgeKeys'
 
 const pledge = inject(pledgeKeys.pledge)
 const isNoRewardPledge = inject(pledgeKeys.isNoRewardPledge)
+const selectable = inject(pledgeKeys.selectable)
 
 const show = computed(() => !isNoRewardPledge?.value && !!pledge)
 </script>
@@ -14,6 +15,7 @@ const show = computed(() => !isNoRewardPledge?.value && !!pledge)
 <template>
   <div
     class="pledge-remaining"
+    :class="{selectable}"
     v-if="show"
   >
     <div class="amount">
@@ -40,6 +42,12 @@ const show = computed(() => !isNoRewardPledge?.value && !!pledge)
       color: black;
       font-size: 2rem;
       font-weight: 700;
+    }
+
+    &.selectable {
+      .amount {
+        font-size: 1.125rem;
+      }
     }
 
     @media screen and (min-width: 1440px) {

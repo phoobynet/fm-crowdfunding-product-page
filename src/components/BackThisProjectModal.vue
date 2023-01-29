@@ -160,7 +160,7 @@ const closeModalHandler = () => {
       ul {
         padding-top: 1.4rem;
         display: grid;
-        grid-row-gap: 1rem;
+        grid-row-gap: 1.5rem;
       }
     }
   }

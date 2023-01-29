@@ -15,7 +15,7 @@ const isNoRewardPledge = inject(pledgeKeys.isNoRewardPledge)
 
 <template>
   <div
-    class="pledge-header"
+    class="pledgeHeader"
     :class="{selectable, isNoRewardPledge}"
   >
     <div class="select">
@@ -34,11 +34,11 @@ const isNoRewardPledge = inject(pledgeKeys.isNoRewardPledge)
   lang="scss"
   scoped
 >
-  .pledge-header {
+  .pledgeHeader {
     padding-top: 1rem;
     display: grid;
     grid-template-columns: 2.5rem 1fr;
-    grid-template-rows: repeat(2, 1fr);
+    grid-template-rows: repeat(2, auto);
     grid-template-areas:
       "name name"
       "minimum minimum";
@@ -54,6 +54,7 @@ const isNoRewardPledge = inject(pledgeKeys.isNoRewardPledge)
 
     .minimum {
       grid-area: minimum;
+      padding-top: .2rem;
     }
 
     &.selectable {
