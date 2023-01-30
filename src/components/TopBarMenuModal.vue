@@ -40,7 +40,7 @@ const motions = useMotions()
           <li
             v-for="item in items"
             :key="item"
-            @click="() => menuModalOpen.value = false"
+            @click="() => menuModalOpen = false"
           ><span>{{ item }}</span>
           </li>
         </ul>

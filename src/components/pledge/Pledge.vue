@@ -4,7 +4,7 @@
 >
 import { Pledge } from '@/lib/types/Pledge'
 import { usePledge } from '@/components/pledge/usePledge'
-import { provide } from 'vue'
+import { provide, watch } from 'vue'
 import { pledgeKeys } from '@/components/pledge/pledgeKeys'
 import PledgeContainer from '@/components/pledge/PledgeContainer.vue'
 import PledgeHeader from '@/components/pledge/PledgeHeader.vue'
@@ -18,6 +18,7 @@ const emit = defineEmits(['selected'])
 
 const {
   pledgeAmount,
+  pledgeAmountError,
   outOfStock,
   canEnterPledge,
   isNoRewardPledge,
@@ -35,6 +36,7 @@ const onSelectARewardClick = () => {
 }
 
 provide(pledgeKeys.pledgeAmount, pledgeAmount)
+provide(pledgeKeys.pledgeAmountError, pledgeAmountError)
 provide(pledgeKeys.outOfStock, outOfStock)
 provide(pledgeKeys.canEnterPledge, canEnterPledge)
 provide(pledgeKeys.isNoRewardPledge, isNoRewardPledge)
@@ -43,7 +45,6 @@ provide(pledgeKeys.selected, selected)
 provide(pledgeKeys.selectable, selectable)
 provide(pledgeKeys.pledge, pledge)
 provide(pledgeKeys.onSelectARewardClick, onSelectARewardClick)
-
 </script>
 
 <template>

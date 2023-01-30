@@ -2,13 +2,17 @@
   lang="ts"
   setup
 >
-import { computed, onMounted, ref } from 'vue'
+import { computed, onMounted, ref, inject, watch } from 'vue'
 import { vMaska } from 'maska'
+import { pledgeKeys } from '@/components/pledge/pledgeKeys'
+import { Pledge } from '@/lib/types/Pledge'
 
 const props = defineProps<{ modelValue: string }>()
 const emit = defineEmits(['update:modelValue'])
 const input = ref<HTMLInputElement>()
 const isFocussed = ref<boolean>()
+const pledge = inject(pledgeKeys.pledge) as Pledge
+const pledgeAmountError = inject(pledgeKeys.pledgeAmountError)
 
 const value = computed({
   get () {
@@ -41,18 +45,19 @@ onMounted(() => {
 
 <template>
   <div
-    class="project-pledge-amount-input"
+    class="projectPledgeAmountInput"
     :class="{'focussed': isFocussed}"
+    :data-invalid="!!pledgeAmountError"
     @focus="focusOnInput"
     @click="focusOnInput"
     @focusin="focusOnInput"
     @focusout="focusOutHandler"
   >
-    <div class="currency-symbol">$</div>
+    <div class="currencySymbol">$</div>
     <input
       ref="input"
       type="text"
-      v-model.number="value"
+      v-model="value"
       v-maska
       data-maska="#####"
     />
@@ -63,7 +68,8 @@ onMounted(() => {
   lang="scss"
   scoped
 >
-  .project-pledge-amount-input {
+  .projectPledgeAmountInput {
+    position: relative;
     display: flex;
     align-items: center;
     border: 2px solid var(--clr-gray-50);
@@ -72,13 +78,19 @@ onMounted(() => {
     height: 3rem;
     padding: 0 1rem;
     overflow: hidden;
+    transition: border 0.5s;
 
     &.focussed {
       border: 2px solid var(--clr-green-500);
     }
 
-    .currency-symbol {
+    .currencySymbol {
       color: var(--clr-gray-100);
+      font-weight: 700;
+    }
+
+    &[data-invalid=true] {
+      border: 2px solid var(--clr-red-500);
     }
 
     input {
@@ -98,7 +110,6 @@ onMounted(() => {
         -moz-appearance: textfield;
       }
     }
-
   }
 </style>
 

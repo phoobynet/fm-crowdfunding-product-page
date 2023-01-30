@@ -31,7 +31,7 @@ const selected = inject(pledgeKeys.selected)
     <div class="selectReward content" v-if="!selectable">
       <slot name="selectReward"></slot>
     </div>
-    <div class="amount">
+    <div class="amount" v-if="!isNoRewardPledge">
       <slot name="amount"></slot>
     </div>
   </div>
@@ -67,9 +67,10 @@ const selected = inject(pledgeKeys.selected)
       "remaining remaining remaining"
     }
 
+    // when there is no pledge reward
     &.selectable.isNoRewardPledge, &.selectable.isNoRewardPledge.selected {
-      background-color: chocolate;
-      grid-template-rows: 5.5rem 1fr;
+      padding-top: .8rem;
+      grid-template-rows: 5rem 1fr;
       grid-template-areas:
       "header header header"
       "description description description"
@@ -87,10 +88,6 @@ const selected = inject(pledgeKeys.selected)
 
     &.outOfStock {
       opacity: .5;
-    }
-
-    &.isNoRewardPledge {
-      // TODO: isNoRewardPledge
     }
 
     .content {

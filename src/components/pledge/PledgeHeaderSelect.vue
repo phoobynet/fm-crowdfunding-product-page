@@ -2,11 +2,11 @@
   lang="ts"
   setup
 >
-import { inject } from 'vue'
+import { computed, inject, Ref } from 'vue'
 import { pledgeKeys } from '@/components/pledge/pledgeKeys'
 import Checkbox from '@/components/Checkbox.vue'
 
-const pledgeSelectedValue = inject(pledgeKeys.pledgeSelectedValue)
+const pledgeSelectedValue = inject(pledgeKeys.pledgeSelectedValue) as Ref<boolean>
 const outOfStock = inject(pledgeKeys.outOfStock)
 const selectable = inject(pledgeKeys.selectable)
 
