@@ -1,0 +1,110 @@
+<script
+  lang="ts"
+  setup
+>
+import { useMotions } from '@vueuse/motion'
+import { onClickOutside, onKeyStroke } from '@vueuse/core'
+import { ScrollHeight } from '@/lib/injectionKeys'
+import { computed, inject, onMounted, ref, Ref, watch } from 'vue'
+import { useAppStore } from '@/use/useAppStore'
+
+const scrollHeight = inject(ScrollHeight) as Ref<number>
+
+const modalEl = ref<HTMLDivElement>()
+const contentEl = ref<HTMLDivElement>()
+const { thankYouModalOpen } = useAppStore()
+
+const close = () => {
+  thankYouModalOpen.value = false
+}
+
+const motions = useMotions()
+
+const modalHeight = computed(() =>
+  scrollHeight.value
+    ? `${scrollHeight.value}px`
+    : '100vh')
+
+onClickOutside(contentEl, close)
+onKeyStroke('Escape', close)
+
+watch(modalEl, (newValue) => {
+  if (newValue) {
+    newValue.scrollIntoView({
+      behavior: 'smooth'
+    })
+  }
+})
+</script>
+
+<template>
+  <transition
+    :css="false"
+    @leave="(el: Element, done: () => void) => motions.thankYouModal.leave(done)"
+  >
+    <div class="thankYouModal" v-if="thankYouModalOpen" ref="modalEl"
+         v-motion="'thankYouModal'"
+         :initial="{ opacity: 0, backgroundColor: 'rgba(0, 0, 0, 0)' }"
+         :enter="{ opacity: 1, backgroundColor: 'rgba(0, 0, 0, .7)', transition: { duration: 300 } }"
+         :leave="{ opacity: 0, backgroundColor: 'rgba(0, 0, 0, 0)',  transition: { duration: 300 } }"
+         :style="{height: modalHeight}">
+      <div class="content card" ref="contentEl">
+        <img
+          src="@/assets/images/icon-check.svg"
+          alt=""
+        >
+        <h3>Thanks for your support!</h3>
+        <p>Your pledge brings us one step closer to sharing Mastercraft Bamboo Monitor Riser worldwide. You will get an
+          email once our campaign is completed.</p>
+        <button class="button" @click="close">Got it!</button>
+      </div>
+    </div>
+  </transition>
+</template>
+
+<style
+  lang="scss"
+  scoped
+>
+  .thankYouModal {
+    // background
+    position: absolute;
+    z-index: 99999;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    padding-top: 9rem;
+
+    .content {
+      padding: 2rem;
+      border-radius: 0.5rem;
+      display: grid;
+      grid-auto-rows: auto;
+      place-items: center;
+      gap: 1rem;
+      //height: 23.875rem;
+      width: var(--mob-content-width);
+      background-color: var(--clr-white);
+
+      img {}
+
+      h3 {}
+
+      p {
+        text-align: center;
+        color: var(--clr-gray-300);
+        font-size: 0.875rem;
+        line-height: 1.5rem;
+      }
+
+      .button {
+        min-width: 41%;
+        height: 3rem;
+      }
+    }
+  }
+</style>
+

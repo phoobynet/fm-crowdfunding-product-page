@@ -11,6 +11,7 @@ import { ScrollHeight } from '@/lib/injectionKeys'
 
 const {
   backThisProjectModalOpen,
+  thankYouModalOpen,
   pledges: actualPledges,
   selectedPledgeId,
 } = useAppStore()
@@ -28,10 +29,12 @@ const pledges = computed(() => {
   }, ...actualPledges.value]
 })
 
-onClickOutside(modalElement, () => backThisProjectModalOpen.value = false)
-onKeyStroke('Escape', () => {
+const close = () => {
   backThisProjectModalOpen.value = false
-})
+}
+
+onClickOutside(modalElement, close)
+onKeyStroke('Escape', close)
 
 const motions = useMotions()
 
@@ -43,6 +46,11 @@ const modalHeight = computed(() =>
 const closeModalHandler = () => {
   selectedPledgeId.value = undefined
   backThisProjectModalOpen.value = false
+}
+
+const onContinueClick = () => {
+  closeModalHandler()
+  thankYouModalOpen.value = true
 }
 
 </script>
@@ -87,6 +95,7 @@ const closeModalHandler = () => {
             <Pledge
               :pledge="p"
               :selectable="true"
+              @continue="onContinueClick"
             />
           </li>
         </ul>

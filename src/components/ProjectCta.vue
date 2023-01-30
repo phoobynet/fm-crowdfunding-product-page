@@ -2,7 +2,6 @@
   lang="ts"
   setup
 >
-import Card from '@/components/Card.vue'
 import BookmarkButton from '@/components/BookmarkButton.vue'
 import { useAppStore } from '@/use/useAppStore'
 
@@ -14,7 +13,7 @@ const backThisProjectHandler = () => {
 </script>
 
 <template>
-  <Card class="project-cta">
+  <div class="card projectCta">
     <img
       src="@/assets/images/logo-mastercraft.svg"
       alt=""
@@ -27,7 +26,7 @@ const backThisProjectHandler = () => {
       <button class="button back-this-project-button" @click="backThisProjectHandler">Back this project</button>
       <BookmarkButton />
     </div>
-  </Card>
+  </div>
 </template>
 
 <style
@@ -36,7 +35,7 @@ const backThisProjectHandler = () => {
 >
   $icon-dim: 3.5rem;
 
-  .project-cta {
+  .projectCta {
     position: relative;
     display: grid;
     text-align: center;

@@ -14,12 +14,16 @@ const isFocussed = ref<boolean>()
 const pledge = inject(pledgeKeys.pledge) as Pledge
 const pledgeAmountError = inject(pledgeKeys.pledgeAmountError)
 
-const value = computed({
+const value = computed<number | undefined>({
   get () {
-    return props.modelValue
+    if (props.modelValue) {
+      return parseFloat(props.modelValue)
+    }
+
+    return undefined
   },
   set (v) {
-    emit('update:modelValue', v)
+    emit('update:modelValue', v?.toString())
   },
 })
 
@@ -56,8 +60,9 @@ onMounted(() => {
     <div class="currencySymbol">$</div>
     <input
       ref="input"
-      type="text"
-      v-model="value"
+      type="number"
+      v-model.number="value"
+      inputmode="numeric"
       v-maska
       data-maska="#####"
     />

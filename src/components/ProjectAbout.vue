@@ -2,7 +2,6 @@
   lang="ts"
   setup
 >
-import Card from '@/components/Card.vue'
 import Pledge from '@/components/pledge/Pledge.vue'
 import { useAppStore } from '@/use/useAppStore'
 
@@ -11,7 +10,7 @@ const { pledges } = useAppStore()
 </script>
 
 <template>
-  <Card>
+  <div class="card">
     <div class="project-about">
       <header>
         <h2>About this project</h2>
@@ -36,7 +35,7 @@ const { pledges } = useAppStore()
         </li>
       </ul>
     </div>
-  </Card>
+  </div>
 </template>
 
 <style

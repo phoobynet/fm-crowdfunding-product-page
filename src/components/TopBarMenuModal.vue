@@ -25,7 +25,7 @@ const motions = useMotions()
     @leave="(el: Element, done: () => void) => motions.modal.leave(done)"
   >
     <div
-      class="top-bar-menu-modal"
+      class="topBarMenuModal"
       v-if="menuModalOpen"
       v-motion="'modal'"
       :initial="{ opacity: 0, backgroundImage: 'linear-gradient(to bottom, rgba(0, 0, 0, 0), transparent)' }"
@@ -53,7 +53,7 @@ const motions = useMotions()
   lang="scss"
   scoped
 >
-  .top-bar-menu-modal {
+  .topBarMenuModal {
     position: absolute;
     top: 0;
     left: 0;

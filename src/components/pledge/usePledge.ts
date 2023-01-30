@@ -8,7 +8,7 @@ export const usePledge = (props: { pledge: Pledge, selectable: boolean }) => {
   const pledgeAmount = ref<string>('')
   const pledgeAmountError = ref<string>('')
   const outOfStock = computed(() => props.pledge.remaining === 0)
-  const selected = computed(() => props.pledge.id === selectedPledgeId.value)
+  const selected = computed<boolean>(() => props.pledge.id === selectedPledgeId.value && props.selectable)
   const canEnterPledge = computed(() => selected.value && !outOfStock.value)
   const isNoRewardPledge = computed(() => props.pledge.id === 0)
   const pledge = readonly(props.pledge)

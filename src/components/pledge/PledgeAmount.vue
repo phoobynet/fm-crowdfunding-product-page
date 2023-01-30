@@ -9,6 +9,8 @@ import PledgeAmountInput from '@/components/pledge/PledgeAmountInput.vue'
 const pledgeAmount = inject(pledgeKeys.pledgeAmount) as Ref<string>
 const pledgeAmountError = inject(pledgeKeys.pledgeAmountError)
 const canEnterPledge = inject(pledgeKeys.canEnterPledge)
+
+const onContinueClick = inject(pledgeKeys.onContinueClock)
 </script>
 
 <template>
@@ -27,6 +29,7 @@ const canEnterPledge = inject(pledgeKeys.canEnterPledge)
     <button
       class="button continue-button"
       :disabled="!pledgeAmount || !!pledgeAmountError"
+      @click="onContinueClick"
     >Continue
     </button>
     <div

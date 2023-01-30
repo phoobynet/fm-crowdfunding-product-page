@@ -14,7 +14,7 @@ import PledgeSelectReward from '@/components/pledge/PledgeSelectReward.vue'
 import PledgeAmount from '@/components/pledge/PledgeAmount.vue'
 
 const props = defineProps<{ pledge: Pledge, selectable?: boolean }>()
-const emit = defineEmits(['selected'])
+const emit = defineEmits(['selected', 'continue'])
 
 const {
   pledgeAmount,
@@ -35,6 +35,11 @@ const onSelectARewardClick = () => {
   emit('selected', pledge)
 }
 
+const onContinueClick = () => {
+  console.log('scroll to stop')
+  emit('continue')
+}
+
 provide(pledgeKeys.pledgeAmount, pledgeAmount)
 provide(pledgeKeys.pledgeAmountError, pledgeAmountError)
 provide(pledgeKeys.outOfStock, outOfStock)
@@ -45,6 +50,7 @@ provide(pledgeKeys.selected, selected)
 provide(pledgeKeys.selectable, selectable)
 provide(pledgeKeys.pledge, pledge)
 provide(pledgeKeys.onSelectARewardClick, onSelectARewardClick)
+provide(pledgeKeys.onContinueClock, onContinueClick)
 </script>
 
 <template>

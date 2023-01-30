@@ -11,6 +11,7 @@ import ProjectAbout from '@/components/ProjectAbout.vue'
 import TopBarMenuModal from '@/components/TopBarMenuModal.vue'
 import { useAppStore } from '@/use/useAppStore'
 import BackThisProjectModal from '@/components/BackThisProjectModal.vue'
+import ThankYouModal from '@/components/ThankYouModal.vue'
 
 const {
   menuModalOpen,
@@ -45,8 +46,9 @@ onMounted(async () => {
     </template>
   </Container>
   <Teleport to="body">
-    <TopBarMenuModal />
     <BackThisProjectModal />
+    <ThankYouModal />
+    <TopBarMenuModal />
   </Teleport>
 </template>
 

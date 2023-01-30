@@ -2,12 +2,11 @@
   lang="ts"
   setup
 >
-import Card from '@/components/Card.vue'
 import ProgressBar from '@/components/ProgressBar.vue'
 </script>
 
 <template>
-  <Card>
+  <div class="card">
     <div class="project-stats">
       <ul>
         <li>
@@ -35,7 +34,7 @@ import ProgressBar from '@/components/ProgressBar.vue'
         <ProgressBar :goal="100_000" :actual="89_914" />
       </div>
     </div>
-  </Card>
+  </div>
 </template>
 
 <style

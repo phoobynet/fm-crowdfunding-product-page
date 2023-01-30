@@ -12,4 +12,5 @@ export const pledgeKeys = {
   pledge: Symbol('pledge') as InjectionKey<Readonly<Pledge>>,
   selectable: Symbol('selectable') as InjectionKey<boolean>,
   onSelectARewardClick: Symbol('onSelectARewardClick') as InjectionKey<() => void>,
+  onContinueClock: Symbol('onContinueClock') as InjectionKey<() => void>,
 }

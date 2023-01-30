@@ -2,14 +2,25 @@
   lang="ts"
   setup
 >
-import { inject } from 'vue'
+import { inject, Ref, ref, watch } from 'vue'
 import { pledgeKeys } from '@/components/pledge/pledgeKeys'
 
 const pledge = inject(pledgeKeys.pledge)
 const outOfStock = inject(pledgeKeys.outOfStock)
 const selectable = inject(pledgeKeys.selectable)
 const isNoRewardPledge = inject(pledgeKeys.isNoRewardPledge)
-const selected = inject(pledgeKeys.selected)
+const selected = inject(pledgeKeys.selected) as Ref<boolean>
+
+const pledgeContainer = ref<HTMLDivElement>()
+
+watch(selected, (newValue) => {
+  if (newValue) {
+    pledgeContainer?.value?.scrollIntoView({
+      behavior: 'smooth',
+      block: 'center'
+    })
+  }
+})
 
 </script>
 
@@ -18,6 +29,7 @@ const selected = inject(pledgeKeys.selected)
     class="pledgeContainer"
     :class="{outOfStock, selectable, selected, isNoRewardPledge}"
     v-if="pledge"
+    ref="pledgeContainer"
   >
     <header class="header content">
       <slot name="header"></slot>
@@ -25,13 +37,22 @@ const selected = inject(pledgeKeys.selected)
     <div class="description content">
       <slot name="description"></slot>
     </div>
-    <div class="remaining content" v-if="!isNoRewardPledge">
+    <div
+      class="remaining content"
+      v-if="!isNoRewardPledge"
+    >
       <slot name="remaining"></slot>
     </div>
-    <div class="selectReward content" v-if="!selectable">
+    <div
+      class="selectReward content"
+      v-if="!selectable"
+    >
       <slot name="selectReward"></slot>
     </div>
-    <div class="amount" v-if="!isNoRewardPledge">
+    <div
+      class="amount"
+      v-if="!isNoRewardPledge"
+    >
       <slot name="amount"></slot>
     </div>
   </div>

@@ -4,6 +4,7 @@ import { pledgesRepository } from '@/lib/data/pledgesRepository'
 
 const menuModalOpen = ref<boolean>(false)
 const backThisProjectModalOpen = ref<boolean>(false)
+const thankYouModalOpen = ref<boolean>(false)
 const bookmarked = ref<boolean>(false)
 const pledges = ref<Pledge[]>([])
 const fetchingPledges = ref<boolean>(false)
@@ -24,6 +25,7 @@ export const useAppStore = () => {
   const isPledgeSelected = (pledgeId: number): boolean => selectedPledgeId.value === pledgeId
 
   return {
+    thankYouModalOpen,
     backThisProjectModalOpen,
     bookmarked,
     fetchingPledges,
