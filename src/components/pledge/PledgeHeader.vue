@@ -68,6 +68,12 @@ const isNoRewardPledge = inject(pledgeKeys.isNoRewardPledge)
       "select minimum";
     }
 
+    &:not(.isNoRewardPledge) {
+      .select {
+        padding-top: 0.2rem;
+      }
+    }
+
     &.selectable.isNoRewardPledge {
       grid-template-rows: 1fr;
       grid-template-areas:

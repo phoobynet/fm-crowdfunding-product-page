@@ -31,7 +31,7 @@ onKeyStroke('Escape', close)
 watch(modalEl, (newValue) => {
   if (newValue) {
     newValue.scrollIntoView({
-      behavior: 'smooth'
+      behavior: 'smooth',
     })
   }
 })
@@ -42,13 +42,20 @@ watch(modalEl, (newValue) => {
     :css="false"
     @leave="(el: Element, done: () => void) => motions.thankYouModal.leave(done)"
   >
-    <div class="thankYouModal" v-if="thankYouModalOpen" ref="modalEl"
-         v-motion="'thankYouModal'"
-         :initial="{ opacity: 0, backgroundColor: 'rgba(0, 0, 0, 0)' }"
-         :enter="{ opacity: 1, backgroundColor: 'rgba(0, 0, 0, .7)', transition: { duration: 300 } }"
-         :leave="{ opacity: 0, backgroundColor: 'rgba(0, 0, 0, 0)',  transition: { duration: 300 } }"
-         :style="{height: modalHeight}">
-      <div class="content card" ref="contentEl">
+    <div
+      class="thankYouModal"
+      v-if="thankYouModalOpen"
+      ref="modalEl"
+      v-motion="'thankYouModal'"
+      :initial="{ opacity: 0, backgroundColor: 'rgba(0, 0, 0, 0)' }"
+      :enter="{ opacity: 1, backgroundColor: 'rgba(0, 0, 0, .7)', transition: { duration: 300 } }"
+      :leave="{ opacity: 0, backgroundColor: 'rgba(0, 0, 0, 0)',  transition: { duration: 300 } }"
+      :style="{height: modalHeight}"
+    >
+      <div
+        class="content card"
+        ref="contentEl"
+      >
         <img
           src="@/assets/images/icon-check.svg"
           alt=""
@@ -56,7 +63,11 @@ watch(modalEl, (newValue) => {
         <h3>Thanks for your support!</h3>
         <p>Your pledge brings us one step closer to sharing Mastercraft Bamboo Monitor Riser worldwide. You will get an
           email once our campaign is completed.</p>
-        <button class="button" @click="close">Got it!</button>
+        <button
+          class="button"
+          @click="close"
+        >Got it!
+        </button>
       </div>
     </div>
   </transition>
@@ -78,20 +89,23 @@ watch(modalEl, (newValue) => {
     align-items: start;
     padding-top: 9rem;
 
+
     .content {
-      padding: 2rem;
+      padding: 1.9rem;
       border-radius: 0.5rem;
       display: grid;
-      grid-auto-rows: auto;
+      grid-template-rows: 5.1rem 3.3rem 8rem 5.5rem;
       place-items: center;
-      gap: 1rem;
-      //height: 23.875rem;
       width: var(--mob-content-width);
       background-color: var(--clr-white);
+      align-items: start;
 
-      img {}
+      img {
+      }
 
-      h3 {}
+      h3 {
+        letter-spacing: -.3px;
+      }
 
       p {
         text-align: center;
@@ -101,8 +115,12 @@ watch(modalEl, (newValue) => {
       }
 
       .button {
-        min-width: 41%;
+        min-width: 37%;
         height: 3rem;
+      }
+
+      &.card {
+        padding: 2rem 1rem;
       }
     }
   }

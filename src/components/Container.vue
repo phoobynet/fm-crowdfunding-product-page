@@ -50,6 +50,7 @@ useResizeObserver(container, (entries) => {
       display: flex;
       justify-content: center;
       padding-top: 10rem;
+      padding-bottom: 4rem;
 
       .contents {
         display: grid;

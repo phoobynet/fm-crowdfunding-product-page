@@ -66,7 +66,7 @@ watch(selected, (newValue) => {
 
   .pledgeContainer {
     display: grid;
-    grid-template-rows: 2.6rem 2.6rem 8.8rem 4.2rem auto;
+    grid-template-rows: 5.2rem 8.8rem 4.2rem auto;
     grid-template-columns: 2.5rem repeat(2, auto);
     grid-template-areas:
       "header header header"
@@ -78,26 +78,28 @@ watch(selected, (newValue) => {
     transition: border 0.5s;
     padding-top: .3rem;
     padding-bottom: 1.4rem;
+    align-items: start;
 
 
     &.selectable {
-      grid-template-rows: 5rem 9rem 2.5rem;
+      grid-template-rows: 5.2rem 8.9rem 2rem;
       grid-template-areas:
       "header header header"
       "description description description"
       "remaining remaining remaining"
     }
 
-    // when there is no pledge reward
+    // when there is no pledge reward and/or selected
     &.selectable.isNoRewardPledge, &.selectable.isNoRewardPledge.selected {
-      padding-top: .8rem;
-      grid-template-rows: 5rem 1fr;
+      padding-top: 1.05rem;
+      grid-template-rows: 4.5rem 8rem;
       grid-template-areas:
       "header header header"
       "description description description"
     }
 
     &.selected:not(.isNoRewardPledge) {
+      background-color: chocolate;
       border: 2px solid var(--clr-green-500);
       grid-template-rows: 5rem 9rem 2.5rem 1fr;
       grid-template-areas:
@@ -122,6 +124,8 @@ watch(selected, (newValue) => {
     .description {
       grid-area: description;
       align-self: start;
+
+      padding: 0 1.3rem 0 1.4rem;
     }
 
     .remaining {

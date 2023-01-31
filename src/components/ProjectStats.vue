@@ -70,13 +70,13 @@ import ProgressBar from '@/components/ProgressBar.vue'
           display: none;
           height: 3.9375rem;
           width: 1rem;
-          border-right: 1px solid var(--clr-gray-100);
+          border-right: 1px solid var(--clr-gray-90);
         }
 
         .hl {
           height: 1rem;
           width: 5rem;
-          border-bottom: 1px solid var(--clr-gray-100);
+          border-bottom: 1px solid var(--clr-gray-90);
         }
       }
     }

@@ -2,7 +2,7 @@
   lang="ts"
   setup
 >
-import { computed, inject, Ref } from 'vue'
+import { inject, Ref } from 'vue'
 import { pledgeKeys } from '@/components/pledge/pledgeKeys'
 import Checkbox from '@/components/Checkbox.vue'
 

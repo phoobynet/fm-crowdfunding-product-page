@@ -36,7 +36,7 @@ const show = computed(() => !isNoRewardPledge?.value && !!pledge)
     font-size: 0.9375rem;
     align-items: center;
     color: var(--clr-gray-300);
-    gap: .6rem;
+    gap: .5rem;
 
     .amount {
       color: black;
