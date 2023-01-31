@@ -2,7 +2,7 @@
   lang="ts"
   setup
 >
-import { computed, inject, Ref, ref } from 'vue'
+import { computed, inject, onMounted, Ref, ref, watch } from 'vue'
 import { useMotions } from '@vueuse/motion'
 import { onClickOutside, onKeyStroke } from '@vueuse/core'
 import { useAppStore } from '@/use/useAppStore'
@@ -14,8 +14,6 @@ const {
   thankYouModalOpen,
   pledges: actualPledges,
   selectedPledgeId,
-  backers,
-  amountBacked,
 } = useAppStore()
 
 const scrollHeight = inject(ScrollHeight) as Ref<number>
@@ -33,6 +31,7 @@ const pledges = computed(() => {
 
 const close = () => {
   backThisProjectModalOpen.value = false
+  selectedPledgeId.value = undefined
 }
 
 onClickOutside(modalElement, close)
@@ -55,6 +54,22 @@ const onContinueClick = () => {
   thankYouModalOpen.value = true
 }
 
+const scrollIntoView = () => {
+  if (modalElement.value) {
+    modalElement.value.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start',
+    })
+  }
+}
+
+watch([backThisProjectModalOpen, modalElement], () => {
+  // only scroll into view if the pledge is not selected already by clicking the select reward button
+  if (selectedPledgeId.value !== undefined) {
+    return
+  }
+  scrollIntoView()
+})
 </script>
 
 <template>

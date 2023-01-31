@@ -15,7 +15,6 @@ const pledgeContainer = ref<HTMLDivElement>()
 
 const scrollIntoView = () => {
   if (pledgeContainer?.value?.scrollIntoView === undefined) {
-    console.log('pledgeContainer?.value?.scrollIntoView === undefined')
     return
   }
 
@@ -79,8 +78,6 @@ onMounted(() => {
   lang="scss"
   scoped
 >
-  @import "pledge";
-
   .pledgeContainer {
     display: grid;
     grid-template-rows: 5.2rem 8.8rem 4.2rem auto;

@@ -40,6 +40,7 @@ export const useAppStore = () => {
     amountBacked.value += amount
     backers.value += 1
     decrementRemaining(pledge.id)
+    selectedPledgeId.value = undefined
   }
 
   return {
