@@ -12,9 +12,14 @@ import PledgeDescription from '@/components/pledge/PledgeDescription.vue'
 import PledgeRemaining from '@/components/pledge/PledgeRemaining.vue'
 import PledgeSelectReward from '@/components/pledge/PledgeSelectReward.vue'
 import PledgeAmount from '@/components/pledge/PledgeAmount.vue'
+import { useAppStore } from '@/use/useAppStore'
 
 const props = defineProps<{ pledge: Pledge, selectable?: boolean }>()
 const emit = defineEmits(['selected', 'continue'])
+
+const {
+  receivePledge,
+} = useAppStore()
 
 const {
   pledgeAmount,
@@ -36,7 +41,7 @@ const onSelectARewardClick = () => {
 }
 
 const onContinueClick = () => {
-  console.log('scroll to stop')
+  receivePledge(pledge, pledgeAmount.value || 0)
   emit('continue')
 }
 
@@ -50,7 +55,7 @@ provide(pledgeKeys.selected, selected)
 provide(pledgeKeys.selectable, selectable)
 provide(pledgeKeys.pledge, pledge)
 provide(pledgeKeys.onSelectARewardClick, onSelectARewardClick)
-provide(pledgeKeys.onContinueClock, onContinueClick)
+provide(pledgeKeys.onContinueClick, onContinueClick)
 </script>
 
 <template>

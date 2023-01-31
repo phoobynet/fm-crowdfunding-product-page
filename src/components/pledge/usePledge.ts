@@ -5,7 +5,7 @@ import { debouncedWatch } from '@vueuse/core'
 
 export const usePledge = (props: { pledge: Pledge, selectable: boolean }) => {
   const { selectedPledgeId } = useAppStore()
-  const pledgeAmount = ref<string>('')
+  const pledgeAmount = ref<number | undefined>()
   const pledgeAmountError = ref<string>('')
   const outOfStock = computed(() => props.pledge.remaining === 0)
   const selected = computed<boolean>(() => props.pledge.id === selectedPledgeId.value && props.selectable)
@@ -27,22 +27,16 @@ export const usePledge = (props: { pledge: Pledge, selectable: boolean }) => {
   watch(selected, (newValue, oldValue) => {
     // clear pledgeAmount on deselection
     if (oldValue && newValue !== oldValue) {
-      pledgeAmount.value = ''
+      pledgeAmount.value = undefined
       pledgeAmountError.value = ''
     }
   })
 
   debouncedWatch(pledgeAmount, (newValue, oldValue) => {
-    if (newValue !== oldValue && newValue?.length > 0) {
-      const amount = parseFloat(newValue)
-
-      if (isNaN(amount)) {
-        pledgeAmountError.value = 'Not a number'
-      } else {
-        if (amount < pledge.amount) {
-          pledgeAmountError.value = `Minimum is $${pledge.amount}`
-          return
-        }
+    if (newValue !== oldValue && newValue !== undefined) {
+      if (newValue < pledge.amount) {
+        pledgeAmountError.value = `Minimum is $${pledge.amount}`
+        return
       }
     }
 

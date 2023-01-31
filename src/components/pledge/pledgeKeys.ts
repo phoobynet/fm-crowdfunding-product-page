@@ -7,10 +7,10 @@ export const pledgeKeys = {
   isNoRewardPledge: Symbol('isNoRewardPledge') as InjectionKey<Ref<boolean>>,
   pledgeSelectedValue: Symbol('pledgeSelectedValue') as InjectionKey<Ref<boolean>>,
   selected: Symbol('selected') as InjectionKey<Ref<boolean>>,
-  pledgeAmount: Symbol('pledgeAmount') as InjectionKey<Ref<string>>,
+  pledgeAmount: Symbol('pledgeAmount') as InjectionKey<Ref<number | undefined>>,
   pledgeAmountError: Symbol('pledgeAmountError') as InjectionKey<Ref<string>>,
   pledge: Symbol('pledge') as InjectionKey<Readonly<Pledge>>,
   selectable: Symbol('selectable') as InjectionKey<boolean>,
   onSelectARewardClick: Symbol('onSelectARewardClick') as InjectionKey<() => void>,
-  onContinueClock: Symbol('onContinueClock') as InjectionKey<() => void>,
+  onContinueClick: Symbol('onContinueClick') as InjectionKey<() => void>,
 }

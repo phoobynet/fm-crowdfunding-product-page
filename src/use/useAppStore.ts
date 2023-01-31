@@ -10,6 +10,11 @@ const pledges = ref<Pledge[]>([])
 const fetchingPledges = ref<boolean>(false)
 const selectedPledgeId = ref<number | undefined>(undefined)
 
+const amountBacked = ref<number>(89_914)
+const goal = ref<number>(100_000)
+const backers = ref<number>(5007)
+const daysLeft = ref<number>(56)
+
 export const useAppStore = () => {
   const init = async (): Promise<void> => {
     try {
@@ -24,6 +29,19 @@ export const useAppStore = () => {
 
   const isPledgeSelected = (pledgeId: number): boolean => selectedPledgeId.value === pledgeId
 
+  const decrementRemaining = (pledgeId: number): void => {
+    const pledge = pledges.value.find(p => p.id === pledgeId)
+    if (pledge && pledge.remaining && pledge.remaining > 0 ) {
+      pledge.remaining -= 1
+    }
+  }
+
+  const receivePledge = (pledge: Pledge, amount: number): void => {
+    amountBacked.value += amount
+    backers.value += 1
+    decrementRemaining(pledge.id)
+  }
+
   return {
     thankYouModalOpen,
     backThisProjectModalOpen,
@@ -33,6 +51,11 @@ export const useAppStore = () => {
     pledges,
     selectedPledgeId,
     isPledgeSelected,
+    receivePledge,
     init,
+    goal,
+    amountBacked,
+    backers,
+    daysLeft
   }
 }

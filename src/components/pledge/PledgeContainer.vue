@@ -99,7 +99,6 @@ watch(selected, (newValue) => {
     }
 
     &.selected:not(.isNoRewardPledge) {
-      background-color: chocolate;
       border: 2px solid var(--clr-green-500);
       grid-template-rows: 5rem 9rem 2.5rem 1fr;
       grid-template-areas:

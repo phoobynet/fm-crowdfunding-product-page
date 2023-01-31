@@ -6,11 +6,11 @@ import { inject, Ref } from 'vue'
 import { pledgeKeys } from '@/components/pledge/pledgeKeys'
 import PledgeAmountInput from '@/components/pledge/PledgeAmountInput.vue'
 
-const pledgeAmount = inject(pledgeKeys.pledgeAmount) as Ref<string>
+const pledgeAmount = inject(pledgeKeys.pledgeAmount) as Ref<number | undefined>
 const pledgeAmountError = inject(pledgeKeys.pledgeAmountError)
 const canEnterPledge = inject(pledgeKeys.canEnterPledge)
 
-const onContinueClick = inject(pledgeKeys.onContinueClock)
+const onContinueClick = inject(pledgeKeys.onContinueClick) as () => void
 </script>
 
 <template>
@@ -24,12 +24,12 @@ const onContinueClick = inject(pledgeKeys.onContinueClock)
   >
     <label for="pledge-amount">Enter your pledge</label>
     <div class="enter-your-pledge-input">
-      <PledgeAmountInput v-model="pledgeAmount" />
+      <PledgeAmountInput />
     </div>
     <button
       class="button continue-button"
       :disabled="!pledgeAmount || !!pledgeAmountError"
-      @click="onContinueClick"
+      @click="() => onContinueClick()"
     >Continue
     </button>
     <div

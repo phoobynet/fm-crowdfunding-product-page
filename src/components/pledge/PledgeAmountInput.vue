@@ -7,25 +7,26 @@ import { vMaska } from 'maska'
 import { pledgeKeys } from '@/components/pledge/pledgeKeys'
 import { Pledge } from '@/lib/types/Pledge'
 
-const props = defineProps<{ modelValue: string }>()
-const emit = defineEmits(['update:modelValue'])
+// const props = defineProps<{ modelValue: string }>()
+// const emit = defineEmits(['update:modelValue'])
 const input = ref<HTMLInputElement>()
 const isFocussed = ref<boolean>()
 const pledge = inject(pledgeKeys.pledge) as Pledge
 const pledgeAmountError = inject(pledgeKeys.pledgeAmountError)
+const pledgeAmount = inject(pledgeKeys.pledgeAmount)
 
-const value = computed<number | undefined>({
-  get () {
-    if (props.modelValue) {
-      return parseFloat(props.modelValue)
-    }
-
-    return undefined
-  },
-  set (v) {
-    emit('update:modelValue', v?.toString())
-  },
-})
+// const value = computed<number | undefined>({
+//   get () {
+//     if (props.modelValue) {
+//       return parseFloat(props.modelValue)
+//     }
+//
+//     return undefined
+//   },
+//   set (v) {
+//     emit('update:modelValue', v?.toString())
+//   },
+// })
 
 const focusOnInput = () => {
   if (input.value) {
@@ -61,7 +62,7 @@ onMounted(() => {
     <input
       ref="input"
       type="number"
-      v-model.number="value"
+      v-model.number="pledgeAmount"
       inputmode="numeric"
       v-maska
       data-maska="#####"

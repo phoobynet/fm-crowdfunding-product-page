@@ -14,6 +14,8 @@ const {
   thankYouModalOpen,
   pledges: actualPledges,
   selectedPledgeId,
+  backers,
+  amountBacked,
 } = useAppStore()
 
 const scrollHeight = inject(ScrollHeight) as Ref<number>

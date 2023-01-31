@@ -3,6 +3,17 @@
   setup
 >
 import ProgressBar from '@/components/ProgressBar.vue'
+import { useAppStore } from '@/use/useAppStore'
+import Money from '@/components/Money.vue'
+import LargeNumber from '@/components/LargeNumber.vue'
+
+const {
+  goal,
+  amountBacked,
+  backers,
+  daysLeft,
+} = useAppStore()
+
 </script>
 
 <template>
@@ -10,15 +21,22 @@ import ProgressBar from '@/components/ProgressBar.vue'
     <div class="project-stats">
       <ul>
         <li>
-          <div class="amount">$89,914</div>
-          <div class="description">of $100,000 backed</div>
+          <div class="amount">
+            <Money :amount="amountBacked" />
+          </div>
+          <div class="description">of
+            <Money :amount="goal" />
+            backed
+          </div>
         </li>
         <li class="separator">
           <div class="hl" />
           <div class="vl" />
         </li>
         <li>
-          <div class="amount">5,007</div>
+          <div class="amount">
+            <LargeNumber :amount="backers" />
+          </div>
           <div class="description">total backers</div>
         </li>
         <li class="separator">
@@ -26,12 +44,15 @@ import ProgressBar from '@/components/ProgressBar.vue'
           <div class="vl" />
         </li>
         <li>
-          <div class="amount">56</div>
+          <div class="amount">{{ daysLeft}}</div>
           <div class="description">days left</div>
         </li>
       </ul>
       <div class="progress-bar">
-        <ProgressBar :goal="100_000" :actual="89_914" />
+        <ProgressBar
+          :goal="goal"
+          :actual="amountBacked"
+        />
       </div>
     </div>
   </div>
@@ -43,6 +64,7 @@ import ProgressBar from '@/components/ProgressBar.vue'
 >
   .project-stats {
     padding-top: 0.6rem;
+
     ul {
       display: grid;
       list-style: none;
