@@ -80,6 +80,11 @@ onMounted(() => {
 >
   .pledgeContainer {
     display: grid;
+    border-radius: 0.5rem;
+    border: 2px solid var(--clr-gray-50);
+    transition: border 0.5s;
+    align-items: start;
+
     grid-template-rows: 5.2rem 8.8rem 4.2rem auto;
     grid-template-columns: 2.5rem repeat(2, auto);
     grid-template-areas:
@@ -87,12 +92,8 @@ onMounted(() => {
       "description description description"
       "remaining remaining remaining"
       "selectReward selectReward selectReward";
-    border-radius: 0.5rem;
-    border: 2px solid var(--clr-gray-50);
-    transition: border 0.5s;
     padding-top: .3rem;
     padding-bottom: 1.4rem;
-    align-items: start;
 
 
     &.selectable {
@@ -100,7 +101,7 @@ onMounted(() => {
       grid-template-areas:
       "header header header"
       "description description description"
-      "remaining remaining remaining"
+      "remaining remaining remaining";
     }
 
     // when there is no pledge reward and/or selected
@@ -109,7 +110,7 @@ onMounted(() => {
       grid-template-rows: 4.5rem 8rem;
       grid-template-areas:
       "header header header"
-      "description description description"
+      "description description description";
     }
 
     &.selected:not(.isNoRewardPledge) {
@@ -154,13 +155,43 @@ onMounted(() => {
     }
 
     @media screen and (min-width: 1440px) {
-      grid-template-rows: 2.5rem 5.1rem 4.5rem;
+      grid-template-rows: 4rem 5.3rem auto;
       grid-template-columns: repeat(2, auto);
       grid-template-areas:
-      "header amount"
+      "header header"
       "description description"
-      "remaining button-container";
-      padding: 1.3rem 1.8rem 1.9rem;
+      "remaining selectReward";
+      padding-top: 1rem;
+      padding-bottom: 1.9rem;
+
+      &.selectable {
+        &:not(.isNoRewardPledge) {
+          grid-template-columns: 2.93rem auto;
+          grid-template-rows: 3.2rem 3.5rem 3.5rem;
+          grid-template-areas:
+          "header header header"
+          "description description description"
+          "remaining remaining remaining";
+        }
+
+        &.isNoRewardPledge, &.isNoRewardPledge.selected {
+          padding-top: 1.05rem;
+          grid-template-columns: 2.93rem auto;
+          grid-template-rows: 3.2rem 3.5rem;
+          grid-template-areas:
+          "header header"
+          ". description"
+        }
+      }
+
+
+      .content {
+        padding: 0 1.65rem;
+      }
+
+      .selectReward {
+        //justify-self: start;
+      }
     }
   }
 </style>

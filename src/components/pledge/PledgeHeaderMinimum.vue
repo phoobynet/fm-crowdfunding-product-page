@@ -28,6 +28,10 @@ const pledge = inject(pledgeKeys.pledge)
     font-size: 0.875rem;
     font-weight: 500;
     color: var(--clr-green-500);
+
+    @media screen and (min-width: 1440px) {
+      font-size: 0.9375rem;
+    }
   }
 </style>
 

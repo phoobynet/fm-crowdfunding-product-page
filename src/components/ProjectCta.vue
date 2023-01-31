@@ -73,7 +73,7 @@ const backThisProjectHandler = () => {
       padding: 0 .5rem;
 
       .back-this-project-button {
-        padding: 0 2.8rem;
+        padding: 0 2.5rem;
       }
     }
 

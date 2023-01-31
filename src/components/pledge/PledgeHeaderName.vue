@@ -19,13 +19,11 @@ const pledge = inject(pledgeKeys.pledge)
   lang="scss"
   scoped
 >
-  @import "pledge";
-
   .pledge-name {
     font-size: 0.875rem;
 
     @media screen and (min-width: 1440px) {
-      font-size: 1.125rem;
+      font-size: 1rem;
     }
   }
 </style>

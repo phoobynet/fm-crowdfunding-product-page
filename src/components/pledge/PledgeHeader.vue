@@ -79,6 +79,26 @@ const isNoRewardPledge = inject(pledgeKeys.isNoRewardPledge)
       grid-template-areas:
         "select name";
     }
+
+    @media screen and (min-width: 1440px) {
+      padding-top: 0.7rem;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: repeat(2, auto);
+      grid-template-areas:
+      "name minimum";
+      justify-content: space-between;
+
+      .minimum {
+        justify-self: end;
+      }
+
+      &.selectable.isNoRewardPledge {
+        grid-template-columns: 2.93rem 1fr;
+        grid-template-rows: 2.5rem;
+        grid-template-areas:
+          "select name";
+      }
+    }
   }
 </style>
 

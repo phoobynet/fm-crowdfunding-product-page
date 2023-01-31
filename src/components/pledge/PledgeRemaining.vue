@@ -52,7 +52,7 @@ const show = computed(() => !isNoRewardPledge?.value && !!pledge)
 
     @media screen and (min-width: 1440px) {
       .amount {
-        font-size: 0.9375rem;
+        font-size: 2rem;
         justify-self: end;
         align-self: end;
       }

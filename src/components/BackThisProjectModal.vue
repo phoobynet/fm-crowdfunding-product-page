@@ -158,8 +158,8 @@ watch([backThisProjectModalOpen, modalElement], () => {
         }
 
         img {
-          align-self: center;
           grid-area: close;
+          align-self: center;
           width: 0.875rem;
           height: 0.875rem;
           justify-self: end;
@@ -188,6 +188,35 @@ watch([backThisProjectModalOpen, modalElement], () => {
         padding-top: 1.4rem;
         display: grid;
         grid-row-gap: 1.5rem;
+      }
+    }
+
+    @media screen and (min-width: 1440px) {
+      padding-top: 11.5rem;
+      .modal {
+        width: var(--desk-content-width);
+        padding: 2.8rem 3rem;
+
+        header {
+          grid-template-rows: 2rem 4rem;
+          h3 {
+            align-self: start;
+            font-size: 1.5rem;
+            letter-spacing: 0px;
+          }
+          img {
+            align-self: start;
+            transform: translateY(-.78rem) translateX(1rem);
+          }
+          p {
+            font-size: 1rem;
+            align-self: center;
+          }
+        }
+
+        ul {
+          padding-top: .9rem;
+        }
       }
     }
   }

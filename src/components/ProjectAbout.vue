@@ -98,7 +98,7 @@ const onSelected = (pledge: IPledge) => {
       }
       ul {
         padding: 2.6rem 0;
-        grid-row-gap: 1.4rem;
+        grid-row-gap: 1.6rem;
       }
     }
   }

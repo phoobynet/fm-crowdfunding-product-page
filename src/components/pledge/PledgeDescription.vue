@@ -28,8 +28,8 @@ const pledge = inject(pledgeKeys.pledge)
     color: var(--clr-gray-300);
 
     @media screen and (min-width: 1440px) {
-      font-size: 1rem;
-      line-height: 30px;
+      font-size: 0.9375rem;
+      line-height: 28px;
       align-self: end;
     }
   }

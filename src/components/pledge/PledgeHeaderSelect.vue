@@ -13,7 +13,7 @@ const selectable = inject(pledgeKeys.selectable)
 </script>
 
 <template>
-  <div v-if="selectable">
+  <div v-if="selectable" class="pledgeHeaderSelect">
     <Checkbox
       v-model="pledgeSelectedValue"
       :disabled="outOfStock"
