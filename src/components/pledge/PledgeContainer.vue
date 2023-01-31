@@ -2,7 +2,7 @@
   lang="ts"
   setup
 >
-import { inject, Ref, ref, watch } from 'vue'
+import { inject, onMounted, Ref, ref, watch } from 'vue'
 import { pledgeKeys } from '@/components/pledge/pledgeKeys'
 
 const pledge = inject(pledgeKeys.pledge)
@@ -13,12 +13,29 @@ const selected = inject(pledgeKeys.selected) as Ref<boolean>
 
 const pledgeContainer = ref<HTMLDivElement>()
 
+const scrollIntoView = () => {
+  if (pledgeContainer?.value?.scrollIntoView === undefined) {
+    console.log('pledgeContainer?.value?.scrollIntoView === undefined')
+    return
+  }
+
+  pledgeContainer?.value?.scrollIntoView({
+    behavior: 'smooth',
+    block: 'start',
+  })
+}
+
 watch(selected, (newValue) => {
   if (newValue) {
-    pledgeContainer?.value?.scrollIntoView({
-      behavior: 'smooth',
-      block: 'center'
-    })
+    scrollIntoView()
+  }
+}, {
+  immediate: true,
+})
+
+onMounted(() => {
+  if (selected.value) {
+    scrollIntoView()
   }
 })
 

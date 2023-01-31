@@ -3,9 +3,19 @@
   setup
 >
 import Pledge from '@/components/pledge/Pledge.vue'
+import { Pledge as IPledge } from '@/lib/types/Pledge'
 import { useAppStore } from '@/use/useAppStore'
 
-const { pledges } = useAppStore()
+const {
+  pledges,
+  selectedPledgeId,
+  backThisProjectModalOpen,
+} = useAppStore()
+
+const onSelected = (pledge: IPledge) => {
+  selectedPledgeId.value = pledge.id
+  backThisProjectModalOpen.value = true
+}
 
 </script>
 
@@ -31,6 +41,7 @@ const { pledges } = useAppStore()
         >
           <Pledge
             :pledge="p"
+            @selected="() => onSelected(p)"
           />
         </li>
       </ul>
