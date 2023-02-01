@@ -1,9 +1,6 @@
-<script
-  lang="ts"
-  setup
->
-import { inject, onMounted, Ref, ref, watch } from 'vue'
+<script lang="ts" setup>
 import { pledgeKeys } from '@/components/pledge/pledgeKeys'
+import { Ref, inject, onMounted, ref, watch } from 'vue'
 
 const pledge = inject(pledgeKeys.pledge)
 const outOfStock = inject(pledgeKeys.outOfStock)
@@ -24,26 +21,29 @@ const scrollIntoView = () => {
   })
 }
 
-watch(selected, (newValue) => {
-  if (newValue) {
-    scrollIntoView()
-  }
-}, {
-  immediate: true,
-})
+watch(
+  selected,
+  (newValue) => {
+    if (newValue) {
+      scrollIntoView()
+    }
+  },
+  {
+    immediate: true,
+  },
+)
 
 onMounted(() => {
   if (selected.value) {
     scrollIntoView()
   }
 })
-
 </script>
 
 <template>
   <div
     class="pledgeContainer"
-    :class="{outOfStock, selectable, selected, isNoRewardPledge}"
+    :class="{ outOfStock, selectable, selected, isNoRewardPledge }"
     v-if="pledge"
     ref="pledgeContainer"
   >
@@ -74,125 +74,138 @@ onMounted(() => {
   </div>
 </template>
 
-<style
-  lang="scss"
-  scoped
->
-  .pledgeContainer {
-    display: grid;
-    border-radius: 0.5rem;
-    border: 2px solid var(--clr-gray-50);
-    transition: border 0.5s;
-    align-items: start;
+<style lang="scss" scoped>
+.pledgeContainer {
+  display: grid;
+  border-radius: 0.5rem;
+  border: 2px solid var(--clr-gray-50);
+  transition: border 0.5s;
+  align-items: start;
 
-    grid-template-rows: 5.2rem 8.8rem 4.2rem auto;
-    grid-template-columns: 2.5rem repeat(2, auto);
+  grid-template-rows: 5.2rem 8.8rem 4.2rem auto;
+  grid-template-columns: 2.5rem repeat(2, auto);
+  grid-template-areas:
+    'header header header'
+    'description description description'
+    'remaining remaining remaining'
+    'selectReward selectReward selectReward';
+  padding-top: 0.3rem;
+  padding-bottom: 1.4rem;
+
+  &.selectable {
+    grid-template-rows: 5.2rem 8.9rem 2rem;
     grid-template-areas:
-      "header header header"
-      "description description description"
-      "remaining remaining remaining"
-      "selectReward selectReward selectReward";
-    padding-top: .3rem;
-    padding-bottom: 1.4rem;
+      'header header header'
+      'description description description'
+      'remaining remaining remaining';
+  }
 
+  // when there is no pledge reward and/or selected
+  &.selectable.isNoRewardPledge,
+  &.selectable.isNoRewardPledge.selected {
+    padding-top: 1.05rem;
+    grid-template-rows: 4.5rem 8rem;
+    grid-template-areas:
+      'header header header'
+      'description description description';
+  }
+
+  &.selected:not(.isNoRewardPledge) {
+    border: 2px solid var(--clr-green-500);
+    grid-template-rows: 5rem 9rem 2.5rem 1fr;
+    grid-template-areas:
+      'header header header'
+      'description description description'
+      'remaining remaining remaining'
+      'amount amount amount';
+  }
+
+  &.outOfStock {
+    opacity: 0.5;
+  }
+
+  .content {
+    padding: 0 1.4rem;
+  }
+
+  .header {
+    grid-area: header;
+  }
+
+  .description {
+    grid-area: description;
+    align-self: start;
+
+    padding: 0 1.3rem 0 1.4rem;
+  }
+
+  .remaining {
+    grid-area: remaining;
+  }
+
+  .selectReward {
+    grid-area: selectReward;
+  }
+
+  .amount {
+    grid-area: amount;
+  }
+
+  @media screen and (min-width: 1440px) {
+    grid-template-rows: 4rem 5.3rem auto;
+    grid-template-columns: repeat(2, auto);
+    grid-template-areas:
+      'header header'
+      'description description'
+      'remaining selectReward';
+    padding-top: 1rem;
+    padding-bottom: 1.9rem;
 
     &.selectable {
-      grid-template-rows: 5.2rem 8.9rem 2rem;
-      grid-template-areas:
-      "header header header"
-      "description description description"
-      "remaining remaining remaining";
-    }
+      &:not(.isNoRewardPledge) {
+        grid-template-columns: 2.93rem 1fr auto;
+        grid-template-rows: auto auto;
+        grid-template-areas:
+          'header header remaining'
+          '. description description';
 
-    // when there is no pledge reward and/or selected
-    &.selectable.isNoRewardPledge, &.selectable.isNoRewardPledge.selected {
-      padding-top: 1.05rem;
-      grid-template-rows: 4.5rem 8rem;
-      grid-template-areas:
-      "header header header"
-      "description description description";
-    }
+        &.selected {
+          grid-template-columns: 2.93rem 1fr auto;
+          grid-template-rows: auto 5.4rem 4rem;
+          grid-template-areas:
+            'header header remaining'
+            '. description description'
+            'amount amount amount';
 
-    &.selected:not(.isNoRewardPledge) {
-      border: 2px solid var(--clr-green-500);
-      grid-template-rows: 5rem 9rem 2.5rem 1fr;
-      grid-template-areas:
-      "header header header"
-      "description description description"
-      "remaining remaining remaining"
-      "amount amount amount";
-    }
+          .amount {
+            padding-top: 1.5rem;
+          }
+        }
 
-    &.outOfStock {
-      opacity: .5;
+        .remaining {
+          align-self: center;
+          transform: translateY(-0.2rem);
+        }
+      }
+
+      &.isNoRewardPledge,
+      &.isNoRewardPledge.selected {
+        padding-top: 1.05rem;
+        grid-template-columns: 2.93rem auto;
+        grid-template-rows: 3.2rem 3.5rem;
+        grid-template-areas:
+          'header header'
+          '. description';
+      }
     }
 
     .content {
-      padding: 0 1.4rem;
-    }
-
-    .header {
-      grid-area: header;
-    }
-
-    .description {
-      grid-area: description;
-      align-self: start;
-
-      padding: 0 1.3rem 0 1.4rem;
-    }
-
-    .remaining {
-      grid-area: remaining;
+      padding: 0 1.65rem;
     }
 
     .selectReward {
-      grid-area: selectReward;
-    }
-
-    .amount {
-      grid-area: amount;
-    }
-
-    @media screen and (min-width: 1440px) {
-      grid-template-rows: 4rem 5.3rem auto;
-      grid-template-columns: repeat(2, auto);
-      grid-template-areas:
-      "header header"
-      "description description"
-      "remaining selectReward";
-      padding-top: 1rem;
-      padding-bottom: 1.9rem;
-
-      &.selectable {
-        &:not(.isNoRewardPledge) {
-          grid-template-columns: 2.93rem auto;
-          grid-template-rows: 3.2rem 3.5rem 3.5rem;
-          grid-template-areas:
-          "header header header"
-          "description description description"
-          "remaining remaining remaining";
-        }
-
-        &.isNoRewardPledge, &.isNoRewardPledge.selected {
-          padding-top: 1.05rem;
-          grid-template-columns: 2.93rem auto;
-          grid-template-rows: 3.2rem 3.5rem;
-          grid-template-areas:
-          "header header"
-          ". description"
-        }
-      }
-
-
-      .content {
-        padding: 0 1.65rem;
-      }
-
-      .selectReward {
-        //justify-self: start;
-      }
+      //justify-self: start;
     }
   }
+}
 </style>
-

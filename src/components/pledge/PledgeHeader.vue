@@ -58,26 +58,26 @@ const isNoRewardPledge = inject(pledgeKeys.isNoRewardPledge)
     }
 
     &.selectable {
+      grid-template-areas:
+      "select name"
+      "select minimum";
+
       .select {
         align-self: center;
         display: block;
       }
 
-      grid-template-areas:
-      "select name"
-      "select minimum";
+      &.isNoRewardPledge {
+        grid-template-rows: 1fr;
+        grid-template-areas:
+        "select name";
+      }
     }
 
     &:not(.isNoRewardPledge) {
       .select {
         padding-top: 0.2rem;
       }
-    }
-
-    &.selectable.isNoRewardPledge {
-      grid-template-rows: 1fr;
-      grid-template-areas:
-        "select name";
     }
 
     @media screen and (min-width: 1440px) {
@@ -88,15 +88,33 @@ const isNoRewardPledge = inject(pledgeKeys.isNoRewardPledge)
       "name minimum";
       justify-content: space-between;
 
-      .minimum {
-        justify-self: end;
-      }
+      &.selectable {
+        &:not(.isNoRewardPledge) {
+          justify-content: start;
+          grid-template-columns: 2.93rem auto auto;
+          grid-template-rows: 2.5rem;
+          grid-template-areas:
+            "select name minimum";
 
-      &.selectable.isNoRewardPledge {
-        grid-template-columns: 2.93rem 1fr;
-        grid-template-rows: 2.5rem;
-        grid-template-areas:
-          "select name";
+          .select {
+            padding-top: 0;
+            transform: translateY(-0.2rem);
+          }
+
+          .minimum {
+            padding-top: 0;
+            padding-left: 1.2rem;
+            letter-spacing: 0.4px;
+          }
+        }
+
+        &.isNoRewardPledge {
+          grid-template-columns: 2.93rem 1fr;
+          grid-template-rows: 2.5rem;
+          grid-template-areas:
+            "select name";
+        }
+
       }
     }
   }

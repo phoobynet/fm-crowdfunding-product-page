@@ -1,13 +1,10 @@
-<script
-  lang="ts"
-  setup
->
-import { computed, inject, onMounted, Ref, ref, watch } from 'vue'
-import { useMotions } from '@vueuse/motion'
-import { onClickOutside, onKeyStroke } from '@vueuse/core'
-import { useAppStore } from '@/use/useAppStore'
+<script lang="ts" setup>
 import Pledge from '@/components/pledge/Pledge.vue'
 import { ScrollHeight } from '@/lib/injectionKeys'
+import { useAppStore } from '@/use/useAppStore'
+import { onClickOutside, onKeyStroke } from '@vueuse/core'
+import { useMotions } from '@vueuse/motion'
+import { Ref, computed, inject, ref, watch } from 'vue'
 
 const {
   backThisProjectModalOpen,
@@ -21,12 +18,16 @@ const scrollHeight = inject(ScrollHeight) as Ref<number>
 const modalElement = ref<HTMLDivElement>()
 
 const pledges = computed(() => {
-  return [{
-    id: 0,
-    name: 'Pledge with no reward',
-    amount: 0,
-    description: 'Choose to support us without a reward if you simply believe in our project. As a backer, you will be signed up to receive product updates via email.',
-  }, ...actualPledges.value]
+  return [
+    {
+      id: 0,
+      name: 'Pledge with no reward',
+      amount: 0,
+      description:
+        'Choose to support us without a reward if you simply believe in our project. As a backer, you will be signed up to receive product updates via email.',
+    },
+    ...actualPledges.value,
+  ]
 })
 
 const close = () => {
@@ -40,9 +41,8 @@ onKeyStroke('Escape', close)
 const motions = useMotions()
 
 const modalHeight = computed(() =>
-  scrollHeight.value
-    ? `${scrollHeight.value}px`
-    : '100vh')
+  scrollHeight.value ? `${scrollHeight.value}px` : '100vh',
+)
 
 const closeModalHandler = () => {
   selectedPledgeId.value = undefined
@@ -82,26 +82,33 @@ watch([backThisProjectModalOpen, modalElement], () => {
       v-if="backThisProjectModalOpen"
       v-motion="'backThisProjectModal'"
       :initial="{ opacity: 0, backgroundColor: 'rgba(0, 0, 0, 0)' }"
-      :enter="{ opacity: 1, backgroundColor: 'rgba(0, 0, 0, .7)', transition: { duration: 300 } }"
-      :leave="{ opacity: 0, backgroundColor: 'rgba(0, 0, 0, 0)',  transition: { duration: 300 } }"
-      :style="{height: modalHeight}"
+      :enter="{
+        opacity: 1,
+        backgroundColor: 'rgba(0, 0, 0, .7)',
+        transition: { duration: 300 },
+      }"
+      :leave="{
+        opacity: 0,
+        backgroundColor: 'rgba(0, 0, 0, 0)',
+        transition: { duration: 300 },
+      }"
+      :style="{ height: modalHeight }"
     >
       <div
         class="modal"
         ref="modalElement"
       >
         <header>
-          <h3>
-            Back this project
-          </h3>
+          <h3>Back this project</h3>
           <img
             src="@/assets/images/icon-close-modal.svg"
             alt=""
             role="button"
             @click="closeModalHandler"
-          >
+          />
           <p>
-            Want to support us in bringing Mastercraft Bamboo Monitor Riser out in the world?
+            Want to support us in bringing Mastercraft Bamboo Monitor Riser out
+            in the world?
           </p>
         </header>
         <ul>
@@ -121,104 +128,100 @@ watch([backThisProjectModalOpen, modalElement], () => {
   </transition>
 </template>
 
-<style
-  lang="scss"
-  scoped
->
-  .back-this-project-modal {
-    z-index: 9999;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: start;
-    padding-top: 7.5rem;
+<style lang="scss" scoped>
+.back-this-project-modal {
+  z-index: 9999;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  padding-top: 7.5rem;
 
+  .modal {
+    background-color: var(--clr-white);
+    border-radius: 0.5rem;
+    width: var(--mob-content-width);
+    padding: 1.59rem 1.5rem;
+
+    header {
+      display: grid;
+      grid-template-columns: repeat(2, auto);
+      grid-template-rows: 2.4rem 4rem;
+      grid-template-areas:
+        'heading close'
+        'description description';
+
+      h3 {
+        align-self: center;
+        grid-area: heading;
+        font-size: 1.175rem;
+        letter-spacing: -0.3px;
+      }
+
+      img {
+        grid-area: close;
+        align-self: center;
+        width: 0.875rem;
+        height: 0.875rem;
+        justify-self: end;
+        cursor: pointer;
+        transition: all 0.2s;
+
+        &:hover {
+          scale: (1.1);
+        }
+
+        &:active {
+          scale: (1);
+        }
+      }
+
+      p {
+        grid-area: description;
+        font-size: 0.875rem;
+        color: var(--clr-gray-300);
+        line-height: 1.5rem;
+        align-self: end;
+      }
+    }
+
+    ul {
+      padding-top: 1.4rem;
+      display: grid;
+      grid-row-gap: 1.5rem;
+    }
+  }
+
+  @media screen and (min-width: 1440px) {
+    padding-top: 11.5rem;
     .modal {
-      background-color: var(--clr-white);
-      border-radius: 0.5rem;
-      width: var(--mob-content-width);
-      padding: 1.59rem 1.5rem;
+      width: var(--desk-content-width);
+      padding: 2.8rem 3rem;
 
       header {
-        display: grid;
-        grid-template-columns: repeat(2, auto);
-        grid-template-rows: 2.4rem 4rem;
-        grid-template-areas:
-          "heading close"
-          "description description";
-
+        grid-template-rows: 2rem 4rem;
         h3 {
-          align-self: center;
-          grid-area: heading;
-          font-size: 1.175rem;
-          letter-spacing: -.3px;
+          align-self: start;
+          font-size: 1.5rem;
+          letter-spacing: 0px;
         }
-
         img {
-          grid-area: close;
-          align-self: center;
-          width: 0.875rem;
-          height: 0.875rem;
-          justify-self: end;
-          cursor: pointer;
-          transition: all 0.2s;
-
-          &:hover {
-            scale: (1.1);
-          }
-
-          &:active {
-            scale: (1);
-          }
+          align-self: start;
+          transform: translateY(-0.78rem) translateX(1rem);
         }
-
         p {
-          grid-area: description;
-          font-size: 0.875rem;
-          color: var(--clr-gray-300);
-          line-height: 1.5rem;
-          align-self: end;
+          font-size: 1rem;
+          align-self: center;
         }
       }
 
       ul {
-        padding-top: 1.4rem;
-        display: grid;
-        grid-row-gap: 1.5rem;
-      }
-    }
-
-    @media screen and (min-width: 1440px) {
-      padding-top: 11.5rem;
-      .modal {
-        width: var(--desk-content-width);
-        padding: 2.8rem 3rem;
-
-        header {
-          grid-template-rows: 2rem 4rem;
-          h3 {
-            align-self: start;
-            font-size: 1.5rem;
-            letter-spacing: 0px;
-          }
-          img {
-            align-self: start;
-            transform: translateY(-.78rem) translateX(1rem);
-          }
-          p {
-            font-size: 1rem;
-            align-self: center;
-          }
-        }
-
-        ul {
-          padding-top: .9rem;
-        }
+        padding-top: 0.9rem;
       }
     }
   }
+}
 </style>
-

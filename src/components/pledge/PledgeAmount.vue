@@ -1,10 +1,7 @@
-<script
-  lang="ts"
-  setup
->
-import { inject, Ref } from 'vue'
-import { pledgeKeys } from '@/components/pledge/pledgeKeys'
+<script lang="ts" setup>
 import PledgeAmountInput from '@/components/pledge/PledgeAmountInput.vue'
+import { pledgeKeys } from '@/components/pledge/pledgeKeys'
+import { Ref, inject } from 'vue'
 
 const pledgeAmount = inject(pledgeKeys.pledgeAmount) as Ref<number | undefined>
 const pledgeAmountError = inject(pledgeKeys.pledgeAmountError)
@@ -17,7 +14,7 @@ const onContinueClick = inject(pledgeKeys.onContinueClick) as () => void
   <div
     v-if="canEnterPledge"
     class="pledgeAmount"
-    :class="{'error': !!pledgeAmountError}"
+    :class="{ error: !!pledgeAmountError }"
     v-motion
     :initial="{ opacity: 0 }"
     :enter="{ opacity: 1, transition: { duration: 500 } }"
@@ -30,64 +27,77 @@ const onContinueClick = inject(pledgeKeys.onContinueClick) as () => void
       class="button continue-button"
       :disabled="!pledgeAmount || !!pledgeAmountError"
       @click="() => onContinueClick()"
-    >Continue
+    >
+      Continue
     </button>
     <div
       v-if="pledgeAmountError"
       class="error"
       v-motion
-      :initial="{opacity: 0}"
-      :enter="{opacity: 1, transition: {duration: 500}}"
-    >{{ pledgeAmountError }}
+      :initial="{ opacity: 0 }"
+      :enter="{ opacity: 1, transition: { duration: 500 } }"
+    >
+      {{ pledgeAmountError }}
     </div>
   </div>
 </template>
 
-<style
-  lang="scss"
-  scoped
->
-  .pledgeAmount {
-    padding: 1.4rem 1.4rem 0;
-    border-top: 2px solid var(--clr-gray-50);
-    display: grid;
-    grid-template-rows: 2.5rem 1fr;
-    grid-column-gap: 1rem;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-    grid-template-areas:
-        "label label"
-        "input continue";
+<style lang="scss" scoped>
+.pledgeAmount {
+  padding: 1.4rem 1.4rem 0;
+  border-top: 2px solid var(--clr-gray-50);
+  display: grid;
+  grid-template-rows: 2.5rem 1fr;
+  grid-column-gap: 1rem;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  grid-template-areas:
+    'label label'
+    'input continue';
 
-    &.error {
-      grid-template-rows: 2.5rem 1fr auto;
-      grid-template-areas:
-        "label label"
-        "input continue"
-        "error .";
-    }
+  &.error {
+    grid-template-rows: 2.5rem 1fr auto;
+    grid-template-areas:
+      'label label'
+      'input continue'
+      'error .';
+  }
+
+  label {
+    grid-area: label;
+    text-align: center;
+    color: var(--clr-gray-300);
+    font-size: 0.875rem;
+  }
+
+  .enter-your-pledge-input {
+    grid-area: input;
+  }
+
+  .continue-button {
+    grid-area: continue;
+    height: 3rem;
+  }
+
+  .error {
+    grid-area: error;
+    font-size: 0.7rem;
+    color: var(--clr-red-500);
+    justify-self: center;
+  }
+
+  @media screen and (min-width: 1440px) {
+    padding: 0 1.6rem;
+
+    grid-template-rows: 1fr;
+    grid-template-columns: 21rem repeat(2, minmax(0, 1fr));
+    grid-template-areas: 'label input continue';
+    align-items: center;
 
     label {
-      grid-area: label;
-      text-align: center;
-      color: var(--clr-gray-300);
-      font-size: 0.875rem;
-    }
-
-    .enter-your-pledge-input {
-      grid-area: input;
-    }
-
-    .continue-button {
-      grid-area: continue;
-      height: 3rem;
-    }
-
-    .error {
-      grid-area: error;
-      font-size: 0.7rem;
-      color: var(--clr-red-500);
-      justify-self: center;
+      text-align: unset;
+      font-size: 0.9375rem;
+      line-height: 1.75rem;
     }
   }
+}
 </style>
-

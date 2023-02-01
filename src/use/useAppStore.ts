@@ -1,6 +1,6 @@
-import { ref } from 'vue'
-import { Pledge } from '@/lib/types/Pledge'
 import { pledgesRepository } from '@/lib/data/pledgesRepository'
+import { type Pledge } from '@/lib/types/Pledge'
+import { ref } from 'vue'
 
 const menuModalOpen = ref<boolean>(false)
 const backThisProjectModalOpen = ref<boolean>(false)
@@ -27,11 +27,12 @@ export const useAppStore = () => {
     }
   }
 
-  const isPledgeSelected = (pledgeId: number): boolean => selectedPledgeId.value === pledgeId
+  const isPledgeSelected = (pledgeId: number): boolean =>
+    selectedPledgeId.value === pledgeId
 
   const decrementRemaining = (pledgeId: number): void => {
-    const pledge = pledges.value.find(p => p.id === pledgeId)
-    if (pledge && pledge.remaining && pledge.remaining > 0 ) {
+    const pledge = pledges.value.find((p) => p.id === pledgeId)
+    if (pledge?.remaining && pledge.remaining > 0) {
       pledge.remaining -= 1
     }
   }
@@ -57,6 +58,6 @@ export const useAppStore = () => {
     goal,
     amountBacked,
     backers,
-    daysLeft
+    daysLeft,
   }
 }
