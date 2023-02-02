@@ -176,10 +176,6 @@ onMounted(() => {
             'header header remaining'
             '. description description'
             'amount amount amount';
-
-          .amount {
-            padding-top: 1.5rem;
-          }
         }
 
         .remaining {
@@ -197,14 +193,20 @@ onMounted(() => {
           'header header'
           '. description';
       }
+
+      .content {
+        padding: 0 1.65rem;
+      }
     }
 
-    .content {
-      padding: 0 1.65rem;
-    }
+    &:not(.selectable) {
+      .selectReward {
+        justify-self: end;
+      }
 
-    .selectReward {
-      //justify-self: start;
+      .content {
+        padding: 0 1.8rem;
+      }
     }
   }
 }

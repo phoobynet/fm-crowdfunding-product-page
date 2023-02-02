@@ -1,30 +1,31 @@
-<script
-  lang="ts"
-  setup
->
-import { inject } from 'vue'
+<script lang="ts" setup>
 import { pledgeKeys } from '@/components/pledge/pledgeKeys'
+import { inject } from 'vue'
 
 const pledge = inject(pledgeKeys.pledge)
+const selectable = inject(pledgeKeys.selectable)
 </script>
 
 <template>
   <h3
     v-if="pledge"
     class="pledge-name"
-  >{{ pledge.name }}</h3>
+    :class="{ selectable }"
+  >
+    {{ pledge.name }}
+  </h3>
 </template>
 
-<style
-  lang="scss"
-  scoped
->
-  .pledge-name {
-    font-size: 0.875rem;
+<style lang="scss" scoped>
+.pledge-name {
+  font-size: 0.875rem;
 
-    @media screen and (min-width: 1440px) {
+  @media screen and (min-width: 1440px) {
+    font-size: 1.125rem;
+
+    &.selectable {
       font-size: 1rem;
     }
   }
+}
 </style>
-

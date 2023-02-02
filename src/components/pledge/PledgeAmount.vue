@@ -31,7 +31,7 @@ const onContinueClick = inject(pledgeKeys.onContinueClick) as () => void
       Continue
     </button>
     <div
-      v-if="pledgeAmountError"
+      v-show="pledgeAmountError"
       class="error"
       v-motion
       :initial="{ opacity: 0 }"
@@ -44,12 +44,13 @@ const onContinueClick = inject(pledgeKeys.onContinueClick) as () => void
 
 <style lang="scss" scoped>
 .pledgeAmount {
+  height: 100%;
   padding: 1.4rem 1.4rem 0;
   border-top: 2px solid var(--clr-gray-50);
   display: grid;
   grid-template-rows: 2.5rem 1fr;
-  grid-column-gap: 1rem;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  grid-column-gap: 1rem;
   grid-template-areas:
     'label label'
     'input continue';
@@ -86,12 +87,22 @@ const onContinueClick = inject(pledgeKeys.onContinueClick) as () => void
   }
 
   @media screen and (min-width: 1440px) {
-    padding: 0 1.6rem;
+    padding: 1.4rem 1.6rem;
 
-    grid-template-rows: 1fr;
+    grid-template-rows: 1fr auto;
     grid-template-columns: 21rem repeat(2, minmax(0, 1fr));
-    grid-template-areas: 'label input continue';
+    grid-template-areas:
+      'label input continue'
+      '. error .';
     align-items: center;
+
+    &.error {
+      grid-template-rows: 1fr auto;
+      grid-template-areas:
+        'label input continue'
+        '. error .';
+      padding-bottom: 0;
+    }
 
     label {
       text-align: unset;
