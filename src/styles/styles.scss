@@ -1,9 +1,6 @@
-@import 'reset';
 @import 'variables';
-@import 'components';
+@import 'tailwind';
 
 body {
-  font-family: 'Commissioner', 'sans-serif';
-  background-color: var(--clr-gray-10);
-  position: relative;
+  @apply relative bg-gray-10;
 }

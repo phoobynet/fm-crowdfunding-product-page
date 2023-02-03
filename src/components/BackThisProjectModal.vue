@@ -143,7 +143,7 @@ watch([backThisProjectModalOpen, modalElement], () => {
   .modal {
     background-color: var(--clr-white);
     border-radius: 0.5rem;
-    width: var(--mob-content-width);
+    width: var(--mobile-content-width);
     padding: 1.59rem 1.5rem;
 
     header {
@@ -198,7 +198,7 @@ watch([backThisProjectModalOpen, modalElement], () => {
   @media screen and (min-width: 1440px) {
     padding-top: 11.5rem;
     .modal {
-      width: var(--desk-content-width);
+      width: var(--desktop-content-width);
       padding: 2.8rem 3rem;
 
       header {

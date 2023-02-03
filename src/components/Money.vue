@@ -1,10 +1,7 @@
-<script
-  lang="ts"
-  setup
->
+<script lang="ts" setup>
 import { computed } from 'vue'
 
-const props = defineProps<{amount?: number, fractionalDigits?: number}>()
+const props = defineProps<{ amount: number; fractionalDigits?: number }>()
 
 const displayAmount = computed(() => {
   if (props.amount) {
@@ -16,16 +13,8 @@ const displayAmount = computed(() => {
   }
   return ''
 })
-
 </script>
 
 <template>
-<span>{{ displayAmount}}</span>
+  <span>{{ displayAmount }}</span>
 </template>
-
-<style
-  lang="scss"
-  scoped
->
-</style>
-

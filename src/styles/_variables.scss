@@ -1,17 +1,13 @@
 :root {
-  --mob-width: 23.438rem;
-  --mob-content-width: 20.438rem;
-  --desk-width: 90rem;
-  --desk-content-width: 45.625rem;
-
-  --ff: 'Commissioner', 'sans-serif';
+  --mobile-width: 23.438rem;
+  --mobile-content-width: 20.438rem;
+  --desktop-width: 90rem;
+  --desktop-content-width: 45.625rem;
 
   --clr-red-500: #f14747ff;
-
   --clr-green-700: #147a73;
   --clr-green-500: #3cb3ab;
   --clr-green-100: #f3f8f8;
-
   --clr-gray-800: #2f2f2f;
   --clr-gray-400: #707070;
   --clr-gray-300: #7a7a7a;
@@ -23,4 +19,29 @@
   --clr-gray-25: #f2f2f2f2;
   --clr-gray-10: #fafafa;
   --clr-white: #ffffff;
+
+  --fs-14: 0.875rem;
+  --fs-16: 1rem;
+
+  --fw-medium: 500;
+  --fw-bold: 700;
+  --fw-black: 900;
+
+  // sizes specified in rem, but with px in the name
+  --size-2: 0.125rem;
+  --size-3: 0.1875rem;
+  --size-4: 0.25rem;
+  --size-8: 0.5rem;
+  --size-12: 0.75rem;
+  --size-16: 1rem;
+  --size-20: 1.25rem;
+  --size-24: 1.5rem;
+  --size-32: 2rem;
+  --size-48: 3rem;
+  --size-56: 3.5rem;
 }
+
+$break-points: (
+  mobile: var(--mobile-width),
+  desktop: var(--desktop-width),
+);

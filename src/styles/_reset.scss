@@ -1,3 +1,5 @@
+// TODO: Remove
+
 *,
 *::before,
 *::after {
@@ -19,7 +21,8 @@ body {
 }
 
 ul[class],
-ol[class], ul {
+ol[class],
+ul {
   list-style: none;
   padding: 0;
 }
