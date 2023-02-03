@@ -1,8 +1,9 @@
-@import "reset";
-@import "variables";
-@import "components";
+@import 'reset';
+@import 'variables';
+@import 'components';
 
 body {
+  font-family: 'Commissioner', 'sans-serif';
   background-color: var(--clr-gray-10);
   position: relative;
 }
