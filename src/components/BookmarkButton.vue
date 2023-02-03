@@ -1,7 +1,4 @@
-<script
-  lang="ts"
-  setup
->
+<script lang="ts" setup>
 import { useAppStore } from '@/use/useAppStore'
 
 const { bookmarked } = useAppStore()
@@ -12,7 +9,7 @@ const { bookmarked } = useAppStore()
     class="bookmark-button"
     role="button"
     :data-bookmarked="bookmarked"
-    @click="() => bookmarked = !bookmarked"
+    @click="() => (bookmarked = !bookmarked)"
   >
     <div class="icon-container">
       <svg
@@ -42,104 +39,82 @@ const { bookmarked } = useAppStore()
         name="switch"
         mode="out-in"
       >
-      <span
-        v-if="bookmarked"
-      >
-        Bookmarked
-      </span>
-        <span
-          v-else
-        >Bookmark</span>
+        <span v-if="bookmarked"> Bookmarked </span>
+        <span v-else>Bookmark</span>
       </transition>
     </div>
   </div>
 </template>
 
-<style
-  lang="scss"
-  scoped
->
-  .bookmark-button {
-    display: flex;
-    justify-content: start;
-    align-items: center;
-    gap: 0.9rem;
-    color: var(--clr-gray-400);
-    background-color: var(--clr-gray-50);
-    font-size: 1rem;
-    font-weight: 700;
-    height: 3.5rem;
-    min-width: 3.5rem;
-    border-radius: 2rem;
-    cursor: pointer;
-    transition: all .5s;
+<style lang="scss" scoped>
+.bookmark-button {
+  @apply flex h-[3.5rem] min-w-[3.5rem] items-center justify-start gap-2 bg-gray-50 text-sm font-bold text-gray-400;
+  @apply cursor-pointer rounded-full transition-all duration-500;
 
-    &[data-bookmarked='true'] {
-      color: var(--clr-green-700);
-      background-color: var(--clr-green-100);
+  &[data-bookmarked='true'] {
+    @apply bg-green-100 text-green-700;
 
-      @media screen and (min-width: 1440px) {
-        min-width: 11.7rem;
-      }
+    @media (min-width: 1440px) {
+      @apply min-w-[11.7rem];
     }
+  }
 
-    @media (hover: hover) {
-      &:hover {
-        .icon-container {
-          transition: all 0.3s;
-          opacity: 0.5;
-
-          svg {
-            circle {
-              color: var(--clr-gray-400);
-            }
-          }
-        }
-      }
-    }
-
-    &[data-bookmarked='true'] {
+  @media (hover: hover) {
+    &:hover {
       .icon-container {
-        transition: all 0.3s;
+        @apply opacity-50 transition-all duration-300;
 
         svg {
           circle {
-            fill: var(--clr-green-700);
-          }
-
-          path {
-            fill: var(--clr-white);
+            @apply bg-gray-400;
           }
         }
       }
     }
+  }
 
+  &[data-bookmarked='true'] {
     .icon-container {
-    }
+      @apply transition-all duration-300;
 
-    .text-container {
-      display: none;
-    }
+      svg {
+        circle {
+          fill: var(--clr-green-700);
+        }
 
-    @media screen and (min-width: 1440px) {
-      width: 10.775rem;
-      .text-container {
-        display: block;
+        path {
+          fill: var(--clr-white);
+        }
       }
     }
   }
 
-  .switch-enter-from, .switch-leave-to {
-    opacity: 0;
-    transform: translateY(20px);
+  .icon-container {
   }
 
-  .switch-enter-active, .switch-leave-active {
-    transition: all 0.2s ease;
+  .text-container {
+    @apply hidden;
   }
 
-  .switch-leave {
-    transition: all 0.2s ease;
+  @media (min-width: 1440px) {
+    @apply w-[10.775rem];
+    .text-container {
+      @apply block;
+    }
   }
+}
+
+.switch-enter-from,
+.switch-leave-to {
+  @apply translate-y-[20px] transform opacity-0;
+}
+
+.switch-enter-active,
+.switch-leave-active {
+  @apply transition-all duration-300 ease-in;
+}
+
+.switch-leave {
+  @apply transition-all duration-200 ease-out;
+}
 </style>
-

@@ -130,21 +130,10 @@ watch([backThisProjectModalOpen, modalElement], () => {
 
 <style lang="scss" scoped>
 .back-this-project-modal {
-  z-index: 9999;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: start;
-  padding-top: 7.5rem;
+  @apply absolute top-0 left-0 z-[9999] flex w-full items-start justify-center pt-[7.5rem];
 
   .modal {
-    background-color: var(--clr-white);
-    border-radius: 0.5rem;
-    width: var(--mobile-content-width);
-    padding: 1.59rem 1.5rem;
+    @apply w-[var(--mobile-content-width)] rounded-lg bg-white px-[1.5rem] py-[1.59rem];
 
     header {
       display: grid;

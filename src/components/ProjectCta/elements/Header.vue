@@ -10,8 +10,6 @@
   lang="scss"
   scoped
 >
-  @import "@/styles/mixins";
-
   header {
     @apply py-[2.1rem] px-[3rem];
     @apply desktop:py-[2.5rem];
