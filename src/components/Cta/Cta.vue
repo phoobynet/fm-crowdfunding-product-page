@@ -3,7 +3,7 @@ import BackThisProjectBtn from './elements/BackThisProjectBtn.vue'
 import Header from './elements/Header.vue'
 import Logo from './elements/Logo.vue'
 import BookmarkButton from '@/components/BookmarkButton.vue'
-import Description from '@/components/ProjectCta/elements/Description.vue'
+import Description from '@/components/Cta/elements/Description.vue'
 import { useAppStore } from '@/use/useAppStore'
 
 const { backThisProjectModalOpen } = useAppStore()
@@ -14,7 +14,7 @@ const backThisProjectHandler = () => {
 </script>
 
 <template>
-  <div class="card projectCta">
+  <div class="card cta">
     <Logo class="logo" />
     <Header>Mastercraft Bamboo Monitor Riser</Header>
     <Description>
@@ -28,7 +28,7 @@ const backThisProjectHandler = () => {
 </template>
 
 <style lang="scss" scoped>
-.projectCta {
+.cta {
   @apply relative grid w-[var(--mobile-content-width)] grid-rows-[6.3rem_4.4rem_5rem];
   @apply desktop:w-[var(--desktop-content-width)] desktop:grid-rows-[5.6rem_3.6rem_5.3rem];
 

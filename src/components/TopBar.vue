@@ -1,6 +1,7 @@
 <script lang="ts" setup>
-import Logo from '@/components/Logo.vue'
-import TopBarMenu from '@/components/TopBarMenu.vue'
+import { Logo, TopBarMenu } from '@/components'
+
+// TODO: top-bar - do i really need two divs?
 </script>
 
 <template>
@@ -14,20 +15,13 @@ import TopBarMenu from '@/components/TopBarMenu.vue'
 
 <style lang="scss" scoped>
 .top-bar {
-  display: flex;
-  justify-content: center;
-  & > div {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    min-height: 3rem;
-    padding: 2rem 1.5rem;
-    width: var(--mobile-width);
-    min-width: var(--mobile-width);
+  @apply flex justify-center;
 
-    @media screen and (min-width: 1440px) {
-      padding: 3rem 10.4rem;
-      width: var(--desktop-width);
+  & > div {
+    @apply flex min-h-[3rem] w-[var(--mobile-width)] min-w-[var(--mobile-width)] items-center justify-between py-[2rem] px-[1.5rem];
+
+    @media (min-width: 1440px) {
+      @apply w-[var(--desktop-width)] px-[10.4rem] py-[3rem];
     }
   }
 }

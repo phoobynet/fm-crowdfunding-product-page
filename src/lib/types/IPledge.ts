@@ -1,4 +1,4 @@
-export interface Pledge {
+export interface IPledge {
   id: number
   name: string
   amount: number

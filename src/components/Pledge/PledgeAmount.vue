@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import PledgeAmountInput from '@/components/pledge/PledgeAmountInput.vue'
-import { pledgeKeys } from '@/components/pledge/pledgeKeys'
+import PledgeAmountInput from '@/components/Pledge/PledgeAmountInput.vue'
+import { pledgeKeys } from '@/components/Pledge/pledgeKeys'
 import { Ref, inject } from 'vue'
 
 const pledgeAmount = inject(pledgeKeys.pledgeAmount) as Ref<number | undefined>

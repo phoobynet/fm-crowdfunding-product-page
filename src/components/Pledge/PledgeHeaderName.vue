@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { pledgeKeys } from '@/components/pledge/pledgeKeys'
+import { pledgeKeys } from '@/components/Pledge/pledgeKeys'
 import { inject } from 'vue'
 
 const pledge = inject(pledgeKeys.pledge)

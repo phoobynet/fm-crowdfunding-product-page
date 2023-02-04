@@ -1,11 +1,13 @@
 <script setup lang="ts">
-import BackThisProjectModal from '@/components/BackThisProjectModal.vue'
-import Container from '@/components/Container.vue'
-import ProjectAbout from '@/components/ProjectAbout.vue'
-import { ProjectCta } from '@/components/ProjectCta'
-import ProjectStats from '@/components/ProjectStats.vue'
-import ThankYouModal from '@/components/ThankYouModal.vue'
-import TopBarMenuModal from '@/components/TopBarMenuModal.vue'
+import {
+  BackThisProjectModal,
+  Container,
+  ProjectAbout,
+  ProjectCta,
+  ProjectStats,
+  ThankYouModal,
+  TopBarMenuModal,
+} from '@/components'
 import { MenuClickHandler, ScrollHeight } from '@/lib/injectionKeys'
 import { useAppStore } from '@/use/useAppStore'
 import { onMounted, provide, ref } from 'vue'
@@ -42,5 +44,3 @@ onMounted(async () => {
     <TopBarMenuModal />
   </Teleport>
 </template>
-
-<style scoped></style>

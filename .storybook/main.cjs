@@ -9,6 +9,7 @@ module.exports = {
     '@storybook/addon-interactions',
     '@storybook/preset-scss',
   ],
+  staticDirs: ['../public'],
   framework: '@storybook/vue3',
   core: {
     builder: '@storybook/builder-vite',

@@ -1,12 +1,12 @@
 import { pledgesRepository } from '@/lib/data/pledgesRepository'
-import { type Pledge } from '@/lib/types/Pledge'
+import { type IPledge } from '@/lib/types/IPledge'
 import { ref } from 'vue'
 
 const menuModalOpen = ref<boolean>(false)
 const backThisProjectModalOpen = ref<boolean>(false)
 const thankYouModalOpen = ref<boolean>(false)
 const bookmarked = ref<boolean>(false)
-const pledges = ref<Pledge[]>([])
+const pledges = ref<IPledge[]>([])
 const fetchingPledges = ref<boolean>(false)
 const selectedPledgeId = ref<number | undefined>(undefined)
 
@@ -37,7 +37,7 @@ export const useAppStore = () => {
     }
   }
 
-  const receivePledge = (pledge: Pledge, amount: number): void => {
+  const receivePledge = (pledge: IPledge, amount: number): void => {
     amountBacked.value += amount
     backers.value += 1
     decrementRemaining(pledge.id)

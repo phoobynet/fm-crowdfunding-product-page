@@ -1,28 +1,18 @@
-<script
-  lang="ts"
-  setup
->
+<script lang="ts" setup>
+import { enUS } from '@/lib/locale/enUS'
 import { computed } from 'vue'
 
-const props = defineProps<{amount?: number}>()
+const props = defineProps<{ amount?: number }>()
 
-const largeNumberDisplay = computed(() => {
-  if (props.amount) {
-    return props.amount.toLocaleString('en-US', {
-      maximumFractionDigits: 0,
-    })
-  }
-  return ''
-})
+const options: Intl.NumberFormatOptions = {
+  maximumFractionDigits: 0,
+}
+
+const largeNumberDisplay = computed(() =>
+  props.amount ? props.amount.toLocaleString(enUS, options) : '',
+)
 </script>
 
 <template>
-  <span>{{ largeNumberDisplay}}</span>
+  <span>{{ largeNumberDisplay }}</span>
 </template>
-
-<style
-  lang="scss"
-  scoped
->
-</style>
-

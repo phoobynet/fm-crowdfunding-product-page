@@ -1,12 +1,12 @@
 <script lang="ts" setup>
-import { pledgeKeys } from '@/components/pledge/pledgeKeys'
-import { Pledge } from '@/lib/types/Pledge'
+import { pledgeKeys } from '@/components/Pledge/pledgeKeys'
+import { IPledge } from '@/lib/types/IPledge'
 import { vMaska } from 'maska'
 import { inject, onMounted, ref } from 'vue'
 
 const input = ref<HTMLInputElement>()
 const isFocussed = ref<boolean>()
-const pledge = inject(pledgeKeys.pledge) as Pledge
+const pledge = inject(pledgeKeys.pledge) as IPledge
 const pledgeAmountError = inject(pledgeKeys.pledgeAmountError)
 const pledgeAmount = inject(pledgeKeys.pledgeAmount)
 
