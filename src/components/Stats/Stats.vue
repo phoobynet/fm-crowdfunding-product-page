@@ -35,18 +35,23 @@ const { goal, amountBacked, backers, daysLeft } = useAppStore()
       <template #description> days left</template>
     </Stat>
 
-    <div class="progress-bar">
-      <ProgressBar
-        :goal="goal"
-        :actual="amountBacked"
-      />
-    </div>
+    <ProgressBar
+      :goal="goal"
+      :actual="amountBacked"
+    />
   </div>
 </template>
 
 <style lang="scss" scoped>
 .stats {
   @apply max-w-[var(--mobile-content-width)];
+  @apply grid justify-center justify-items-center;
+  @apply pt-[1.6rem];
+  grid-template-rows: 4.9rem 2.3rem 4.9rem 2.3rem 6.3rem 2.2rem;
+
+  > * {
+    @apply w-[17.44rem];
+  }
 
   @media (min-width: 1440px) {
     @apply max-w-[var(--desktop-content-width)];

@@ -5,7 +5,7 @@
 </script>
 
 <template>
-  <div class="separator">
+  <div class="spacer">
     <div class="hl" />
     <div class="vl" />
   </div>
@@ -15,7 +15,8 @@
   lang="scss"
   scoped
 >
-  .separator {
+  .spacer {
+    @apply flex flex-col items-center w-full;
 
     .vl {
       @apply hidden h-[3.9375rem] w-[1rem] border-r-[1px] border-gray-90;
