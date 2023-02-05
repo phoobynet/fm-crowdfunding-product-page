@@ -14,7 +14,7 @@ const onSelectARewardClick = inject(pledgeKeys.onSelectARewardClick)
   >
     <button
       @click="onSelectARewardClick"
-      class="button"
+      class="btn"
       :disabled="outOfStock"
     >
       <template v-if="outOfStock">Out of Stock</template>
@@ -25,19 +25,14 @@ const onSelectARewardClick = inject(pledgeKeys.onSelectARewardClick)
 
 <style lang="scss" scoped>
 .pledge-select-reward {
-  .button {
-    height: 3rem;
-    font-size: 0.875rem;
-    padding-left: 2.1rem;
-    padding-right: 2.1rem;
+  .btn {
+    @apply h-12 pl-[2.1rem] pr-[2.1rem] text-sm;
   }
 
-  @media screen and (min-width: 1440px) {
-    align-self: end;
-    justify-self: end;
-
-    .button {
-      min-width: 5.5rem;
+  @media (min-width: 1440px) {
+    @apply items-end justify-self-end;
+    .btn {
+      @apply min-w-[5.5rem];
     }
   }
 }

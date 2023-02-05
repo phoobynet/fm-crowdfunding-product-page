@@ -24,31 +24,22 @@ const show = computed(() => !isNoRewardPledge?.value && !!pledge)
 
 <style lang="scss" scoped>
 .pledge-remaining {
+  @apply flex items-center gap-2 self-start text-[0.9375rem] text-gray-300;
   grid-area: remaining;
-  align-self: start;
-  display: flex;
-  font-size: 0.9375rem;
-  align-items: center;
-  color: var(--clr-gray-300);
-  gap: 0.5rem;
 
   .amount {
-    color: black;
-    font-size: 2rem;
-    font-weight: 700;
+    @apply text-[2rem] font-bold text-black;
   }
 
   &.selectable {
     .amount {
-      font-size: 1.125rem;
+      @apply text-[1.125rem];
     }
   }
 
-  @media screen and (min-width: 1440px) {
+  @media (min-width: 1440px) {
     .amount {
-      font-size: 2rem;
-      justify-self: end;
-      align-self: end;
+      @apply items-end justify-self-end text-[2rem];
     }
   }
 }

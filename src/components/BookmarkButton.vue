@@ -6,7 +6,7 @@ const { bookmarked } = useAppStore()
 
 <template>
   <div
-    class="bookmark-button"
+    class="bookmarkButton"
     role="button"
     :data-bookmarked="bookmarked"
     @click="() => (bookmarked = !bookmarked)"
@@ -34,7 +34,7 @@ const { bookmarked } = useAppStore()
         </g>
       </svg>
     </div>
-    <div class="text-container">
+    <div class="textContainer">
       <transition
         name="switch"
         mode="out-in"
@@ -47,7 +47,7 @@ const { bookmarked } = useAppStore()
 </template>
 
 <style lang="scss" scoped>
-.bookmark-button {
+.bookmarkButton {
   @apply flex h-[3.5rem] min-w-[3.5rem] items-center justify-start gap-2 bg-gray-50 text-sm font-bold text-gray-400;
   @apply cursor-pointer rounded-full transition-all duration-500;
 
@@ -92,13 +92,13 @@ const { bookmarked } = useAppStore()
   .icon-container {
   }
 
-  .text-container {
+  .textContainer {
     @apply hidden;
   }
 
   @media (min-width: 1440px) {
     @apply w-[10.775rem];
-    .text-container {
+    .textContainer {
       @apply block;
     }
   }

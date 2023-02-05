@@ -47,13 +47,14 @@ const motions = useMotions()
         class="modal"
         ref="modalElement"
       >
-        <ul>
+        <ul class="menuItems">
           <li
+            class="menuItem"
             v-for="item in items"
             :key="item"
             @click="() => (menuModalOpen = false)"
           >
-            <span>{{ item }}</span>
+            <span class="menuItemContent">{{ item }}</span>
           </li>
         </ul>
       </div>
@@ -63,55 +64,31 @@ const motions = useMotions()
 
 <style lang="scss" scoped>
 .topBarMenuModal {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 667px;
-  display: flex;
-  justify-content: center;
-  align-items: start;
-  padding-top: 5.5rem;
+  @apply absolute top-0 left-0 flex h-[41.6875rem] w-full items-start justify-center bg-no-repeat pt-[5.5rem];
   background-size: 100% 667px;
-  background-repeat: no-repeat;
 
   .modal {
-    background-color: var(--clr-white);
-    border-radius: 0.5rem;
-    width: var(--mobile-content-width);
+    @apply w-[var(--mobile-content-width)] rounded-lg bg-white;
 
-    ul {
-      display: grid;
-      grid-auto-rows: 4.4rem;
+    .menuItems {
+      @apply grid cursor-pointer list-none auto-rows-[4.4rem] p-0 text-lg text-[1.125rem] font-medium text-gray-800;
 
-      list-style: none;
-      padding: 0;
-      color: var(--clr-gray-800);
-      font-weight: 500;
-      font-size: 1.125rem;
-      cursor: pointer;
+      .menuItem {
+        @apply flex h-full items-center;
 
-      li {
-        height: 100%;
-        display: flex;
-        align-items: center;
-
-        span {
-          padding-left: 1.5rem;
-          line-height: 1rem;
+        .menuItemContent {
+          @apply pl-6 leading-4;
         }
 
         &:not(:last-child) {
-          border-bottom-style: solid;
-          border-bottom-width: 2px;
-          border-bottom-color: var(--clr-gray-50);
+          @apply border-b-2 border-solid border-gray-50;
         }
       }
     }
   }
 
-  @media screen and (min-width: 1440px) {
-    display: none;
+  @media (min-width: 1440px) {
+    @apply hidden;
   }
 }
 </style>

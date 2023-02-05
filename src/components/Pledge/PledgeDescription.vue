@@ -16,14 +16,10 @@ const pledge = inject(pledgeKeys.pledge)
 
 <style lang="scss" scoped>
 .pledge-description {
-  font-size: 0.875rem;
-  line-height: 1.5rem;
-  color: var(--clr-gray-300);
+  @apply text-sm leading-6 text-gray-300;
 
-  @media screen and (min-width: 1440px) {
-    font-size: 0.9375rem;
-    line-height: 28px;
-    align-self: end;
+  @media (min-width: 1440px) {
+    @apply self-end text-[0.9375rem] leading-7;
   }
 }
 </style>

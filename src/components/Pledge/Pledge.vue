@@ -9,10 +9,13 @@ import { pledgeKeys } from '@/components/Pledge/pledgeKeys'
 import { usePledge } from '@/components/Pledge/usePledge'
 import { IPledge } from '@/lib/types/IPledge'
 import { useAppStore } from '@/use/useAppStore'
-import { provide, watch } from 'vue'
+import { provide } from 'vue'
 
 const props = defineProps<{ pledge: IPledge; selectable?: boolean }>()
-const emit = defineEmits(['selected', 'continue'])
+const emit = defineEmits({
+  selected: (payload: IPledge) => !!payload,
+  continue: null,
+})
 
 const { receivePledge } = useAppStore()
 
@@ -72,5 +75,3 @@ provide(pledgeKeys.onContinueClick, onContinueClick)
     </template>
   </PledgeContainer>
 </template>
-
-<style lang="scss" scoped></style>

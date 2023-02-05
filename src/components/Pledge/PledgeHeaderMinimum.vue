@@ -18,13 +18,11 @@ const pledge = inject(pledgeKeys.pledge)
 
 <style lang="scss" scoped>
 .pledge-header-minimum {
+  @apply text-[0.875rem] font-medium text-green-500;
   grid-area: amount;
-  font-size: 0.875rem;
-  font-weight: 500;
-  color: var(--clr-green-500);
 
-  @media screen and (min-width: 1440px) {
-    font-size: 0.9375rem;
+  @media (min-width: 1440px) {
+    @apply text-[0.9375];
   }
 }
 </style>

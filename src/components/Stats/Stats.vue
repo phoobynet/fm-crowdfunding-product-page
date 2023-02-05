@@ -44,9 +44,7 @@ const { goal, amountBacked, backers, daysLeft } = useAppStore()
 
 <style lang="scss" scoped>
 .stats {
-  @apply max-w-[var(--mobile-content-width)];
-  @apply grid justify-center justify-items-center;
-  @apply pt-[1.6rem];
+  @apply grid max-w-[var(--mobile-content-width)] justify-center justify-items-center pt-[1.6rem];
   grid-template-rows: 4.9rem 2.3rem 4.9rem 2.3rem 6.3rem 2.2rem;
 
   > * {

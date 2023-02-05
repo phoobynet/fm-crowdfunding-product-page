@@ -1,9 +1,11 @@
 <script lang="ts" setup>
 import { pledgeKeys } from '@/components/Pledge/pledgeKeys'
 import { IPledge } from '@/lib/types/IPledge'
+// noinspection ES6UnusedImports
 import { vMaska } from 'maska'
 import { inject, onMounted, ref } from 'vue'
 
+defineProps<{ id: string }>()
 const input = ref<HTMLInputElement>()
 const isFocussed = ref<boolean>()
 const pledge = inject(pledgeKeys.pledge) as IPledge
@@ -53,41 +55,27 @@ onMounted(() => {
 
 <style lang="scss" scoped>
 .projectPledgeAmountInput {
-  position: relative;
-  display: flex;
-  align-items: center;
-  border: 2px solid var(--clr-gray-50);
-  border-radius: 2rem;
-  gap: 0.5rem;
-  height: 3rem;
-  padding: 0 1rem;
-  overflow: hidden;
-  transition: border 0.5s;
+  @apply relative flex h-12 items-center gap-2 overflow-hidden rounded-full border-2 border-gray-50 p-0 py-0;
+  @apply px-4 transition-[border] duration-200;
 
   &.focussed {
-    border: 2px solid var(--clr-green-500);
+    @apply border-2 border-green-500;
   }
 
   .currencySymbol {
-    color: var(--clr-gray-100);
-    font-weight: 700;
+    @apply font-bold text-gray-100;
   }
 
   &[data-invalid='true'] {
-    border: 2px solid var(--clr-red-500);
+    @apply border-2 border-red-500;
   }
 
   input {
-    outline: none;
-    border: none;
-    color: black;
-    font-weight: 700;
-    max-width: 4rem;
+    @apply max-w-[4rem] border-none font-bold text-black outline-none;
 
     &::-webkit-outer-spin-button,
     &::-webkit-inner-spin-button {
-      -webkit-appearance: none;
-      margin: 0;
+      @apply m-0 appearance-none;
     }
 
     &[type='number'] {
@@ -95,11 +83,11 @@ onMounted(() => {
     }
   }
 
-  @media screen and (min-width: 1440px) {
-    gap: 0.3rem;
+  @media (min-width: 1440px) {
+    @apply gap-[0.3rem];
+
     .currencySymbol {
-      font-size: 0.875rem;
-      padding-left: 0.65rem;
+      @apply pl-[0.65rem] text-sm;
     }
   }
 }

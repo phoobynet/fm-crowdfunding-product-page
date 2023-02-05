@@ -28,8 +28,7 @@ const isNoRewardPledge = inject(pledgeKeys.isNoRewardPledge)
 
 <style lang="scss" scoped>
 .pledgeHeader {
-  padding-top: 1rem;
-  display: grid;
+  @apply grid pt-4;
   grid-template-columns: 2.5rem 1fr;
   grid-template-rows: repeat(2, auto);
   grid-template-areas:
@@ -37,8 +36,8 @@ const isNoRewardPledge = inject(pledgeKeys.isNoRewardPledge)
     'minimum minimum';
 
   .select {
+    @apply hidden;
     grid-area: select;
-    display: none;
   }
 
   .name {
@@ -46,8 +45,8 @@ const isNoRewardPledge = inject(pledgeKeys.isNoRewardPledge)
   }
 
   .minimum {
+    @apply pt-[0.2rem];
     grid-area: minimum;
-    padding-top: 0.2rem;
   }
 
   &.selectable {
@@ -56,8 +55,7 @@ const isNoRewardPledge = inject(pledgeKeys.isNoRewardPledge)
       'select minimum';
 
     .select {
-      align-self: center;
-      display: block;
+      @apply block self-center;
     }
 
     &.isNoRewardPledge {
@@ -68,33 +66,29 @@ const isNoRewardPledge = inject(pledgeKeys.isNoRewardPledge)
 
   &:not(.isNoRewardPledge) {
     .select {
-      padding-top: 0.2rem;
+      @apply pt-[0.2rem];
     }
   }
 
-  @media screen and (min-width: 1440px) {
-    padding-top: 0.7rem;
+  @media (min-width: 1440px) {
+    @apply justify-between pt-[0.7rem];
     grid-template-columns: 1fr 1fr;
     grid-template-rows: repeat(2, auto);
     grid-template-areas: 'name minimum';
-    justify-content: space-between;
 
     &.selectable {
       &:not(.isNoRewardPledge) {
-        justify-content: start;
+        @apply justify-start;
         grid-template-columns: 2.93rem auto auto;
         grid-template-rows: 2.5rem;
         grid-template-areas: 'select name minimum';
 
         .select {
-          padding-top: 0;
-          transform: translateY(-0.2rem);
+          @apply translate-y-[-0.2rem] transform pt-0;
         }
 
         .minimum {
-          padding-top: 0;
-          padding-left: 1.2rem;
-          letter-spacing: 0.4px;
+          @apply pt-0 pl-[1.2rem] tracking-[0.4px];
         }
       }
 

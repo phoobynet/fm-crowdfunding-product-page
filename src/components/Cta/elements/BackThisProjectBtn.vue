@@ -1,5 +1,7 @@
 <script lang="ts" setup>
-const emit = defineEmits(['click'])
+const emit = defineEmits({
+  click: null,
+})
 </script>
 
 <template>

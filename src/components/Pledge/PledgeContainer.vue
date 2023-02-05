@@ -76,12 +76,7 @@ onMounted(() => {
 
 <style lang="scss" scoped>
 .pledgeContainer {
-  display: grid;
-  border-radius: 0.5rem;
-  border: 2px solid var(--clr-gray-50);
-  transition: border 0.5s;
-  align-items: start;
-
+  @apply grid items-start rounded-lg border-2 border-gray-50 pt-[0.3rem] pb-[1.4rem] transition-[border] duration-500;
   grid-template-rows: 5.2rem 8.8rem 4.2rem auto;
   grid-template-columns: 2.5rem repeat(2, auto);
   grid-template-areas:
@@ -89,8 +84,6 @@ onMounted(() => {
     'description description description'
     'remaining remaining remaining'
     'selectReward selectReward selectReward';
-  padding-top: 0.3rem;
-  padding-bottom: 1.4rem;
 
   &.selectable {
     grid-template-rows: 5.2rem 8.9rem 2rem;
@@ -103,7 +96,7 @@ onMounted(() => {
   // when there is no pledge reward and/or selected
   &.selectable.isNoRewardPledge,
   &.selectable.isNoRewardPledge.selected {
-    padding-top: 1.05rem;
+    @apply pt-[1.05rem];
     grid-template-rows: 4.5rem 8rem;
     grid-template-areas:
       'header header header'
@@ -111,7 +104,7 @@ onMounted(() => {
   }
 
   &.selected:not(.isNoRewardPledge) {
-    border: 2px solid var(--clr-green-500);
+    @apply border-2 border-green-500;
     grid-template-rows: 5rem 9rem 2.5rem 1fr;
     grid-template-areas:
       'header header header'
@@ -121,11 +114,11 @@ onMounted(() => {
   }
 
   &.outOfStock {
-    opacity: 0.5;
+    @apply opacity-50;
   }
 
   .content {
-    padding: 0 1.4rem;
+    @apply py-0 px-[1.4rem];
   }
 
   .header {
@@ -133,10 +126,8 @@ onMounted(() => {
   }
 
   .description {
+    @apply items-start py-0 pr-[1.3rem] pl-[1.4rem];
     grid-area: description;
-    align-self: start;
-
-    padding: 0 1.3rem 0 1.4rem;
   }
 
   .remaining {
@@ -152,14 +143,13 @@ onMounted(() => {
   }
 
   @media screen and (min-width: 1440px) {
+    @apply pt-4 pb-[1.9rem];
     grid-template-rows: 4rem 5.3rem auto;
     grid-template-columns: repeat(2, auto);
     grid-template-areas:
       'header header'
       'description description'
       'remaining selectReward';
-    padding-top: 1rem;
-    padding-bottom: 1.9rem;
 
     &.selectable {
       &:not(.isNoRewardPledge) {
@@ -179,14 +169,13 @@ onMounted(() => {
         }
 
         .remaining {
-          align-self: center;
-          transform: translateY(-0.2rem);
+          @apply translate-y-[-0.2rem] transform self-center;
         }
       }
 
       &.isNoRewardPledge,
       &.isNoRewardPledge.selected {
-        padding-top: 1.05rem;
+        @apply pt-[1.05rem];
         grid-template-columns: 2.93rem auto;
         grid-template-rows: 3.2rem 3.5rem;
         grid-template-areas:
@@ -195,17 +184,17 @@ onMounted(() => {
       }
 
       .content {
-        padding: 0 1.65rem;
+        @apply py-0 px-[1.65rem];
       }
     }
 
     &:not(.selectable) {
       .selectReward {
-        justify-self: end;
+        @apply justify-self-end;
       }
 
       .content {
-        padding: 0 1.8rem;
+        @apply py-0 px-[1.8rem];
       }
     }
   }

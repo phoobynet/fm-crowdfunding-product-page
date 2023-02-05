@@ -1,9 +1,6 @@
-<script
-  lang="ts"
-  setup
->
-import { ref, toRefs, watch } from 'vue'
+<script lang="ts" setup>
 import { useResizeObserver } from '@vueuse/core'
+import { ref, toRefs, watch } from 'vue'
 
 const progressBar = ref<HTMLDivElement>()
 const progressBarWidth = ref<number>()
@@ -15,20 +12,21 @@ useResizeObserver(progressBar, (entries) => {
   progressBarWidth.value = entries[0].contentRect.width
 })
 
-const props = defineProps<{ goal: number, actual: number }>()
+const props = defineProps<{ goal: number; actual: number }>()
 
-const {
-  goal,
-  actual,
-} = toRefs(props)
+const { goal, actual } = toRefs(props)
 
-watch([progressBarWidth, goal, actual], ([newProgressBarWidth, newGoal, newActual]) => {
-  if (newProgressBarWidth && newGoal && newActual) {
-    barWidth.value = (props.actual / props.goal) * newProgressBarWidth
-  }
-}, {
-  immediate: true
-})
+watch(
+  [progressBarWidth, goal, actual],
+  ([newProgressBarWidth, newGoal, newActual]) => {
+    if (newProgressBarWidth && newGoal && newActual) {
+      barWidth.value = (props.actual / props.goal) * newProgressBarWidth
+    }
+  },
+  {
+    immediate: true,
+  },
+)
 </script>
 
 <template>
@@ -39,34 +37,18 @@ watch([progressBarWidth, goal, actual], ([newProgressBarWidth, newGoal, newActua
     <div
       class="bar"
       ref="bar"
-      :style="{width: `${barWidth}px`}"
+      :style="{ width: `${barWidth}px` }"
       :data-width="barWidth"
-    >
-    </div>
+    ></div>
   </div>
 </template>
 
-<style
-  lang="scss"
-  scoped
->
-  .progress-bar {
-    position: relative;
-    width: 100%;
-    background-color: var(--clr-gray-50);
-    height: 0.8rem;
-    border-radius: 0.5rem;
-    overflow: hidden;
+<style lang="scss" scoped>
+.progress-bar {
+  @apply relative h-[0.8rem] w-full overflow-hidden overflow-hidden rounded-lg rounded-md bg-gray-50;
 
-    .bar {
-      position: absolute;
-      width: 0;
-      height: 0.8rem;
-      background-color: var(--clr-green-500);
-      border-radius: 0.5rem;
-      top: 0;
-      left: 0;
-    }
+  .bar {
+    @apply absolute top-0 left-0 h-[0.8rem] w-0 rounded-lg rounded-md bg-green-500;
   }
+}
 </style>
-

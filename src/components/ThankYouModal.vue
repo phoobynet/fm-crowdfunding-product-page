@@ -63,15 +63,16 @@ watch(modalEl, (newValue) => {
         <img
           src="@/assets/images/icon-check.svg"
           alt=""
+          class="checkIcon"
         />
-        <h3>Thanks for your support!</h3>
-        <p>
+        <h3 class="heading">Thanks for your support!</h3>
+        <p class="content">
           Your pledge brings us one step closer to sharing Mastercraft Bamboo
           Monitor Riser worldwide. You will get an email once our campaign is
           completed.
         </p>
         <button
-          class="button"
+          class="btn close"
           @click="close"
         >
           Got it!
@@ -83,48 +84,26 @@ watch(modalEl, (newValue) => {
 
 <style lang="scss" scoped>
 .thankYouModal {
-  // background
-  position: absolute;
-  z-index: 99999;
-  top: 0;
-  left: 0;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: start;
-  padding-top: 9rem;
+  @apply absolute top-0 left-0 z-[99999] flex w-full items-start justify-center pt-36;
 
   .content {
-    padding: 1.9rem;
-    border-radius: 0.5rem;
-    display: grid;
-    grid-template-rows: 5.1rem 3.3rem 8rem 5.5rem;
-    place-items: center;
-    width: var(--mobile-content-width);
-    background-color: var(--clr-white);
-    align-items: start;
-
-    img {
-    }
-
-    h3 {
-      letter-spacing: -0.3px;
-    }
-
-    p {
-      text-align: center;
-      color: var(--clr-gray-300);
-      font-size: 0.875rem;
-      line-height: 1.5rem;
-    }
-
-    .button {
-      min-width: 37%;
-      height: 3rem;
-    }
-
     &.card {
-      padding: 2rem 1rem;
+      @apply py-8 px-4;
+    }
+
+    @apply grid w-[var(--mobile-content-width)] place-items-center items-start rounded-lg bg-white p-[1.9rem];
+    grid-template-rows: 5.1rem 3.3rem 8rem 5.5rem;
+
+    .heading {
+      @apply tracking-[-0.3px];
+    }
+
+    .content {
+      @apply text-center text-sm leading-6 text-gray-300;
+    }
+
+    .btn.close {
+      @apply h-12 min-w-[37%];
     }
   }
 }

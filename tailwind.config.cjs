@@ -32,6 +32,7 @@ module.exports = {
       'gray-25': 'var(--clr-gray-25)',
       'gray-10': 'var(--clr-gray-10)',
       white: 'var(--clr-white)',
+      black: 'var(--clr-black)',
     },
   },
   plugins: [],
