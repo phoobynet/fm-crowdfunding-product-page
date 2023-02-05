@@ -3,6 +3,7 @@ import { Stats } from '@/components'
 </script>
 
 <template>
+  <div class="rat-farts">Hello</div>
   <Stats />
 </template>
 

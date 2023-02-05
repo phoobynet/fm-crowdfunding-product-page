@@ -91,7 +91,7 @@ watch(modalEl, (newValue) => {
       @apply py-8 px-4;
     }
 
-    @apply grid w-[var(--mobile-content-width)] place-items-center items-start rounded-lg bg-white p-[1.9rem];
+    @apply grid w-mobile-content place-items-center items-start rounded-lg bg-white p-[1.9rem];
     grid-template-rows: 5.1rem 3.3rem 8rem 5.5rem;
 
     .heading {

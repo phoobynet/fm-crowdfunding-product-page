@@ -118,9 +118,11 @@ const onLeave = (el: Element, done: () => void) => {
 <style lang="scss" scoped>
 .back-this-project-modal {
   @apply absolute top-0 left-0 z-[9999] flex w-full items-start justify-center pt-[7.5rem];
+  @apply desktop:pt-[11.5rem];
 
   .modal {
-    @apply grid w-[var(--mobile-content-width)] rounded-lg bg-white px-[1.5rem] py-[1.59rem];
+    @apply grid w-mobile-content rounded-lg bg-white px-[1.5rem] py-[1.59rem];
+    @apply desktop:w-desktop-content desktop:px-[3rem] desktop:py-[2.8rem];
     grid-template-columns: repeat(2, auto);
     grid-template-rows: 2.4rem 4rem;
     grid-template-areas:
@@ -141,13 +143,6 @@ const onLeave = (el: Element, done: () => void) => {
 
     .pledges {
       grid-area: pledges;
-    }
-  }
-
-  @media (min-width: 1440px) {
-    @apply pt-[11.5rem];
-    .modal {
-      @apply w-[var(--desktop-content-width)] px-[3rem] py-[2.8rem];
     }
   }
 }

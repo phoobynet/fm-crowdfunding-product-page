@@ -8,10 +8,7 @@
 >
   h3 {
     @apply self-center text-[1.175rem] font-bold tracking-[-0.3px];
-
-    @media (min-width: 1440px) {
-      @apply self-start text-[1.5rem] tracking-normal;
-    }
+    @apply desktop:text-[1.5rem] desktop:self-start tracking-normal;
   }
 </style>
 

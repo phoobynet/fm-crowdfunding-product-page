@@ -40,8 +40,8 @@ useResizeObserver(container, (entries) => {
     @apply desktop:pt-[12rem];
 
     .contents {
-      @apply grid w-[var(--mobile-content-width)] auto-rows-auto gap-[1.5rem];
-      @apply desktop:w-[var(--desktop-content-width)];
+      @apply grid w-mobile-content auto-rows-auto gap-[1.5rem];
+      @apply desktop:w-desktop-content;
     }
   }
 

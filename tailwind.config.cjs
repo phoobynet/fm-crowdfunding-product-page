@@ -8,6 +8,24 @@ module.exports = {
         'size-14': 'var(--fs-14)',
         'size-16': 'var(--fs-16)',
       },
+      width: {
+        desktop: 'var(--desktop-width)',
+        mobile: 'var(--mobile-width)',
+        'desktop-content': 'var(--desktop-content-width)',
+        'mobile-content': 'var(--mobile-content-width)',
+      },
+      maxWidth: {
+        desktop: 'var(--desktop-width)',
+        mobile: 'var(--mobile-width)',
+        'desktop-content': 'var(--desktop-content-width)',
+        'mobile-content': 'var(--mobile-content-width)',
+      },
+      minWidth: {
+        desktop: 'var(--desktop-width)',
+        mobile: 'var(--mobile-width)',
+        'desktop-content': 'var(--desktop-content-width)',
+        'mobile-content': 'var(--mobile-content-width)',
+      },
     },
     screens: {
       mobile: '23.438rem',

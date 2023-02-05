@@ -65,10 +65,11 @@ const motions = useMotions()
 <style lang="scss" scoped>
 .topBarMenuModal {
   @apply absolute top-0 left-0 flex h-[41.6875rem] w-full items-start justify-center bg-no-repeat pt-[5.5rem];
+  @apply desktop:hidden;
   background-size: 100% 667px;
 
   .modal {
-    @apply w-[var(--mobile-content-width)] rounded-lg bg-white;
+    @apply w-mobile-content rounded-lg bg-white;
 
     .menuItems {
       @apply grid cursor-pointer list-none auto-rows-[4.4rem] p-0 text-lg text-[1.125rem] font-medium text-gray-800;
@@ -85,10 +86,6 @@ const motions = useMotions()
         }
       }
     }
-  }
-
-  @media (min-width: 1440px) {
-    @apply hidden;
   }
 }
 </style>

@@ -34,7 +34,6 @@ input[type='checkbox'] {
   &::before {
     @apply h-3 w-3 scale-0 transform rounded-full shadow-[inset_1em_1em_var(--clr-green-500)] transition-[120ms] ease-in-out;
     content: '';
-    //box-shadow: inset 1em 1em var(--clr-green-500);
   }
 
   &:checked::before {

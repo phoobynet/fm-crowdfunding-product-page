@@ -50,6 +50,7 @@ const items = ['About', 'Discover', 'Get Started']
 .topBarMenu {
   .desktop {
     @apply hidden;
+    @apply desktop:block;
 
     .items {
       @apply flex list-none gap-[2.1rem] text-[0.8125rem] text-white;
@@ -65,9 +66,9 @@ const items = ['About', 'Discover', 'Get Started']
   }
 
   .mobile {
+    @apply desktop:hidden;
     .icon {
       @apply relative transform cursor-pointer transition duration-200;
-      //transition: transform 0.2s;
 
       &:hover {
         @apply scale-110;
@@ -80,16 +81,6 @@ const items = ['About', 'Discover', 'Get Started']
       &[data-menu-open='true'] {
         @apply z-[999];
       }
-    }
-  }
-
-  @media (min-width: 1440px) {
-    .mobile {
-      @apply hidden;
-    }
-
-    .desktop {
-      @apply block;
     }
   }
 }

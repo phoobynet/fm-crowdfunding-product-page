@@ -5,7 +5,7 @@ import { Logo, TopBarMenu } from '@/components'
 </script>
 
 <template>
-  <div class="top-bar">
+  <div class="topBar">
     <div>
       <Logo />
       <TopBarMenu />
@@ -14,15 +14,12 @@ import { Logo, TopBarMenu } from '@/components'
 </template>
 
 <style lang="scss" scoped>
-.top-bar {
+.topBar {
   @apply flex justify-center;
 
   & > div {
-    @apply flex min-h-[3rem] w-[var(--mobile-width)] min-w-[var(--mobile-width)] items-center justify-between py-[2rem] px-[1.5rem];
-
-    @media (min-width: 1440px) {
-      @apply w-[var(--desktop-width)] px-[10.4rem] py-[3rem];
-    }
+    @apply flex min-h-[3rem] w-mobile min-w-mobile items-center justify-between py-[2rem] px-[1.5rem];
+    @apply desktop:w-desktop desktop:px-[10.4rem] desktop:py-[3rem];
   }
 }
 </style>

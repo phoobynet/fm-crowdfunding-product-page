@@ -11,7 +11,7 @@ const { bookmarked } = useAppStore()
     :data-bookmarked="bookmarked"
     @click="() => (bookmarked = !bookmarked)"
   >
-    <div class="icon-container">
+    <div class="iconContainer">
       <svg
         width="56"
         height="56"
@@ -48,15 +48,13 @@ const { bookmarked } = useAppStore()
 
 <style lang="scss" scoped>
 .bookmarkButton {
-  @apply flex h-[3.5rem] min-w-[3.5rem] items-center justify-start gap-2 bg-gray-50 text-sm font-bold text-gray-400;
+  @apply flex h-14 min-w-[3.5rem] items-center justify-start gap-2 bg-gray-50 text-sm font-bold text-gray-400;
   @apply cursor-pointer rounded-full transition-all duration-500;
+  @apply desktop:w-[10.775rem];
 
   &[data-bookmarked='true'] {
     @apply bg-green-100 text-green-700;
-
-    @media (min-width: 1440px) {
-      @apply min-w-[11.7rem];
-    }
+    @apply desktop:min-w-[11.7rem];
   }
 
   @media (hover: hover) {
@@ -89,18 +87,9 @@ const { bookmarked } = useAppStore()
     }
   }
 
-  .icon-container {
-  }
-
   .textContainer {
     @apply hidden;
-  }
-
-  @media (min-width: 1440px) {
-    @apply w-[10.775rem];
-    .textContainer {
-      @apply block;
-    }
+    @apply desktop:block;
   }
 }
 

@@ -29,8 +29,8 @@ const backThisProjectHandler = () => {
 
 <style lang="scss" scoped>
 .cta {
-  @apply relative grid w-[var(--mobile-content-width)] grid-rows-[6.3rem_4.4rem_5rem];
-  @apply desktop:w-[var(--desktop-content-width)] desktop:grid-rows-[5.6rem_3.6rem_5.3rem];
+  @apply relative grid w-mobile-content grid-rows-[6.3rem_4.4rem_5rem];
+  @apply desktop:w-desktop-content desktop:grid-rows-[5.6rem_3.6rem_5.3rem];
 
   .logo {
     @apply absolute left-1/2 top-[-1.8rem] -translate-x-1/2 transform;
