@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import PledgeAmountInput from '@/components/Pledge/PledgeAmountInput.vue'
+import AmountInput from './AmountInput.vue'
 import { pledgeKeys } from '@/components/Pledge/pledgeKeys'
 import { Ref, inject } from 'vue'
 
@@ -21,7 +21,7 @@ const onContinueClick = inject(pledgeKeys.onContinueClick) as () => void
   >
     <label for="amount">Enter your pledge</label>
     <div class="inputContainer">
-      <PledgeAmountInput id="amount" />
+      <AmountInput id="amount" />
     </div>
     <button
       class="btn continue"

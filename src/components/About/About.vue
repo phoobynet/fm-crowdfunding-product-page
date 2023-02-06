@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import Pledge from '@/components/Pledge/Pledge.vue'
+import Pledges from '@/components/Pledges.vue'
 import { IPledge } from '@/lib/types/IPledge'
 import { useAppStore } from '@/use/useAppStore'
 
@@ -9,89 +9,54 @@ const onSelected = (pledge: IPledge) => {
   selectedPledgeId.value = pledge.id
   backThisProjectModalOpen.value = true
 }
+
+const noop = () => {
+  // nothing to see here
+}
 </script>
 
 <template>
-  <div class="card">
-    <div class="project-about">
-      <header>
-        <h2>About this project</h2>
-      </header>
-      <p>
-        The Mastercraft Bamboo Monitor Riser is a sturdy and stylish platform
-        that elevates your screen to a more comfortable viewing height. Placing
-        your monitor at eye level has the potential to improve your posture and
-        make you more comfortable while at work, helping you stay focused on the
-        task at hand.
-      </p>
-      <p>
-        Featuring artisan craftsmanship, the simplicity of design creates extra
-        desk space below your computer to allow notepads, pens, and USB sticks
-        to be stored under the stand.
-      </p>
-      <ul>
-        <li
-          v-for="p in pledges"
-          :key="p.id"
-        >
-          <Pledge
-            :pledge="p"
-            @selected="() => onSelected(p)"
-          />
-        </li>
-      </ul>
-    </div>
+  <div class="card about">
+    <header>
+      <h2>About this project</h2>
+    </header>
+    <p>
+      The Mastercraft Bamboo Monitor Riser is a sturdy and stylish platform that
+      elevates your screen to a more comfortable viewing height. Placing your
+      monitor at eye level has the potential to improve your posture and make
+      you more comfortable while at work, helping you stay focused on the task
+      at hand.
+    </p>
+    <p>
+      Featuring artisan craftsmanship, the simplicity of design creates extra
+      desk space below your computer to allow notepads, pens, and USB sticks to
+      be stored under the stand.
+    </p>
+    <Pledges
+      :on-continue-handler="noop"
+      :selectable="false"
+      :on-selected="onSelected"
+      :pledges="pledges"
+      :gap="'1.5rem'"
+    />
   </div>
 </template>
 
 <style lang="scss" scoped>
-.project-about {
-  display: grid;
-  grid-template-rows: 2.7rem 11.85rem 10.5rem 1fr;
-  align-items: end;
-  padding: 0.28rem 0.4rem;
+.project {
+  @apply grid grid-rows-[2.7rem_11.85rem_10.5rem_1fr] items-end py-[0.28rem] px-[0.4rem];
+  @apply desktop:grid-rows-[4.1rem_9.6rem_5.5rem_1fr] desktop:py-0 desktop:px-[2rem];
 
   header {
     h2 {
-      font-size: 1.125rem;
+      @apply text-[1.125rem];
+      @apply desktop:text-[1.2rem] desktop:font-bold;
     }
   }
 
   p {
-    font-size: 0.875rem;
-    line-height: 1.5rem;
-    color: var(--clr-gray-300);
-  }
-
-  ul {
-    list-style: none;
-    padding: 2.1rem 0;
-    display: grid;
-    grid-row-gap: 1.5rem;
-
-    li {
-    }
-  }
-
-  @media screen and (min-width: 1440px) {
-    padding: 0 2rem;
-    grid-template-rows: 4.1rem 9.6rem 5.5rem 1fr;
-
-    header {
-      h2 {
-        font-size: 1.25rem;
-        font-weight: 700;
-      }
-    }
-
-    p {
-      font-size: 1rem;
-      line-height: 1.875rem;
-    }
-    ul {
-      padding: 2.6rem 0;
-      grid-row-gap: 1.6rem;
-    }
+    @apply text-[0.0875rem] leading-7 text-gray-300;
+    @apply desktop:text-[1rem] desktop:leading-[1.875rem];
   }
 }
 </style>

@@ -1,3 +1,3 @@
-import Pledge from '@/components/Pledge/Pledge.vue'
+import Pledge from './Pledge.vue'
 
 export default Pledge

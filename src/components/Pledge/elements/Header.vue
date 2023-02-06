@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-import PledgeHeaderMinimum from '@/components/Pledge/PledgeHeaderMinimum.vue'
-import PledgeHeaderName from '@/components/Pledge/PledgeHeaderName.vue'
-import PledgeHeaderSelect from '@/components/Pledge/PledgeHeaderSelect.vue'
+import HeaderMinimum from './HeaderMinimum.vue'
+import HeaderName from './HeaderName.vue'
+import HeaderSelect from './HeaderSelect.vue'
 import { pledgeKeys } from '@/components/Pledge/pledgeKeys'
 import { inject } from 'vue'
 
@@ -15,13 +15,13 @@ const isNoRewardPledge = inject(pledgeKeys.isNoRewardPledge)
     :class="{ selectable, isNoRewardPledge }"
   >
     <div class="select">
-      <PledgeHeaderSelect />
+      <HeaderSelect />
     </div>
     <div class="name">
-      <PledgeHeaderName />
+      <HeaderName />
     </div>
     <div class="minimum">
-      <PledgeHeaderMinimum />
+      <HeaderMinimum />
     </div>
   </div>
 </template>

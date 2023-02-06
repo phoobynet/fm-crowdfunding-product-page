@@ -1,7 +1,5 @@
 <script lang="ts" setup>
-import CloseBtn from '@/components/BackThisProjectModal/elements/CloseBtn.vue'
-import Heading from '@/components/BackThisProjectModal/elements/Heading.vue'
-import Description from '@/components/Cta/elements/Description.vue'
+import { CloseBtn, Description, Heading } from './elements'
 import Pledges from '@/components/Pledges.vue'
 import { ScrollHeight } from '@/lib/injectionKeys'
 import { useAppStore } from '@/use/useAppStore'

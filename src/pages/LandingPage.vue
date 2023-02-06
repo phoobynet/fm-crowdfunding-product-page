@@ -8,15 +8,11 @@ import {
   ThankYouModal,
   TopBarMenuModal,
 } from '@/components'
-import { MenuClickHandler, ScrollHeight } from '@/lib/injectionKeys'
+import { MenuClickHandler } from '@/lib/injectionKeys'
 import { useAppStore } from '@/use/useAppStore'
 import { onMounted, provide, ref } from 'vue'
 
 const { menuModalOpen, init, pledges, fetchingPledges } = useAppStore()
-
-const scrollHeight = ref<number>()
-
-provide(ScrollHeight, scrollHeight)
 
 const menuClickHandler = (item: string) => {
   console.log('You clicked ', item)

@@ -1,17 +1,20 @@
 <script lang="ts" setup>
-import PledgeAmount from '@/components/Pledge/PledgeAmount.vue'
-import PledgeContainer from '@/components/Pledge/PledgeContainer.vue'
-import PledgeDescription from '@/components/Pledge/PledgeDescription.vue'
-import PledgeHeader from '@/components/Pledge/PledgeHeader.vue'
-import PledgeRemaining from '@/components/Pledge/PledgeRemaining.vue'
-import PledgeSelectReward from '@/components/Pledge/PledgeSelectReward.vue'
-import { pledgeKeys } from '@/components/Pledge/pledgeKeys'
-import { usePledge } from '@/components/Pledge/usePledge'
+import { pledgeKeys } from './pledgeKeys'
+import { usePledge } from './usePledge'
+import {
+  Amount,
+  Description,
+  Header,
+  Layout,
+  Remaining,
+  SelectRewardBtn,
+} from '@/components/Pledge/elements'
 import { IPledge } from '@/lib/types/IPledge'
 import { useAppStore } from '@/use/useAppStore'
 import { provide } from 'vue'
 
 const props = defineProps<{ pledge: IPledge; selectable?: boolean }>()
+
 const emit = defineEmits({
   selected: (payload: IPledge) => !!payload,
   continue: null,
@@ -57,21 +60,21 @@ provide(pledgeKeys.onContinueClick, onContinueClick)
 </script>
 
 <template>
-  <PledgeContainer>
+  <Layout>
     <template #header>
-      <PledgeHeader />
+      <Header />
     </template>
     <template #description>
-      <PledgeDescription />
+      <Description />
     </template>
     <template #remaining>
-      <PledgeRemaining />
+      <Remaining />
     </template>
     <template #selectReward>
-      <PledgeSelectReward />
+      <SelectRewardBtn />
     </template>
     <template #amount>
-      <PledgeAmount />
+      <Amount />
     </template>
-  </PledgeContainer>
+  </Layout>
 </template>

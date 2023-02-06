@@ -1,0 +1,6 @@
+export { default as Layout } from './Layout.vue'
+export { default as Remaining } from './Remaining.vue'
+export { default as SelectRewardBtn } from './SelectRewardBtn.vue'
+export { default as Header } from './Header.vue'
+export { default as Amount } from './Amount.vue'
+export { default as Description } from './Description.vue'
