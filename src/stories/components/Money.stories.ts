@@ -16,13 +16,13 @@ const Template: StoryFn<typeof Money> = (args) => ({
   template: '<Money v-bind="args" />',
 })
 
-export const NoFractionalDigits = Template.bind<typeof Money>({})
+export const NoFractionalDigits = Template.bind({})
 
 NoFractionalDigits.args = {
   amount: 1000,
 }
 
-export const WithFractionalDigits = Template.bind<typeof Money>({})
+export const WithFractionalDigits = Template.bind({})
 
 WithFractionalDigits.args = {
   amount: 1000,

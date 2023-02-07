@@ -16,18 +16,18 @@ const Template: StoryFn<typeof Stats> = (args) => ({
   template: '<Stats v-bind="args" />',
 })
 
-export const Default = Template.bind<typeof Stats>({})
+export const Default = Template.bind({})
 
 Default.args = {}
 
-export const Mobile = Template.bind<typeof Stats>({})
+export const Mobile = Template.bind({})
 
 Mobile.parameters = {
   viewport: {
     defaultViewport: 'Mobile',
   },
 }
-export const Desktop = Template.bind<typeof Stats>({})
+export const Desktop = Template.bind({})
 
 Desktop.parameters = {
   viewport: {

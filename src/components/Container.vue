@@ -29,7 +29,7 @@ useResizeObserver(container, (entries) => {
 
 <style lang="scss" scoped>
 .container {
-  @apply flex h-screen flex-col items-center bg-no-repeat;
+  @apply mx-auto flex h-screen flex-col items-center bg-no-repeat;
   background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), transparent),
     url('@/assets/images/image-hero-mobile.jpg');
   background-position: top center;

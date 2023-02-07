@@ -14,6 +14,9 @@ const props = defineProps<{
 const filteredPledges = computed(() =>
   props.filter ? props.pledges.filter(props.filter) : props.pledges,
 )
+
+const onContinueHandler = props.onContinueHandler || (() => {})
+const onSelectedHandler = props.onSelectedHandler || (() => {})
 </script>
 
 <template>

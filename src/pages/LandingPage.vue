@@ -10,7 +10,7 @@ import {
 } from '@/components'
 import { MenuClickHandler } from '@/lib/injectionKeys'
 import { useAppStore } from '@/use/useAppStore'
-import { onMounted, provide, ref } from 'vue'
+import { onMounted, provide } from 'vue'
 
 const { menuModalOpen, init, pledges, fetchingPledges } = useAppStore()
 

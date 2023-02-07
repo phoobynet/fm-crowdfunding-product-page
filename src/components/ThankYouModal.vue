@@ -1,110 +1,87 @@
 <script lang="ts" setup>
-import { ScrollHeight } from '@/lib/injectionKeys'
+import { Modal } from '@/components'
 import { useAppStore } from '@/use/useAppStore'
+import { useScrollIntoView } from '@/use/useScrollIntoView'
 import { onClickOutside, onKeyStroke } from '@vueuse/core'
-import { useMotions } from '@vueuse/motion'
-import { Ref, computed, inject, onMounted, ref, watch } from 'vue'
+import { ref, watch } from 'vue'
 
-const scrollHeight = inject(ScrollHeight) as Ref<number>
-
-const modalEl = ref<HTMLDivElement>()
-const contentEl = ref<HTMLDivElement>()
+const modal = ref<HTMLDivElement>()
 const { thankYouModalOpen } = useAppStore()
+
+const { scrollIntoView } = useScrollIntoView(modal, {
+  behavior: 'smooth',
+  block: 'start',
+})
 
 const close = () => {
   thankYouModalOpen.value = false
 }
 
-const motions = useMotions()
-
-const modalHeight = computed(() =>
-  scrollHeight.value ? `${scrollHeight.value}px` : '100vh',
-)
-
-onClickOutside(contentEl, close)
+onClickOutside(modal, close)
 onKeyStroke('Escape', close)
 
-watch(modalEl, (newValue) => {
-  if (newValue) {
-    newValue.scrollIntoView({
-      behavior: 'smooth',
-    })
-  }
-})
+watch(
+  modal,
+  (newValue) => {
+    if (newValue) {
+      scrollIntoView()
+    }
+  },
+  {
+    immediate: true,
+  },
+)
 </script>
 
 <template>
-  <transition
-    :css="false"
-    @leave="(el: Element, done: () => void) => motions.thankYouModal.leave(done)"
-  >
+  <Modal :show="thankYouModalOpen">
     <div
-      class="thankYouModal"
-      v-if="thankYouModalOpen"
-      ref="modalEl"
-      v-motion="'thankYouModal'"
-      :initial="{ opacity: 0, backgroundColor: 'rgba(0, 0, 0, 0)' }"
-      :enter="{
-        opacity: 1,
-        backgroundColor: 'rgba(0, 0, 0, .7)',
-        transition: { duration: 300 },
-      }"
-      :leave="{
-        opacity: 0,
-        backgroundColor: 'rgba(0, 0, 0, 0)',
-        transition: { duration: 300 },
-      }"
-      :style="{ height: modalHeight }"
+      class="content card mx-auto mt-[9rem] max-w-mobile-content"
+      ref="modal"
     >
-      <div
-        class="content card"
-        ref="contentEl"
+      <img
+        src="@/assets/images/icon-check.svg"
+        alt=""
+        class="checkIcon"
+      />
+      <h3 class="heading">Thanks for your support!</h3>
+      <p class="description">
+        Your pledge brings us one step closer to sharing Mastercraft Bamboo
+        Monitor Riser worldwide. You will get an email once our campaign is
+        completed.
+      </p>
+      <button
+        class="btn close"
+        @click="close"
       >
-        <img
-          src="@/assets/images/icon-check.svg"
-          alt=""
-          class="checkIcon"
-        />
-        <h3 class="heading">Thanks for your support!</h3>
-        <p class="content">
-          Your pledge brings us one step closer to sharing Mastercraft Bamboo
-          Monitor Riser worldwide. You will get an email once our campaign is
-          completed.
-        </p>
-        <button
-          class="btn close"
-          @click="close"
-        >
-          Got it!
-        </button>
-      </div>
+        Got it!
+      </button>
     </div>
-  </transition>
+  </Modal>
 </template>
 
 <style lang="scss" scoped>
-.thankYouModal {
-  @apply absolute top-0 left-0 z-[99999] flex w-full items-start justify-center pt-36;
+.content {
+  &.card {
+    @apply py-[1.9rem] px-4;
+  }
 
-  .content {
-    &.card {
-      @apply py-8 px-4;
-    }
+  @apply grid w-mobile-content place-items-center items-start rounded-lg bg-white p-[1.9rem];
+  grid-template-rows: 5.5rem 3rem 7.8rem 3.5rem;
 
-    @apply grid w-mobile-content place-items-center items-start rounded-lg bg-white p-[1.9rem];
-    grid-template-rows: 5.1rem 3.3rem 8rem 5.5rem;
+  .checkIcon {
+  }
 
-    .heading {
-      @apply tracking-[-0.3px];
-    }
+  .heading {
+    @apply text-[1.125rem] font-bold leading-[22.01px] tracking-normal;
+  }
 
-    .content {
-      @apply text-center text-sm leading-6 text-gray-300;
-    }
+  .description {
+    @apply text-center text-sm leading-6 text-gray-300;
+  }
 
-    .btn.close {
-      @apply h-12 min-w-[37%];
-    }
+  .btn.close {
+    @apply h-12 min-w-[37%];
   }
 }
 </style>
