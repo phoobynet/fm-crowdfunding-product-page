@@ -7,8 +7,8 @@
   scoped
 >
   h3 {
-    @apply self-center text-[1.175rem] font-bold tracking-[-0.3px];
-    @apply desktop:text-[1.5rem] desktop:self-start tracking-normal;
+    @apply text-[1.175rem] font-bold tracking-[-0.3px] #{!important};
+    @apply desktop:text-[1.5rem] tracking-normal;
   }
 </style>
 

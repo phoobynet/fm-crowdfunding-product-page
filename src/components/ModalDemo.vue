@@ -4,6 +4,7 @@ import Modal from '@/components/Modal.vue'
 defineProps<{
   show: boolean
 }>()
+
 const emit = defineEmits({
   close: null,
 })
@@ -11,12 +12,12 @@ const emit = defineEmits({
 
 <template>
   <Modal :show="show">
-    <template #default="{ setModalRef }">
-      <div :ref="(el) => setModalRef(el)">
-        <div class="h-1/2 w-64 bg-white p-4 text-black">Hello, World!</div>
-        <button @click="() => emit('close')">close</button>
+    <div class="mx-auto max-w-mobile-content">
+      <div class="h-[20rem] min-w-[20rem] bg-white p-4 text-black">
+        Hello, World!
       </div>
-    </template>
+      <button @click="() => emit('close')">close</button>
+    </div>
   </Modal>
 </template>
 

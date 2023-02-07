@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { pledgeKeys } from '@/components/Pledge/pledgeKeys'
-import { Ref, inject, onMounted, ref, watch } from 'vue'
+import { useScrollIntoView } from '@/use/useScrollIntoView'
+import { Ref, inject, ref, watch } from 'vue'
 
 const pledge = inject(pledgeKeys.pledge)
 const outOfStock = inject(pledgeKeys.outOfStock)
@@ -8,18 +9,12 @@ const selectable = inject(pledgeKeys.selectable)
 const isNoRewardPledge = inject(pledgeKeys.isNoRewardPledge)
 const selected = inject(pledgeKeys.selected) as Ref<boolean>
 
-const pledgeContainer = ref<HTMLDivElement>()
+const layout = ref<HTMLDivElement>()
 
-const scrollIntoView = () => {
-  if (pledgeContainer?.value?.scrollIntoView === undefined) {
-    return
-  }
-
-  pledgeContainer?.value?.scrollIntoView({
-    behavior: 'smooth',
-    block: 'start',
-  })
-}
+const { scrollIntoView } = useScrollIntoView(layout, {
+  behavior: 'smooth',
+  block: 'start',
+})
 
 watch(
   selected,
@@ -33,19 +28,20 @@ watch(
   },
 )
 
-onMounted(() => {
-  if (selected.value) {
-    scrollIntoView()
-  }
-})
+// TODO: This may not be required
+// onMounted(() => {
+//   if (selected.value) {
+//     scrollIntoView()
+//   }
+// })
 </script>
 
 <template>
   <div
-    class="pledgeContainer"
+    class="layout"
     :class="{ outOfStock, selectable, selected, isNoRewardPledge }"
     v-if="pledge"
-    ref="pledgeContainer"
+    ref="layout"
   >
     <header class="header content">
       <slot name="header"></slot>
@@ -75,7 +71,7 @@ onMounted(() => {
 </template>
 
 <style lang="scss" scoped>
-.pledgeContainer {
+.layout {
   @apply grid items-start rounded-lg border-2 border-gray-50 pt-[0.3rem] pb-[1.4rem] transition-[border] duration-500;
   grid-template-rows: 5.2rem 8.8rem 4.2rem auto;
   grid-template-columns: 2.5rem repeat(2, auto);

@@ -18,14 +18,11 @@ const selectable = inject(pledgeKeys.selectable)
 
 <style lang="scss" scoped>
 .pledge-name {
-  @apply text-sm;
+  @apply text-sm font-bold;
+  @apply desktop:text-lg;
 
-  @media (min-width: 1440px) {
-    @apply text-lg;
-
-    &.selectable {
-      @apply text-base;
-    }
+  .selectable {
+    @apply desktop:text-base;
   }
 }
 </style>

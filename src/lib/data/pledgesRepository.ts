@@ -1,7 +1,7 @@
 import { IPledge } from '@/lib/types/IPledge'
 
 export const pledgesRepository = {
-  async get(includeNoReward: boolean = false): Promise<IPledge[]> {
+  async get(includeNoReward: boolean = true): Promise<IPledge[]> {
     if (includeNoReward) {
       return [{ ...noRewardPledge }, ...pledges]
     }

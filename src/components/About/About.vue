@@ -2,6 +2,7 @@
 import Pledges from '@/components/Pledges.vue'
 import { IPledge } from '@/lib/types/IPledge'
 import { useAppStore } from '@/use/useAppStore'
+import { computed } from 'vue'
 
 const { pledges, selectedPledgeId, backThisProjectModalOpen } = useAppStore()
 
@@ -9,6 +10,10 @@ const onSelected = (pledge: IPledge) => {
   selectedPledgeId.value = pledge.id
   backThisProjectModalOpen.value = true
 }
+
+const filteredPledges = computed(() => {
+  return pledges.value.filter((p) => p.remaining !== undefined)
+})
 
 const noop = () => {
   // nothing to see here
@@ -32,31 +37,42 @@ const noop = () => {
       desk space below your computer to allow notepads, pens, and USB sticks to
       be stored under the stand.
     </p>
-    <Pledges
-      :on-continue-handler="noop"
-      :selectable="false"
-      :on-selected="onSelected"
-      :pledges="pledges"
-      :gap="'1.5rem'"
-    />
+    <div class="pledges">
+      <Pledges
+        :on-continue-handler="noop"
+        :selectable="false"
+        :on-selected="onSelected"
+        :pledges="filteredPledges"
+        :gap="'1.5rem'"
+      />
+    </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
-.project {
-  @apply grid grid-rows-[2.7rem_11.85rem_10.5rem_1fr] items-end py-[0.28rem] px-[0.4rem];
+.about {
+  @apply pl-[1.4rem] pr-[1.4rem] pt-10;
+
+  & > * + *:not(.pledges) {
+    @apply pt-6;
+  }
+
   @apply desktop:grid-rows-[4.1rem_9.6rem_5.5rem_1fr] desktop:py-0 desktop:px-[2rem];
 
   header {
     h2 {
-      @apply text-[1.125rem];
+      @apply text-[1.125rem] font-bold leading-[1.377rem];
       @apply desktop:text-[1.2rem] desktop:font-bold;
     }
   }
 
   p {
-    @apply text-[0.0875rem] leading-7 text-gray-300;
+    @apply pr-0.5 text-[0.875rem] leading-6 text-gray-300;
     @apply desktop:text-[1rem] desktop:leading-[1.875rem];
+  }
+
+  .pledges {
+    @apply pt-[2.1rem];
   }
 }
 </style>

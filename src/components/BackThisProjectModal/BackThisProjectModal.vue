@@ -1,11 +1,11 @@
 <script lang="ts" setup>
 import { CloseBtn, Description, Heading } from './elements'
+import Modal from '@/components/Modal.vue'
 import Pledges from '@/components/Pledges.vue'
-import { ScrollHeight } from '@/lib/injectionKeys'
 import { useAppStore } from '@/use/useAppStore'
+import { useScrollIntoView } from '@/use/useScrollIntoView'
 import { onClickOutside, onKeyStroke } from '@vueuse/core'
-import { useMotions } from '@vueuse/motion'
-import { Ref, computed, inject, ref, watch } from 'vue'
+import { ref, watch } from 'vue'
 
 const {
   backThisProjectModalOpen,
@@ -14,9 +14,12 @@ const {
   selectedPledgeId,
 } = useAppStore()
 
-const scrollHeight = inject(ScrollHeight) as Ref<number>
-
 const modalElement = ref<HTMLDivElement>()
+
+const { scrollIntoView } = useScrollIntoView(modalElement, {
+  behavior: 'smooth',
+  block: 'start',
+})
 
 const close = () => {
   backThisProjectModalOpen.value = false
@@ -25,12 +28,6 @@ const close = () => {
 
 onClickOutside(modalElement, close)
 onKeyStroke('Escape', close)
-
-const motions = useMotions()
-
-const modalHeight = computed(() =>
-  scrollHeight.value ? `${scrollHeight.value}px` : '100vh',
-)
 
 const closeModalHandler = () => {
   selectedPledgeId.value = undefined
@@ -42,15 +39,6 @@ const onContinueClick = () => {
   thankYouModalOpen.value = true
 }
 
-const scrollIntoView = () => {
-  if (modalElement.value) {
-    modalElement.value.scrollIntoView({
-      behavior: 'smooth',
-      block: 'start',
-    })
-  }
-}
-
 watch([backThisProjectModalOpen, modalElement], () => {
   // only scroll into view if the pledge is not selected already by clicking the select reward button
   if (selectedPledgeId.value !== undefined) {
@@ -58,48 +46,26 @@ watch([backThisProjectModalOpen, modalElement], () => {
   }
   scrollIntoView()
 })
-
-const onLeave = (el: Element, done: () => void) => {
-  motions.backThisProjectModal.leave(done)
-}
 </script>
 
 <template>
-  <transition
-    :css="false"
-    @leave="onLeave"
-  >
+  <Modal :show="backThisProjectModalOpen">
     <div
-      class="back-this-project-modal"
-      v-if="backThisProjectModalOpen"
-      v-motion="'backThisProjectModal'"
-      :initial="{ opacity: 0, backgroundColor: 'rgba(0, 0, 0, 0)' }"
-      :enter="{
-        opacity: 1,
-        backgroundColor: 'rgba(0, 0, 0, .7)',
-        transition: { duration: 300 },
-      }"
-      :leave="{
-        opacity: 0,
-        backgroundColor: 'rgba(0, 0, 0, 0)',
-        transition: { duration: 300 },
-      }"
-      :style="{ height: modalHeight }"
+      class="modal mx-auto max-w-mobile-content"
+      ref="modalElement"
     >
-      <div
-        class="modal"
-        ref="modalElement"
-      >
+      <div class="content">
         <Heading class="heading">Back this project</Heading>
         <CloseBtn
           :close-modal-handler="closeModalHandler"
           class="close-btn"
         />
-        <Description>
+        <Description class="description">
           Want to support us in bringing Mastercraft Bamboo Monitor Riser out in
           the world?
         </Description>
         <Pledges
+          class="pledges"
           :on-continue-handler="onContinueClick"
           :pledges="pledges"
           :selectable="true"
@@ -110,28 +76,30 @@ const onLeave = (el: Element, done: () => void) => {
         />
       </div>
     </div>
-  </transition>
+  </Modal>
 </template>
 
 <style lang="scss" scoped>
-.back-this-project-modal {
-  @apply absolute top-0 left-0 z-[9999] flex w-full items-start justify-center pt-[7.5rem];
-  @apply desktop:pt-[11.5rem];
+.modal {
+  @apply relative mt-[7.5rem];
 
-  .modal {
-    @apply grid w-mobile-content rounded-lg bg-white px-[1.5rem] py-[1.59rem];
+  .content {
+    @apply grid w-mobile-content auto-rows-auto rounded-lg bg-white px-[1.5rem] py-[1.9rem];
     @apply desktop:w-desktop-content desktop:px-[3rem] desktop:py-[2.8rem];
+
     grid-template-columns: repeat(2, auto);
-    grid-template-rows: 2.4rem 4rem;
+    grid-template-rows: 3.1rem 4.4rem auto;
     grid-template-areas:
       'heading close-btn'
-      'description description';
+      'description description'
+      'pledges pledges';
 
     .heading {
       grid-area: heading;
     }
 
     .close-btn {
+      @apply translate-y-[0.5rem] transform justify-self-end;
       grid-area: close-btn;
     }
 
