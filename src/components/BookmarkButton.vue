@@ -72,7 +72,7 @@ const { bookmarked } = useAppStore()
   }
 
   &[data-bookmarked='true'] {
-    .icon-container {
+    .iconContainer {
       @apply transition-all duration-300;
 
       svg {
