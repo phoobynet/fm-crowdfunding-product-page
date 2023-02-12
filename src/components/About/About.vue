@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import Pledges from '@/components/Pledges.vue'
-import { IPledge } from '@/lib/types/IPledge'
-import { useAppStore } from '@/use/useAppStore'
+import { IPledge } from '@/lib/types'
+import { useAppStore } from '@/use'
 import { computed } from 'vue'
 
 const { pledges, selectedPledgeId, backThisProjectModalOpen } = useAppStore()

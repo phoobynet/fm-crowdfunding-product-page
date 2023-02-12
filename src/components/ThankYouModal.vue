@@ -1,7 +1,6 @@
 <script lang="ts" setup>
 import { Modal } from '@/components'
-import { useAppStore } from '@/use/useAppStore'
-import { useScrollIntoView } from '@/use/useScrollIntoView'
+import { useAppStore, useScrollIntoView } from '@/use'
 import { onClickOutside, onKeyStroke } from '@vueuse/core'
 import { ref, watch } from 'vue'
 
@@ -24,7 +23,6 @@ watch(
   modal,
   (newValue) => {
     if (newValue) {
-      console.log('Scrolling into view')
       scrollIntoView()
     }
   },

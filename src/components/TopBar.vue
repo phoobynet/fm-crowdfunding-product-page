@@ -1,7 +1,5 @@
 <script lang="ts" setup>
 import { Logo, TopBarMenu } from '@/components'
-
-// TODO: top-bar - do i really need two divs?
 </script>
 
 <template>

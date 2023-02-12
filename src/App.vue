@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { ScrollHeight } from '@/lib/injectionKeys'
+import { ScrollHeight } from '@/lib/dependency-injection'
 import { provide, ref } from 'vue'
 
 const scrollHeight = ref<number>()

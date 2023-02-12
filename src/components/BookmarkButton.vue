@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { useAppStore } from '@/use/useAppStore'
+import { useAppStore } from '@/use'
 
 const { bookmarked } = useAppStore()
 </script>

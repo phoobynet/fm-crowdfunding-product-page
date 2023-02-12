@@ -1,4 +1,4 @@
-import { pledgesRepository } from '@/lib/data/pledgesRepository'
+import { pledgesRepository } from '@/lib/data'
 import { type IPledge } from '@/lib/types/IPledge'
 import { ref } from 'vue'
 

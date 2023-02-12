@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { enUS } from '@/lib/locale/enUS'
+import { enUS } from '@/lib/locale'
 import { computed } from 'vue'
 
 const props = defineProps<{ amount: number; fractionalDigits?: number }>()

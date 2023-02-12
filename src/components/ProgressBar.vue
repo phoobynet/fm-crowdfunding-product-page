@@ -31,7 +31,7 @@ watch(
 
 <template>
   <div
-    class="progress-bar"
+    class="progressBar"
     ref="progressBar"
   >
     <div
@@ -44,7 +44,7 @@ watch(
 </template>
 
 <style lang="scss" scoped>
-.progress-bar {
+.progressBar {
   @apply relative h-[0.8rem] w-full overflow-hidden overflow-hidden rounded-lg rounded-md bg-gray-50;
 
   .bar {

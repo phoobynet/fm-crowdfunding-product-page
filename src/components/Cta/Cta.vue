@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { BackThisProjectBtn, Description, Header, Logo } from './elements'
 import BookmarkButton from '@/components/BookmarkButton.vue'
-import { useAppStore } from '@/use/useAppStore'
+import { useAppStore } from '@/use'
 
 const { backThisProjectModalOpen } = useAppStore()
 

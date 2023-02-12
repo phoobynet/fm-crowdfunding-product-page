@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import TopBar from '@/components/TopBar.vue'
-import { ScrollHeight } from '@/lib/injectionKeys'
+import { ScrollHeight } from '@/lib/dependency-injection'
 import { useResizeObserver } from '@vueuse/core'
 import { Ref, inject, ref } from 'vue'
 

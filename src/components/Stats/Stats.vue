@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { Spacer, Stat } from './elements'
 import { LargeNumber, Money, ProgressBar } from '@/components'
-import { useAppStore } from '@/use/useAppStore'
+import { useAppStore } from '@/use'
 
 const { goal, amountBacked, backers, daysLeft } = useAppStore()
 </script>

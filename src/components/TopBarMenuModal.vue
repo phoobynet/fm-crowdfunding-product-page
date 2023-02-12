@@ -1,25 +1,32 @@
 <script lang="ts" setup>
-import { useAppStore } from '@/use/useAppStore'
+import { useAppStore } from '@/use'
 import { onClickOutside, onKeyStroke } from '@vueuse/core'
 import { useMotions } from '@vueuse/motion'
 import { ref } from 'vue'
 
 const items = ['About', 'Discover', 'Get Started']
-const modalElement = ref<HTMLDivElement>()
+
 const { menuModalOpen } = useAppStore()
-
-onClickOutside(modalElement, () => (menuModalOpen.value = false))
-onKeyStroke('Escape', () => {
-  menuModalOpen.value = false
-})
-
 const motions = useMotions()
+
+const modalElement = ref<HTMLDivElement>()
+
+const transitionLeaveHandler = (el: Element, done: () => void) => {
+  motions.modal.leave(done)
+}
+
+const close = () => {
+  menuModalOpen.value = false
+}
+
+onClickOutside(modalElement, close)
+onKeyStroke('Escape', close)
 </script>
 
 <template>
   <transition
     :css="false"
-    @leave="(el: Element, done: () => void) => motions.modal.leave(done)"
+    @leave="transitionLeaveHandler"
   >
     <div
       class="topBarMenuModal"
@@ -47,14 +54,14 @@ const motions = useMotions()
         class="modal"
         ref="modalElement"
       >
-        <ul class="menuItems">
+        <ul class="menu">
           <li
-            class="menuItem"
+            class="item"
             v-for="item in items"
             :key="item"
             @click="() => (menuModalOpen = false)"
           >
-            <span class="menuItemContent">{{ item }}</span>
+            <span class="content">{{ item }}</span>
           </li>
         </ul>
       </div>
@@ -71,13 +78,13 @@ const motions = useMotions()
   .modal {
     @apply w-mobile-content rounded-lg bg-white;
 
-    .menuItems {
+    .menu {
       @apply grid cursor-pointer list-none auto-rows-[4.4rem] p-0 text-lg text-[1.125rem] font-medium text-gray-800;
 
-      .menuItem {
+      .item {
         @apply flex h-full items-center;
 
-        .menuItemContent {
+        .content {
           @apply pl-6 leading-4;
         }
 

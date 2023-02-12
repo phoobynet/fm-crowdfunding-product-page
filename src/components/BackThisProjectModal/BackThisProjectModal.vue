@@ -1,9 +1,7 @@
 <script lang="ts" setup>
 import { CloseBtn, Description, Heading } from './elements'
-import Modal from '@/components/Modal.vue'
-import Pledges from '@/components/Pledges.vue'
-import { useAppStore } from '@/use/useAppStore'
-import { useScrollIntoView } from '@/use/useScrollIntoView'
+import { Modal, Pledges } from '@/components'
+import { useAppStore, useScrollIntoView } from '@/use'
 import { onClickOutside, onKeyStroke } from '@vueuse/core'
 import { ref, watch } from 'vue'
 

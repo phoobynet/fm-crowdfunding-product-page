@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { MenuClickHandler } from '@/lib/injectionKeys'
-import { useAppStore } from '@/use/useAppStore'
+import { MenuClickHandler } from '@/lib/dependency-injection'
+import { useAppStore } from '@/use'
 import { inject } from 'vue'
 
 const menuClickHandler = inject(MenuClickHandler) as (item: string) => void
@@ -8,6 +8,10 @@ const menuClickHandler = inject(MenuClickHandler) as (item: string) => void
 const { menuModalOpen } = useAppStore()
 
 const items = ['About', 'Discover', 'Get Started']
+
+const closeMenuHandler = () => {
+  menuModalOpen.value = false
+}
 </script>
 
 <template>
@@ -38,7 +42,7 @@ const items = ['About', 'Discover', 'Get Started']
         <img
           src="@/assets/images/icon-hamburger.svg"
           alt=""
-          @click="() => (menuModalOpen = true)"
+          @click="closeMenuHandler"
           class="icon hamburger"
         />
       </template>
@@ -55,7 +59,7 @@ const items = ['About', 'Discover', 'Get Started']
     .items {
       @apply flex list-none gap-[2.1rem] text-[0.8125rem] text-white;
 
-      li {
+      .item {
         @apply cursor-pointer;
 
         &:hover {

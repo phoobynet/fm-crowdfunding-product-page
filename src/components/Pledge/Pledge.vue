@@ -9,8 +9,8 @@ import {
   Remaining,
   SelectRewardBtn,
 } from '@/components/Pledge/elements'
-import { IPledge } from '@/lib/types/IPledge'
-import { useAppStore } from '@/use/useAppStore'
+import { IPledge } from '@/lib/types'
+import { useAppStore } from '@/use'
 import { provide } from 'vue'
 
 const props = defineProps<{ pledge: IPledge; selectable?: boolean }>()

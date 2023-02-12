@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import Pledge from '@/components/Pledge'
-import { IPledge } from '@/lib/types/IPledge'
+import { IPledge } from '@/lib/types'
 import { computed } from 'vue'
 
 const props = defineProps<{
@@ -20,10 +20,11 @@ const onSelectedHandler = props.onSelectedHandler || (() => {})
 </script>
 
 <template>
-  <ul class="grid gap-6">
+  <ul class="pledges">
     <li
       v-for="p in filteredPledges"
       :key="p.id"
+      class="pledge"
     >
       <Pledge
         :pledge="p"
@@ -34,3 +35,9 @@ const onSelectedHandler = props.onSelectedHandler || (() => {})
     </li>
   </ul>
 </template>
+
+<style lang="scss" scoped>
+.pledges {
+  @apply grid gap-6;
+}
+</style>

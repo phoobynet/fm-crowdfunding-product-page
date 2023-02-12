@@ -8,8 +8,8 @@ import {
   ThankYouModal,
   TopBarMenuModal,
 } from '@/components'
-import { MenuClickHandler } from '@/lib/injectionKeys'
-import { useAppStore } from '@/use/useAppStore'
+import { MenuClickHandler } from '@/lib/dependency-injection'
+import { useAppStore } from '@/use'
 import { onMounted, provide } from 'vue'
 
 const { menuModalOpen, init, pledges, fetchingPledges } = useAppStore()

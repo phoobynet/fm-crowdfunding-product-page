@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { pledgeKeys } from '@/components/Pledge/pledgeKeys'
-import { useScrollIntoView } from '@/use/useScrollIntoView'
+import { useScrollIntoView } from '@/use'
 import { Ref, inject, ref, watch } from 'vue'
 
 const pledge = inject(pledgeKeys.pledge)

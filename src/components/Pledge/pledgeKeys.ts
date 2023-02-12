@@ -1,4 +1,4 @@
-import type { IPledge } from '@/lib/types/IPledge'
+import type { IPledge } from '@/lib/types'
 import type { InjectionKey, Ref } from 'vue'
 
 export const pledgeKeys = {
