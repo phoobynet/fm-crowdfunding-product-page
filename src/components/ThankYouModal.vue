@@ -3,7 +3,7 @@ import { Modal } from '@/components'
 import { useAppStore } from '@/use/useAppStore'
 import { useScrollIntoView } from '@/use/useScrollIntoView'
 import { onClickOutside, onKeyStroke } from '@vueuse/core'
-import { nextTick, onMounted, ref, watch } from 'vue'
+import { ref, watch } from 'vue'
 
 const modal = ref<HTMLDivElement>()
 const { thankYouModalOpen } = useAppStore()

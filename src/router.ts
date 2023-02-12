@@ -5,11 +5,11 @@ export const router = createRouter({
   routes: [
     {
       path: '/',
-      component: () => import('@/pages/LandingPage.vue'),
+      component: async () => import('@/pages/LandingPage.vue'),
     },
     {
       path: '/demo',
-      component: () => import('@/pages/DemoPage.vue'),
+      component: async () => import('@/pages/DemoPage.vue'),
     },
   ],
 })

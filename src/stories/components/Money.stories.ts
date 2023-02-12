@@ -1,10 +1,10 @@
 import Money from '@/components/Money.vue'
-import { Meta, StoryFn } from '@storybook/vue3'
+import type { Meta, StoryFn } from '@storybook/vue3'
 
-export default {
+const moneyStories: Meta<typeof Money> = {
   title: 'Components/Money',
   component: Money,
-} as Meta<typeof Money>
+}
 
 const Template: StoryFn<typeof Money> = (args) => ({
   components: { Money },
@@ -28,3 +28,5 @@ WithFractionalDigits.args = {
   amount: 1000,
   fractionalDigits: 2,
 }
+
+export default moneyStories

@@ -1,4 +1,4 @@
-import { IPledge } from '@/lib/types/IPledge'
+import type { IPledge } from '@/lib/types/IPledge'
 import { useAppStore } from '@/use/useAppStore'
 import { debouncedWatch } from '@vueuse/core'
 import { computed, readonly, ref, watch } from 'vue'

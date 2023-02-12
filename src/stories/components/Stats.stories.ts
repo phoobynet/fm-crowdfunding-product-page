@@ -1,10 +1,10 @@
 import { Stats } from '@/components'
-import { Meta, StoryFn } from '@storybook/vue3'
+import type { Meta, StoryFn } from '@storybook/vue3'
 
-export default {
+const statsStories: Meta<typeof Stats> = {
   title: 'Components/Stats',
   component: Stats,
-} as Meta<typeof Stats>
+}
 
 const Template: StoryFn<typeof Stats> = (args) => ({
   components: { Stats },
@@ -34,3 +34,5 @@ Desktop.parameters = {
     defaultViewport: 'Desktop',
   },
 }
+
+export default statsStories

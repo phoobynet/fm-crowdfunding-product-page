@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 import { pledgeKeys } from '@/components/Pledge/pledgeKeys'
-import { IPledge } from '@/lib/types/IPledge'
 // noinspection ES6UnusedImports
 import { vMaska } from 'maska'
 import { inject, onMounted, ref } from 'vue'
@@ -8,7 +7,6 @@ import { inject, onMounted, ref } from 'vue'
 defineProps<{ id: string }>()
 const input = ref<HTMLInputElement>()
 const isFocussed = ref<boolean>()
-const pledge = inject(pledgeKeys.pledge) as IPledge
 const pledgeAmountError = inject(pledgeKeys.pledgeAmountError)
 const pledgeAmount = inject(pledgeKeys.pledgeAmount)
 
@@ -57,6 +55,7 @@ onMounted(() => {
 .projectPledgeAmountInput {
   @apply relative flex h-12 items-center gap-2 overflow-hidden rounded-full border-2 border-gray-50 p-0 py-0;
   @apply px-4 transition-[border] duration-200;
+  @apply desktop:gap-[0.3rem];
 
   &.focussed {
     @apply border-2 border-green-500;
@@ -64,6 +63,7 @@ onMounted(() => {
 
   .currencySymbol {
     @apply font-bold text-gray-100;
+    @apply desktop:pl-[0.65rem] desktop:text-sm;
   }
 
   &[data-invalid='true'] {
@@ -80,14 +80,6 @@ onMounted(() => {
 
     &[type='number'] {
       -moz-appearance: textfield;
-    }
-  }
-
-  @media (min-width: 1440px) {
-    @apply gap-[0.3rem];
-
-    .currencySymbol {
-      @apply pl-[0.65rem] text-sm;
     }
   }
 }

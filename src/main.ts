@@ -4,4 +4,7 @@ import '@/styles/styles.scss'
 import { MotionPlugin } from '@vueuse/motion'
 import { createApp } from 'vue'
 
-createApp(App).use(router).use(MotionPlugin).mount('#app')
+const app = createApp(App)
+app.use(router)
+app.use(MotionPlugin)
+app.mount('#app')

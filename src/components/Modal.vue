@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { ScrollHeight } from '@/lib/injectionKeys'
 import { useMotions } from '@vueuse/motion'
-import { Ref, computed, inject, ref, watchEffect } from 'vue'
+import { Ref, computed, inject } from 'vue'
 
 defineProps<{ show: boolean }>()
 

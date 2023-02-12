@@ -1,5 +1,5 @@
-import { IPledge } from '@/lib/types/IPledge'
-import { InjectionKey, Ref } from 'vue'
+import type { IPledge } from '@/lib/types/IPledge'
+import type { InjectionKey, Ref } from 'vue'
 
 export const pledgeKeys = {
   outOfStock: Symbol('outOfStock') as InjectionKey<Ref<boolean>>,

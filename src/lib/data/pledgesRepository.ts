@@ -1,4 +1,4 @@
-import { IPledge } from '@/lib/types/IPledge'
+import type { IPledge } from '@/lib/types/IPledge'
 
 export const pledgesRepository = {
   async get(includeNoReward: boolean = true): Promise<IPledge[]> {
