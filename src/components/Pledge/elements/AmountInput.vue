@@ -42,10 +42,10 @@ onMounted(() => {
     <div class="currencySymbol">$</div>
     <input
       ref="input"
-      type="number"
       v-model.number="pledgeAmount"
-      inputmode="numeric"
       v-maska
+      type="number"
+      inputmode="numeric"
       data-maska="#####"
     />
   </div>

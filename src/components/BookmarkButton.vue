@@ -39,8 +39,16 @@ const { bookmarked } = useAppStore()
         name="switch"
         mode="out-in"
       >
-        <span v-if="bookmarked"> Bookmarked </span>
-        <span v-else>Bookmark</span>
+        <span
+          v-if="bookmarked"
+          class="bookmarked"
+          >Bookmarked</span
+        >
+        <span
+          v-else
+          class="bookmark"
+          >Bookmark</span
+        >
       </transition>
     </div>
   </div>
@@ -59,7 +67,7 @@ const { bookmarked } = useAppStore()
 
   @media (hover: hover) {
     &:hover {
-      .icon-container {
+      .iconContainer {
         @apply opacity-50 transition-all duration-300;
 
         svg {
@@ -88,7 +96,7 @@ const { bookmarked } = useAppStore()
   }
 
   .textContainer {
-    @apply hidden;
+    @apply hidden pl-2 text-base;
     @apply desktop:block;
   }
 }

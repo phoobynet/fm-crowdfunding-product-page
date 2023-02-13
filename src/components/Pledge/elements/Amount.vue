@@ -13,9 +13,9 @@ const onContinueClick = inject(pledgeKeys.onContinueClick) as () => void
 <template>
   <div
     v-if="canEnterPledge"
+    v-motion
     class="pledgeAmount"
     :class="{ error: !!pledgeAmountError }"
-    v-motion
     :initial="{ opacity: 0 }"
     :enter="{ opacity: 1, transition: { duration: 500 } }"
   >
@@ -32,8 +32,8 @@ const onContinueClick = inject(pledgeKeys.onContinueClick) as () => void
     </button>
     <div
       v-show="pledgeAmountError"
-      class="error"
       v-motion
+      class="error"
       :initial="{ opacity: 0 }"
       :enter="{ opacity: 1, transition: { duration: 500 } }"
     >

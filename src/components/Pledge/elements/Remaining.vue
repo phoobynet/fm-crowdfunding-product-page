@@ -11,9 +11,9 @@ const show = computed(() => !isNoRewardPledge?.value && !!pledge)
 
 <template>
   <div
+    v-if="show"
     class="pledge-remaining"
     :class="{ selectable }"
-    v-if="show"
   >
     <div class="amount">
       {{ pledge?.remaining }}

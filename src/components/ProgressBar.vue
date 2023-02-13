@@ -31,12 +31,12 @@ watch(
 
 <template>
   <div
-    class="progressBar"
     ref="progressBar"
+    class="progressBar"
   >
     <div
-      class="bar"
       ref="bar"
+      class="bar"
       :style="{ width: `${barWidth}px` }"
       :data-width="barWidth"
     ></div>

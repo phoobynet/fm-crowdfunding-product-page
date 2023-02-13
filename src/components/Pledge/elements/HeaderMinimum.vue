@@ -8,8 +8,8 @@ const pledge = inject(pledgeKeys.pledge)
 <template>
   <template v-if="pledge">
     <div
-      class="pledge-header-minimum"
       v-if="pledge.id !== 0"
+      class="pledge-header-minimum"
     >
       Pledge ${{ pledge.amount }} or more
     </div>

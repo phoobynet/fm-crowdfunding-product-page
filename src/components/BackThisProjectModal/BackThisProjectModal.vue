@@ -49,8 +49,8 @@ watch([backThisProjectModalOpen, modalElement], () => {
 <template>
   <Modal :show="backThisProjectModalOpen">
     <div
-      class="modal mx-auto max-w-mobile-content"
       ref="modalElement"
+      class="modal mx-auto max-w-mobile-content"
     >
       <div class="content">
         <Heading class="heading">Back this project</Heading>

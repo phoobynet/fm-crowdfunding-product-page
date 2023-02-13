@@ -38,10 +38,10 @@ watch(
 
 <template>
   <div
-    class="layout"
-    :class="{ outOfStock, selectable, selected, isNoRewardPledge }"
     v-if="pledge"
     ref="layout"
+    class="layout"
+    :class="{ outOfStock, selectable, selected, isNoRewardPledge }"
   >
     <header class="header content">
       <slot name="header"></slot>
@@ -50,20 +50,20 @@ watch(
       <slot name="description"></slot>
     </div>
     <div
-      class="remaining content"
       v-if="!isNoRewardPledge"
+      class="remaining content"
     >
       <slot name="remaining"></slot>
     </div>
     <div
-      class="selectReward content"
       v-if="!selectable"
+      class="selectReward content"
     >
       <slot name="selectReward"></slot>
     </div>
     <div
-      class="amount"
       v-if="!isNoRewardPledge"
+      class="amount"
     >
       <slot name="amount"></slot>
     </div>

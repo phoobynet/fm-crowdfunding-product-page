@@ -29,9 +29,9 @@ onKeyStroke('Escape', close)
     @leave="transitionLeaveHandler"
   >
     <div
-      class="topBarMenuModal"
       v-if="menuModalOpen"
       v-motion="'modal'"
+      class="topBarMenuModal"
       :initial="{
         opacity: 0,
         backgroundImage:
@@ -51,14 +51,14 @@ onKeyStroke('Escape', close)
       }"
     >
       <div
-        class="modal"
         ref="modalElement"
+        class="modal"
       >
         <ul class="menu">
           <li
-            class="item"
             v-for="item in items"
             :key="item"
+            class="item"
             @click="() => (menuModalOpen = false)"
           >
             <span class="content">{{ item }}</span>

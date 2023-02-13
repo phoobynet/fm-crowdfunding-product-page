@@ -15,8 +15,8 @@ useResizeObserver(container, (entries) => {
 
 <template>
   <div
-    class="container"
     ref="container"
+    class="container"
   >
     <TopBar />
     <main>

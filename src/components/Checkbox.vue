@@ -18,8 +18,8 @@ const value = computed({
 
 <template>
   <input
-    type="checkbox"
     v-model="value"
+    type="checkbox"
   />
 </template>
 

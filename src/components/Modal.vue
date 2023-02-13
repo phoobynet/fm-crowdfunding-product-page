@@ -23,7 +23,6 @@ const onLeave = (el: Element, done: () => void) => {
     @leave="onLeave"
   >
     <div
-      class="absolute top-0 left-0 right-0 z-[999]"
       v-if="show"
       v-motion="'modal'"
       :initial="{ opacity: 0, backgroundColor: 'rgba(0, 0, 0, 0)' }"
@@ -38,6 +37,7 @@ const onLeave = (el: Element, done: () => void) => {
         transition: { duration: 300 },
       }"
       :style="{ height: modalHeight }"
+      class="absolute top-0 left-0 right-0 z-[999]"
     >
       <slot />
     </div>

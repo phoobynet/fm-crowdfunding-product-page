@@ -6,11 +6,11 @@ defineProps<{
 
 <template>
   <img
+    class="close-btn"
     src="@/assets/images/icon-close-modal.svg"
     alt=""
     role="button"
     @click="closeModalHandler"
-    class="close-btn"
   />
 </template>
 

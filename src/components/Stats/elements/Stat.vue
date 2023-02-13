@@ -1,9 +1,3 @@
-<script
-  lang="ts"
-  setup
->
-</script>
-
 <template>
   <div class="stat">
     <div class="amount">
@@ -21,6 +15,7 @@
 >
   .stat {
     @apply flex flex-col items-center w-full;
+    @apply desktop:items-start;
 
     .amount {
       @apply text-[2rem] font-bold;
@@ -28,12 +23,8 @@
 
     .description {
       @apply text-[0.875rem] text-gray-300 pt-0.5;
-
-      @media (min-width: 1440px) {
-        @apply text-[0.9375rem];
-      }
+      @apply desktop:text-[0.9375rem];
     }
-
   }
 </style>
 

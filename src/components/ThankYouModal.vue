@@ -35,8 +35,8 @@ watch(
 <template>
   <Modal :show="thankYouModalOpen">
     <div
-      class="content card mx-auto mt-[9rem] max-w-mobile-content"
       ref="modal"
+      class="content card mx-auto mt-[9rem] max-w-mobile-content"
     >
       <img
         src="@/assets/images/icon-check.svg"

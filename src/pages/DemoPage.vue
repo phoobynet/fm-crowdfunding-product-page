@@ -13,8 +13,8 @@ const show = ref(false)
     Show
   </button>
   <ModalDemo
-    @close="() => (show = false)"
     :show="show"
+    @close="() => (show = false)"
   />
 </template>
 

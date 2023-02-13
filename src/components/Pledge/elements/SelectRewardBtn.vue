@@ -9,13 +9,13 @@ const onSelectARewardClick = inject(pledgeKeys.onSelectARewardClick)
 
 <template>
   <div
-    class="pledge-select-reward"
     v-if="!selectable"
+    class="pledge-select-reward"
   >
     <button
-      @click="onSelectARewardClick"
       class="btn"
       :disabled="outOfStock"
+      @click="onSelectARewardClick"
     >
       <template v-if="outOfStock">Out of Stock</template>
       <template v-else> Select Reward </template>

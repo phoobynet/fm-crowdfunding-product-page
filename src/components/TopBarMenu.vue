@@ -19,9 +19,9 @@ const closeMenuHandler = () => {
     <div class="desktop">
       <ul class="items">
         <li
-          class="item"
           v-for="item in items"
           :key="item"
+          class="item"
           @click="(_) => menuClickHandler(item)"
         >
           {{ item }}
@@ -42,8 +42,8 @@ const closeMenuHandler = () => {
         <img
           src="@/assets/images/icon-hamburger.svg"
           alt=""
-          @click="closeMenuHandler"
           class="icon hamburger"
+          @click="closeMenuHandler"
         />
       </template>
     </div>
